@@ -277,7 +277,7 @@ export default function ProjectDetailPage() {
       </nav>
 
       {/* ── HERO ── */}
-      <motion.div {...sec(0)} style={{ position: 'relative', height: '100vh', minHeight: 600, overflow: 'hidden' }}>
+      <motion.div {...sec(0)} style={{ position: 'relative', height: '78vh', minHeight: 520, overflow: 'hidden' }}>
         <div style={{
           position: 'absolute', inset: 0,
           backgroundImage: `url('${heroImage || axis.heroImage}')`,

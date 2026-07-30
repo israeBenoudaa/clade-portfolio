@@ -31,7 +31,7 @@ export default function Hero() {
   return (
     <section style={{
       position: 'relative',
-      height: '82vh', minHeight: 520,
+      height: '92vh', minHeight: 580,
       overflow: 'hidden',
       background: '#08090A',
     }}>

@@ -253,7 +253,7 @@ export default function CareersSection({ hideHeader = false, autoTrigger = false
                           display: 'flex', alignItems: 'center', gap: 5, flexShrink: 0,
                           fontFamily: 'Space Grotesk, sans-serif', fontSize: 8,
                           letterSpacing: 2, textTransform: 'uppercase',
-                          color: 'rgba(255,255,255,0.28)', transition: 'color 0.2s',
+                          color: 'rgba(255,255,255,0.68)', transition: 'color 0.2s',
                           marginTop: 3,
                         }}
                       >
@@ -376,22 +376,22 @@ export default function CareersSection({ hideHeader = false, autoTrigger = false
               <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                    <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)' }}>{t('careers.firstname')}</label>
+                    <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.68)' }}>{t('careers.firstname')}</label>
                     <input className="gi gi-sm" value={form.prenom} onChange={set('prenom')} placeholder="—" required />
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                    <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)' }}>{t('careers.name')}</label>
+                    <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.68)' }}>{t('careers.name')}</label>
                     <input className="gi gi-sm" value={form.nom} onChange={set('nom')} placeholder="—" required />
                   </div>
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)' }}>{t('careers.email')}</label>
+                  <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.68)' }}>{t('careers.email')}</label>
                   <input className="gi gi-sm" type="email" value={form.email} onChange={set('email')} placeholder="—" required />
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)' }}>{t('careers.phone')}</label>
+                  <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.68)' }}>{t('careers.phone')}</label>
                   <input className="gi gi-sm" value={form.telephone} onChange={set('telephone')} placeholder="—" />
                 </div>
 
@@ -405,11 +405,11 @@ export default function CareersSection({ hideHeader = false, autoTrigger = false
                 ) : (
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                      <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)' }}>{t('careers.position')}</label>
+                      <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.68)' }}>{t('careers.position')}</label>
                       <input className="gi gi-sm" value={form.posteSouhaite} onChange={set('posteSouhaite')} placeholder="—" />
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                      <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)' }}>{t('careers.dept')}</label>
+                      <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.68)' }}>{t('careers.dept')}</label>
                       <DeptSelect value={form.departement} onChange={v => setForm(f => ({ ...f, departement: v }))} depts={depts} placeholder={t('form.select')} />
                     </div>
                   </div>
@@ -417,17 +417,17 @@ export default function CareersSection({ hideHeader = false, autoTrigger = false
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                    <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)' }}>{t('careers.cv')}</label>
+                    <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.68)' }}>{t('careers.cv')}</label>
                     <input className="gi gi-sm" type="url" value={form.cvUrl} onChange={set('cvUrl')} placeholder="https://..." />
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                    <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)' }}>{t('careers.portfolio_link')}</label>
+                    <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.68)' }}>{t('careers.portfolio_link')}</label>
                     <input className="gi gi-sm" type="url" value={form.portfolioUrl} onChange={set('portfolioUrl')} placeholder="https://..." />
                   </div>
                 </div>
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)' }}>
+                  <label style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: 'rgba(255,255,255,0.68)' }}>
                     {t('careers.cover')}
                   </label>
                   <textarea className="gi gi-sm" rows={5} value={form.message} onChange={set('message')}
