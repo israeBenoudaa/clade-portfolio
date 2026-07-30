@@ -173,21 +173,24 @@ function DisciplinePanel({ d, active, onToggle, onPrev, onNext, canPrev, canNext
         <button
           onClick={handleCta}
           style={{
-            marginTop: 24, padding: '10px 20px', borderRadius: 30,
-            border: `1px solid ${d.color}60`, background: d.color + '18',
+            marginTop: 24, padding: '11px 24px', borderRadius: 30,
+            border: '1px solid rgba(245,240,234,0.55)',
+            background: 'rgba(245,240,234,0.12)',
             display: 'inline-flex', alignItems: 'center', gap: 10,
             cursor: 'pointer',
             transition: 'background 0.2s, border-color 0.2s',
           }}
-          onMouseEnter={e => { e.currentTarget.style.background = d.color + '30'; e.currentTarget.style.borderColor = d.color + 'aa' }}
-          onMouseLeave={e => { e.currentTarget.style.background = d.color + '18'; e.currentTarget.style.borderColor = d.color + '60' }}
+          onMouseEnter={e => { e.currentTarget.style.background = 'rgba(245,240,234,0.22)'; e.currentTarget.style.borderColor = 'rgba(245,240,234,0.85)' }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'rgba(245,240,234,0.12)'; e.currentTarget.style.borderColor = 'rgba(245,240,234,0.55)' }}
         >
           <span style={{
             fontFamily: 'Space Grotesk, sans-serif',
-            fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase', color: d.color,
+            fontSize: 9, letterSpacing: 2.5, textTransform: 'uppercase',
+            color: 'rgba(245,240,234,0.9)',
           }}>
             {t('disciplines.cta')}
           </span>
+          <span style={{ color: 'rgba(245,240,234,0.6)', fontSize: 12 }}>→</span>
         </button>
       </div>
 
@@ -208,13 +211,13 @@ function DisciplinePanel({ d, active, onToggle, onPrev, onNext, canPrev, canNext
               disabled={disabled}
               style={{
                 background: 'none', border: 'none', padding: '8px 14px',
-                color: disabled ? 'rgba(245,240,234,0.1)' : 'rgba(245,240,234,0.3)',
+                color: disabled ? 'rgba(245,240,234,0.15)' : 'rgba(245,240,234,0.7)',
                 cursor: disabled ? 'default' : 'pointer',
-                fontSize: 18, letterSpacing: 1,
+                fontSize: 20, letterSpacing: 1,
                 transition: 'color 0.3s',
               }}
-              onMouseEnter={e => { if (!disabled) e.currentTarget.style.color = 'rgba(245,240,234,0.85)' }}
-              onMouseLeave={e => { e.currentTarget.style.color = disabled ? 'rgba(245,240,234,0.1)' : 'rgba(245,240,234,0.3)' }}
+              onMouseEnter={e => { if (!disabled) e.currentTarget.style.color = 'rgba(245,240,234,1)' }}
+              onMouseLeave={e => { e.currentTarget.style.color = disabled ? 'rgba(245,240,234,0.15)' : 'rgba(245,240,234,0.7)' }}
             >
               {label}
             </button>
