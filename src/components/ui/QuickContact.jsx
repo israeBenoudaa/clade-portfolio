@@ -53,7 +53,7 @@ export default function QuickContact({ open, onClose }) {
             onClick={close}
             style={{
               position: 'fixed', inset: 0, zIndex: 2000,
-              background: 'rgba(6,11,24,0.78)',
+              background: 'rgba(8,9,10,0.82)',
               backdropFilter: 'blur(10px)',
             }}
           />
@@ -69,12 +69,12 @@ export default function QuickContact({ open, onClose }) {
               zIndex: 2100,
               width: 'min(480px, 100vw)',
               background: [
-                'radial-gradient(ellipse 160% 55% at 120% -8%, rgba(74,127,193,0.14) 0%, transparent 52%)',
-                'radial-gradient(ellipse 80% 40% at -10% 110%, rgba(123,167,212,0.07) 0%, transparent 50%)',
-                'radial-gradient(ellipse 60% 30% at 110% 100%, rgba(200,184,154,0.05) 0%, transparent 45%)',
-                '#09101E',
+                'radial-gradient(ellipse 160% 55% at 120% -8%, rgba(200,184,154,0.07) 0%, transparent 52%)',
+                'radial-gradient(ellipse 80% 40% at -10% 110%, rgba(200,184,154,0.04) 0%, transparent 50%)',
+                'radial-gradient(ellipse 60% 30% at 110% 100%, rgba(200,184,154,0.04) 0%, transparent 45%)',
+                '#08090A',
               ].join(', '),
-              borderLeft: '1px solid rgba(255,255,255,0.07)',
+              borderLeft: '1px solid rgba(255,255,255,0.06)',
               display: 'flex', flexDirection: 'column',
               overflowY: 'auto',
             }}
@@ -82,13 +82,13 @@ export default function QuickContact({ open, onClose }) {
             {/* Top accent line */}
             <div style={{
               position: 'absolute', top: 0, left: 0, right: 0, height: 1, zIndex: 20, pointerEvents: 'none',
-              background: 'linear-gradient(90deg, transparent 0%, rgba(123,167,212,0.5) 35%, rgba(200,184,154,0.25) 65%, transparent 100%)',
+              background: 'linear-gradient(90deg, transparent 0%, rgba(200,184,154,0.45) 40%, rgba(200,184,154,0.2) 70%, transparent 100%)',
             }} />
 
             {/* Sticky header */}
             <div style={{
               position: 'sticky', top: 0, zIndex: 10,
-              background: 'rgba(9,16,30,0.92)',
+              background: 'rgba(8,9,10,0.94)',
               backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)',
               padding: '28px 32px 24px',
               borderBottom: '1px solid rgba(255,255,255,0.05)',

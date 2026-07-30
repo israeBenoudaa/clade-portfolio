@@ -23,7 +23,7 @@ export default function CareersPage() {
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
         height: 64, padding: '0 clamp(1.5rem, 5vw, 5rem)',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        background: 'rgba(6,11,24,0.92)',
+        background: 'rgba(8,9,10,0.94)',
         backdropFilter: 'blur(24px)',
         borderBottom: '1px solid rgba(255,255,255,0.06)',
       }}>

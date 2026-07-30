@@ -53,7 +53,7 @@ function DeptSelect({ value, onChange, depts, placeholder }) {
       {open && (
         <div style={{
           position: 'absolute', top: 'calc(100% + 6px)', left: 0, right: 0, zIndex: 200,
-          background: 'rgba(8,13,28,0.88)',
+          background: 'rgba(8,9,10,0.96)',
           backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)',
           border: '1px solid rgba(255,255,255,0.09)',
           borderRadius: 12,
@@ -177,7 +177,7 @@ export default function CareersSection({ hideHeader = false, autoTrigger = false
   return (
     <section id="agence" ref={ref} style={{
       padding: 'clamp(80px, 12vw, 140px) clamp(1.5rem, 6vw, 6rem)',
-      background: 'rgba(13,20,37,0.5)',
+      background: '#08090A',
       borderTop: '1px solid rgba(255,255,255,0.05)',
     }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
@@ -355,6 +355,20 @@ export default function CareersSection({ hideHeader = false, autoTrigger = false
                   </div>
                 </div>
               ))}
+
+              {/* & more */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, paddingTop: 4 }}>
+                <div style={{ width: 1, height: 20, background: 'rgba(200,184,154,0.18)', flexShrink: 0, marginLeft: 8 }} />
+                <span style={{
+                  fontFamily: 'Instrument Serif, serif',
+                  fontSize: 'clamp(13px, 1.4vw, 16px)',
+                  fontStyle: 'italic',
+                  color: 'rgba(200,184,154,0.35)',
+                  letterSpacing: '0.01em',
+                }}>
+                  & more
+                </span>
+              </div>
             </div>
           </motion.div>
 
