@@ -126,7 +126,7 @@ function Card({ card, index }) {
     <motion.div
       initial={{ opacity: 0, x: card.from.x, y: card.from.y }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once: true, margin: '120px' }}
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -257,7 +257,7 @@ export default function WhyUsSection() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '80px' }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             style={{
               fontFamily: 'Space Grotesk, sans-serif',
@@ -274,7 +274,7 @@ export default function WhyUsSection() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '80px' }}
             transition={{ duration: 0.75, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           >
             <span style={{
