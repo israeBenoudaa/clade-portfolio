@@ -303,25 +303,6 @@ export default function WhyUsSection() {
           </motion.div>
         </div>
 
-        {/* Decorative counter */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.3 }}
-          style={{
-            fontFamily: 'Instrument Serif, serif',
-            fontStyle: 'italic',
-            fontSize: 'clamp(80px, 12vw, 160px)',
-            fontWeight: 400,
-            lineHeight: 1,
-            color: 'rgba(245,240,234,0.03)',
-            userSelect: 'none',
-            letterSpacing: '-0.04em',
-          }}
-        >
-          04
-        </motion.div>
       </div>
 
       {/* ── Cards grid ─────────────────────────────────────────────────── */}

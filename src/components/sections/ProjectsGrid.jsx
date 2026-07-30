@@ -39,13 +39,6 @@ export default function ProjectsGrid() {
             {t('projects.h2')}
           </h2>
         </div>
-        <span style={{
-          fontFamily: 'Instrument Serif, serif', fontStyle: 'italic',
-          fontSize: 'clamp(64px, 10vw, 130px)', fontWeight: 400, lineHeight: 1,
-          color: 'rgba(245,240,234,0.04)', userSelect: 'none',
-        }}>
-          {String(projects.length).padStart(2, '0')}
-        </span>
       </div>
 
       {/* Grid */}
