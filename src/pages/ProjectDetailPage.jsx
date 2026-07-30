@@ -280,7 +280,7 @@ export default function ProjectDetailPage() {
       <motion.div {...sec(0)} style={{ position: 'relative', height: '78vh', minHeight: 520, overflow: 'hidden' }}>
         <div style={{
           position: 'absolute', inset: 0,
-          backgroundImage: `url('${heroImage || axis.heroImage}')`,
+          backgroundImage: `url('${project.image || heroImage || axis.heroImage}')`,
           backgroundSize: 'cover', backgroundPosition: 'center',
           filter: 'brightness(0.78) saturate(0.85)',
         }} />

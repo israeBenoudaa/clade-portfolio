@@ -116,7 +116,7 @@ export default function DisciplinePage() {
             position: 'absolute', inset: 0,
             backgroundImage: `url('${heroImage}')`,
             backgroundSize: 'cover', backgroundPosition: 'center',
-            filter: 'brightness(0.48) saturate(0.6)',
+            filter: 'brightness(0.65) saturate(0.72)',
           }}
         />
         <div style={{
