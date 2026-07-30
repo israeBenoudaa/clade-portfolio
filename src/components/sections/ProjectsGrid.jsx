@@ -83,8 +83,8 @@ export default function ProjectsGrid() {
                 transition: 'transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s',
                 transform: isH ? 'scale(1.04)' : 'scale(1)',
                 filter: show
-                  ? 'brightness(0.88) saturate(0.9)'
-                  : 'brightness(0.28) saturate(0.4)',
+                  ? 'brightness(0.94) saturate(0.95)'
+                  : 'brightness(0.42) saturate(0.55)',
               }} />
 
               {/* Gradient — plus dense en bas */}

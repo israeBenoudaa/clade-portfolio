@@ -76,8 +76,8 @@ function DisciplinePanel({ d, active, onToggle, onPrev, onNext, canPrev, canNext
         backgroundImage: `url('${image}')`,
         backgroundSize: 'cover', backgroundPosition: 'center',
         filter: isActive
-          ? 'brightness(0.75) saturate(0.82)'
-          : 'brightness(0.48) saturate(0.6)',
+          ? 'brightness(0.85) saturate(0.88)'
+          : 'brightness(0.58) saturate(0.68)',
         transition: 'filter 0.7s, transform 0.9s',
         transform: isActive ? 'scale(1.06)' : 'scale(1)',
       }} />
