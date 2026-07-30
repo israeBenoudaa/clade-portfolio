@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Averia Libre';
+  src: url('/fonts/AveriaLibre-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Averia Libre';
+  src: url('/fonts/AveriaLibre-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-navy: #060B18;
+  --color-navy-mid: #0D1425;
+  --color-navy-card: #111827;
+  --color-blue-accent: #7BA7D4;
+  --color-sand: #C8B89A;
+  --color-cream: #F2EDE4;
+  --color-snow: #FAFAF8;
+  --color-gray-muted: #8B9CB3;
+  --font-display: 'Instrument Serif', serif;
+  --font-label: 'Space Grotesk', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #08090A;
+  color: #F5F0EA;
+  font-family: 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+@media (pointer: fine) {
+  *, a, button { cursor: none !important; }
+}
+
+::selection {
+  background: rgba(123, 167, 212, 0.25);
+  color: #FAFAF8;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #060B18; }
+::-webkit-scrollbar-thumb { background: rgba(123,167,212,0.25); border-radius: 2px; }
+
+/* Dégradé subtil en overlay — remplace le grain */
+.grain::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(123,167,212,0.03) 0%,
+    transparent 45%,
+    rgba(200,184,154,0.02) 100%
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Aurora background */
+.aurora {
+  background:
+    radial-gradient(ellipse 80% 50% at 15% -10%, rgba(74,127,193,0.13) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 85% 5%, rgba(200,184,154,0.06) 0%, transparent 50%),
+    #060B18;
+}
+
+/* Glass card */
+.glass {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.glass:hover {
+  background: rgba(255,255,255,0.055);
+  border-color: rgba(255,255,255,0.13);
+}
+
+/* Text gradient */
+.text-grad {
+  background: linear-gradient(135deg, #FAFAF8 30%, #C8B89A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Input styles */
+.field {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: #FAFAF8;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  width: 100%;
+  transition: border-color 0.2s, background 0.2s;
+  outline: none;
+}
+.field::placeholder { color: rgba(255,255,255,0.3); }
+.field:focus {
+  border-color: rgba(123,167,212,0.5);
+  background: rgba(255,255,255,0.06);
+}
+
+/* Glass input — elegant glaze */
+.gi {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 10px;
+  padding: 13px 16px;
+  color: #FAFAF8;
+  font-family: 'Instrument Serif', serif;
+  font-size: 16px;
+  width: 100%;
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+.gi::placeholder { color: rgba(255,255,255,0.18); font-style: italic; font-size: 15px; }
+.gi:focus {
+  border-color: rgba(123,167,212,0.32);
+  background: rgba(123,167,212,0.04);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 0 0 3px rgba(123,167,212,0.07);
+}
+.gi-sm {
+  padding: 10px 13px;
+  font-size: 15px;
+  border-radius: 8px;
+}
+
+/* Page entry animation */
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-enter {
+  animation: pageIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Line animation for headings */
+.reveal-line {
+  overflow: hidden;
+  display: block;
+}
+
+/* Axis color dots */
+.axis-C { color: #7BA7D4; }
+.axis-L { color: #8DBE8A; }
+.axis-A { color: #C8B89A; }
+.axis-D { color: #B89AC8; }
+.axis-E { color: #C8A47B; }
