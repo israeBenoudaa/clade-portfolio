@@ -45,7 +45,7 @@ function Gallery({ images, color }) {
       onClick={() => setLightbox(idx)}
       style={{
         position: 'relative', overflow: 'hidden', cursor: 'zoom-in',
-        background: '#0D0E10', ...style,
+        background: '#08090A', ...style,
       }}
     >
       <div
@@ -88,7 +88,7 @@ function Gallery({ images, color }) {
         onClick={() => setLightbox(idx)}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        style={{ position: 'relative', overflow: 'hidden', cursor: 'zoom-in', background: '#0D0E10', ...style }}
+        style={{ position: 'relative', overflow: 'hidden', cursor: 'zoom-in', background: '#08090A', ...style }}
       >
         <div style={{
           position: 'absolute', inset: 0,

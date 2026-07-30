@@ -76,7 +76,7 @@ export default function ProjectsGrid() {
               style={{
                 gridColumn: `span ${cols}`,
                 position: 'relative', overflow: 'hidden',
-                background: '#0D0E10', cursor: 'pointer',
+                background: '#08090A', cursor: 'pointer',
                 height: isFeatured
                   ? 'clamp(300px, 40vw, 520px)'
                   : 'clamp(220px, 28vw, 380px)',
