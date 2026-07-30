@@ -106,7 +106,7 @@ export default function DisciplinePage() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0, ease: [0.22, 1, 0.36, 1] }}
-        style={{ position: 'relative', height: '42vh', minHeight: 380, overflow: 'hidden' }}
+        style={{ position: 'relative', height: '52vh', minHeight: 420, overflow: 'hidden' }}
       >
         <div
           data-cms-key={`discipline.${K}.hero_image`}
@@ -116,7 +116,7 @@ export default function DisciplinePage() {
             position: 'absolute', inset: 0,
             backgroundImage: `url('${heroImage}')`,
             backgroundSize: 'cover', backgroundPosition: 'center',
-            filter: 'brightness(0.28) saturate(0.4)',
+            filter: 'brightness(0.48) saturate(0.6)',
           }}
         />
         <div style={{

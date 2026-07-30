@@ -48,7 +48,7 @@ export default function Hero() {
             backgroundImage: `url('${currentImage}')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center 55%',
-            filter: 'brightness(0.32) saturate(0.5) sepia(0.25)',
+            filter: 'brightness(0.48) saturate(0.6) sepia(0.15)',
           }}
         />
       </AnimatePresence>
