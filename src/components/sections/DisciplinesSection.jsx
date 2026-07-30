@@ -190,7 +190,6 @@ function DisciplinePanel({ d, active, onToggle, onPrev, onNext, canPrev, canNext
           }}>
             {t('disciplines.cta')}
           </span>
-          <span style={{ color: 'rgba(245,240,234,0.6)', fontSize: 12 }}>→</span>
         </button>
       </div>
 
