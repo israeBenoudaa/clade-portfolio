@@ -53,8 +53,8 @@ body {
 
 /* Custom scrollbar */
 ::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: #060B18; }
-::-webkit-scrollbar-thumb { background: rgba(123,167,212,0.25); border-radius: 2px; }
+::-webkit-scrollbar-track { background: #08090A; }
+::-webkit-scrollbar-thumb { background: rgba(200,184,154,0.22); border-radius: 2px; }
 
 /* Dégradé subtil en overlay — remplace le grain */
 .grain::before {
@@ -63,7 +63,7 @@ body {
   inset: 0;
   background: linear-gradient(
     160deg,
-    rgba(123,167,212,0.03) 0%,
+    rgba(200,184,154,0.025) 0%,
     transparent 45%,
     rgba(200,184,154,0.02) 100%
   );
