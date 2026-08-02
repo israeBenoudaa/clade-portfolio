@@ -132,12 +132,19 @@ function Card({ card, index }) {
       onMouseLeave={() => setHovered(false)}
       style={{
         position: 'relative',
-        background: hovered ? 'rgba(255,255,255,0.045)' : 'rgba(255,255,255,0.025)',
-        border: `1px solid ${hovered ? `${ACCENT}35` : 'rgba(245,240,234,0.07)'}`,
+        background: hovered
+          ? 'linear-gradient(135deg, rgba(245,240,234,0.12) 0%, rgba(200,184,154,0.07) 100%)'
+          : 'linear-gradient(135deg, rgba(245,240,234,0.07) 0%, rgba(200,184,154,0.04) 100%)',
+        border: `1px solid ${hovered ? `rgba(200,184,154,0.45)` : 'rgba(245,240,234,0.15)'}`,
         borderRadius: 20,
         padding: 'clamp(1.6rem, 3.5vw, 2.8rem)',
         overflow: 'hidden',
-        transition: 'background 0.4s ease, border-color 0.4s ease, transform 0.4s ease',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        boxShadow: hovered
+          ? '0 12px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(245,240,234,0.12)'
+          : '0 2px 12px rgba(0,0,0,0.25), inset 0 1px 0 rgba(245,240,234,0.08)',
+        transition: 'background 0.4s ease, border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease',
         transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
         cursor: 'default',
       }}
@@ -222,7 +229,7 @@ function Card({ card, index }) {
       <div style={{
         fontFamily: 'Space Grotesk, sans-serif',
         fontSize: 'clamp(11px, 1.1vw, 13px)',
-        color: 'rgba(245,240,234,0.35)',
+        color: 'rgba(245,240,234,0.58)',
         lineHeight: 1.8,
         letterSpacing: '0.01em',
         position: 'relative', zIndex: 1,

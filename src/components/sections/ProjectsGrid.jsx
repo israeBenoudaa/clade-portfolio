@@ -83,14 +83,14 @@ export default function ProjectsGrid() {
                 transition: 'transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s',
                 transform: isH ? 'scale(1.04)' : 'scale(1)',
                 filter: show
-                  ? 'brightness(0.94) saturate(0.95)'
-                  : 'brightness(0.42) saturate(0.55)',
+                  ? 'brightness(1.0) saturate(1.0)'
+                  : 'brightness(0.88) saturate(0.9)',
               }} />
 
-              {/* Gradient — plus dense en bas */}
+              {/* Gradient — texte lisible en bas uniquement */}
               <div style={{
                 position: 'absolute', inset: 0,
-                background: 'linear-gradient(to top, rgba(8,9,10,0.96) 0%, rgba(8,9,10,0.3) 50%, transparent 100%)',
+                background: 'linear-gradient(to top, rgba(8,9,10,0.88) 0%, rgba(8,9,10,0.1) 40%, transparent 100%)',
               }} />
 
               {/* Filet couleur discipline en haut */}

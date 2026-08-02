@@ -164,9 +164,10 @@ function DisciplinePanel({ d, active, onToggle, onPrev, onNext, canPrev, canNext
         </h3>
         <div style={{ width: 32, height: 1, background: d.color, marginBottom: 18 }} />
         <p style={{
-          fontFamily: 'Outfit, sans-serif',
-          fontSize: 'clamp(11px, 1.5vw, 14px)', lineHeight: 1.75,
-          color: 'rgba(245,240,234,0.5)', maxWidth: 220,
+          fontFamily: 'Space Grotesk, sans-serif',
+          fontSize: 'clamp(11px, 1.2vw, 13px)', lineHeight: 1.85,
+          color: 'rgba(245,240,234,0.85)', maxWidth: 220,
+          textShadow: '0 1px 12px rgba(0,0,0,0.8)',
         }}>
           {t('disc.' + d.key + '.desc')}
         </p>

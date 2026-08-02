@@ -31,7 +31,7 @@ export default function Navbar() {
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
           height: 64, padding: '0 clamp(1.5rem, 5vw, 5rem)',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          background: scrolled ? 'rgba(6,11,24,0.9)' : 'transparent',
+          background: scrolled ? 'rgba(8,9,10,0.88)' : 'transparent',
           backdropFilter: scrolled ? 'blur(24px)' : 'none',
           borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : '1px solid transparent',
           transition: 'background 0.4s, backdrop-filter 0.4s, border-color 0.4s',
