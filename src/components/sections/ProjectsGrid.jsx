@@ -5,10 +5,10 @@ import { useProjects } from '../../hooks/useProjects'
 import { useLanguage } from '../../context/LanguageContext'
 
 // Max projects to display in the mosaic
-const MAX_SHOWCASE = 8
+const MAX_SHOWCASE = 10
 
 // Explicit CSS grid placement for each slot (12-col grid, 1-based line numbers)
-// Row heights: 280 · 280 · 240 · 220  (desktop)
+// Row heights: 280 · 280 · 240 · 220 · 200  (desktop)
 const PLACEMENTS = [
   { col: '1 / 8',  row: '1 / 3' },  // 0 — hero: 7 cols × 2 rows
   { col: '8 / 13', row: '1 / 2' },  // 1 — top-right: 5 cols × 1 row
@@ -18,13 +18,40 @@ const PLACEMENTS = [
   { col: '9 / 13', row: '3 / 4' },  // 5 — right strip: 4 cols
   { col: '1 / 7',  row: '4 / 5' },  // 6 — left wide: 6 cols
   { col: '7 / 13', row: '4 / 5' },  // 7 — right wide: 6 cols
+  { col: '1 / 6',  row: '5 / 6' },  // 8 — left narrow: 5 cols
+  { col: '6 / 13', row: '5 / 6' },  // 9 — right wide: 7 cols
 ]
 
 // Row heights depend on how many projects we actually render
 function templateRows(count) {
   if (count <= 3) return '280px 280px'
   if (count <= 6) return '280px 280px 240px'
-  return '280px 280px 240px 220px'
+  if (count <= 8) return '280px 280px 240px 220px'
+  return '280px 280px 240px 220px 200px'
+}
+
+// Round-robin across axes C/L/A/D/E to avoid architecture dominance
+function balancedShowcase(projects, max) {
+  const axes = ['A', 'C', 'L', 'D', 'E']
+  const buckets = {}
+  axes.forEach(a => { buckets[a] = [] })
+  projects.forEach(p => { if (buckets[p.axis]) buckets[p.axis].push(p) })
+
+  const result = []
+  let round = 0
+  while (result.length < max) {
+    let added = false
+    for (const axis of axes) {
+      if (buckets[axis][round]) {
+        result.push(buckets[axis][round])
+        if (result.length >= max) return result
+        added = true
+      }
+    }
+    if (!added) break
+    round++
+  }
+  return result
 }
 
 export default function ProjectsGrid() {
@@ -41,7 +68,7 @@ export default function ProjectsGrid() {
 
   if (loading) return <section id="projets" style={{ background: '#08090A', minHeight: 400 }} />
 
-  const showcase = projects.slice(0, MAX_SHOWCASE)
+  const showcase = balancedShowcase(projects, MAX_SHOWCASE)
   const extra    = projects.length - showcase.length
 
   return (
@@ -215,30 +242,29 @@ export default function ProjectsGrid() {
       <div style={{
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
         padding: 'clamp(3rem, 7vw, 6rem) clamp(2rem, 6vw, 7rem)',
-        borderTop: '1px solid rgba(245,240,234,0.05)',
-        textAlign: 'center', gap: 0,
+        borderTop: '1px solid rgba(245,240,234,0.07)',
+        textAlign: 'center',
       }}>
         <div style={{
           fontFamily: 'Instrument Serif, serif',
           fontStyle: 'italic',
-          fontSize: 'clamp(60px, 10vw, 120px)',
+          fontSize: 'clamp(40px, 7vw, 92px)',
           fontWeight: 400,
-          color: 'rgba(245,240,234,0.08)',
-          lineHeight: 0.88,
+          color: 'rgba(245,240,234,0.32)',
+          lineHeight: 1,
           letterSpacing: '-0.02em',
           userSelect: 'none',
-          pointerEvents: 'none',
         }}>
-          &amp; more
+          {t('projects.more')}
         </div>
         {extra > 0 && (
           <p style={{
             fontFamily: 'Space Grotesk, sans-serif',
             fontSize: 9, letterSpacing: 3.5, textTransform: 'uppercase',
-            color: 'rgba(245,240,234,0.22)',
-            marginTop: 20,
+            color: 'rgba(245,240,234,0.3)',
+            marginTop: 18,
           }}>
-            +{extra} projets supplémentaires
+            {t('projects.more_count', extra)}
           </p>
         )}
       </div>

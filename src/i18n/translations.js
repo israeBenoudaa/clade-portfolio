@@ -33,6 +33,8 @@ const fr = {
   // ProjectsGrid
   'projects.supertitle': 'Réalisations',
   'projects.h2': 'Projets sélectionnés',
+  'projects.more': '& plus de projets créatifs',
+  'projects.more_count': n => `+${n} projets supplémentaires`,
 
   // Contact section
   'contact.supertitle': 'Votre projet',
@@ -173,6 +175,8 @@ const en = {
 
   'projects.supertitle': 'Works',
   'projects.h2': 'Selected projects',
+  'projects.more': '& more creative projects',
+  'projects.more_count': n => `+${n} more projects`,
 
   'contact.supertitle': 'Your project',
   'contact.error_budget': 'Please select an estimated budget.',
@@ -300,6 +304,8 @@ const es = {
 
   'projects.supertitle': 'Realizaciones',
   'projects.h2': 'Proyectos seleccionados',
+  'projects.more': '& más proyectos creativos',
+  'projects.more_count': n => `+${n} proyectos más`,
 
   'contact.supertitle': 'Su proyecto',
   'contact.error_budget': 'Por favor seleccione un presupuesto estimado.',
