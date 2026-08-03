@@ -33,6 +33,7 @@ const fr = {
   // ProjectsGrid
   'projects.supertitle': 'Réalisations',
   'projects.h2': 'Projets sélectionnés',
+  'projects.more': '& plus',
   'projects.more_subtitle': 'projets créatifs',
 
   // Contact section
@@ -184,6 +185,7 @@ const en = {
 
   'projects.supertitle': 'Works',
   'projects.h2': 'Selected projects',
+  'projects.more': '& more',
   'projects.more_subtitle': 'creative projects',
 
   'contact.supertitle': 'Your project',
@@ -322,6 +324,7 @@ const es = {
 
   'projects.supertitle': 'Realizaciones',
   'projects.h2': 'Proyectos seleccionados',
+  'projects.more': '& más',
   'projects.more_subtitle': 'proyectos creativos',
 
   'contact.supertitle': 'Su proyecto',

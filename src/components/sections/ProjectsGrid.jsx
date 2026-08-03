@@ -241,35 +241,38 @@ export default function ProjectsGrid() {
 
       {/* ── & more ── */}
       <div style={{
-        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-        padding: 'clamp(2rem, 5vw, 4rem) clamp(2rem, 6vw, 7rem) clamp(1.5rem, 3vw, 2.5rem)',
+        display: 'flex', alignItems: 'center', gap: 'clamp(20px, 3.5vw, 56px)',
+        padding: 'clamp(20px, 2.5vw, 36px) clamp(1.5rem, 4vw, 5rem)',
         borderTop: '1px solid rgba(245,240,234,0.07)',
-        textAlign: 'center',
       }}>
-        <div style={{
-          fontFamily: 'Instrument Serif, serif',
-          fontStyle: 'italic',
-          fontSize: 'clamp(40px, 7vw, 92px)',
-          fontWeight: 400,
-          color: 'rgba(245,240,234,0.32)',
-          lineHeight: 1,
-          letterSpacing: '-0.02em',
-          userSelect: 'none',
-        }}>
-          &amp; more
+        <div style={{ flex: 1, height: 1, background: 'linear-gradient(to right, transparent, rgba(245,240,234,0.1))' }} />
+        <div style={{ textAlign: 'center', flexShrink: 0 }}>
+          <div style={{
+            fontFamily: 'Instrument Serif, serif',
+            fontStyle: 'italic',
+            fontSize: 'clamp(22px, 2.8vw, 38px)',
+            fontWeight: 400,
+            color: 'rgba(245,240,234,0.28)',
+            lineHeight: 1,
+            letterSpacing: '-0.01em',
+            userSelect: 'none',
+          }}>
+            {t('projects.more')}
+          </div>
+          <div style={{
+            fontFamily: 'Space Grotesk, sans-serif',
+            fontWeight: 500,
+            fontSize: 'clamp(7px, 0.85vw, 10px)',
+            letterSpacing: '0.28em',
+            textTransform: 'uppercase',
+            color: 'rgba(245,240,234,0.15)',
+            marginTop: 8,
+            userSelect: 'none',
+          }}>
+            {t('projects.more_subtitle')}
+          </div>
         </div>
-        <div style={{
-          fontFamily: 'Space Grotesk, sans-serif',
-          fontWeight: 400,
-          fontSize: 'clamp(9px, 1.1vw, 12px)',
-          letterSpacing: '0.22em',
-          textTransform: 'uppercase',
-          color: 'rgba(245,240,234,0.22)',
-          marginTop: 10,
-          userSelect: 'none',
-        }}>
-          {t('projects.more_subtitle')}
-        </div>
+        <div style={{ flex: 1, height: 1, background: 'linear-gradient(to left, transparent, rgba(245,240,234,0.1))' }} />
       </div>
 
       {/* ── Mobile override ── */}

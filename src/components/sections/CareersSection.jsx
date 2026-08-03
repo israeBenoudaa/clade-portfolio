@@ -366,7 +366,7 @@ export default function CareersSection({ hideHeader = false, autoTrigger = false
                   color: 'rgba(200,184,154,0.35)',
                   letterSpacing: '0.01em',
                 }}>
-                  & more
+                  {t('projects.more')}
                 </span>
               </div>
             </div>
