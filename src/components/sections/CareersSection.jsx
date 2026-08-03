@@ -356,19 +356,7 @@ export default function CareersSection({ hideHeader = false, autoTrigger = false
                 </div>
               ))}
 
-              {/* & more */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14, paddingTop: 4 }}>
-                <div style={{ width: 1, height: 20, background: 'rgba(200,184,154,0.18)', flexShrink: 0, marginLeft: 8 }} />
-                <span style={{
-                  fontFamily: 'Instrument Serif, serif',
-                  fontSize: 'clamp(13px, 1.4vw, 16px)',
-                  fontStyle: 'italic',
-                  color: 'rgba(200,184,154,0.35)',
-                  letterSpacing: '0.01em',
-                }}>
-                  {t('projects.more')}
-                </span>
-              </div>
+
             </div>
           </motion.div>
 
