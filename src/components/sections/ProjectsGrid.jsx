@@ -226,8 +226,8 @@ export default function ProjectsGrid() {
                     color: 'rgba(245,240,234,0.9)',
                     fontSize: 17, display: 'flex', alignItems: 'center', justifyContent: 'center',
                     cursor: 'pointer', lineHeight: 1,
-                    opacity: isTap ? 0 : 1,
-                    pointerEvents: isTap ? 'none' : 'auto',
+                    opacity: isTap ? 1 : 0,
+                    pointerEvents: isTap ? 'auto' : 'none',
                     transition: 'opacity 0.3s',
                   }}
                 >

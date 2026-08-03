@@ -112,7 +112,7 @@ export default function AnimatedLogo({ disciplineKey, disciplineLabel, color }) 
             ...base,
             fontSize: sz,
             color,
-            fontStyle: 'italic',
+            fontStyle: 'normal',
             letterSpacing: '0.03em',
             display: 'inline-block',
           }}
