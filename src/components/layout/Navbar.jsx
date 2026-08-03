@@ -45,8 +45,11 @@ export default function Navbar() {
           <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 22, fontWeight: 400, letterSpacing: 2, color: '#F5F0EA', whiteSpace: 'nowrap', lineHeight: 1 }}>
             Clade
           </span>
-          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7, letterSpacing: 2.5, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
-            architects & co
+          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7, letterSpacing: 2.5, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', whiteSpace: 'nowrap', lineHeight: 1 }}>
+            architects
+          </span>
+          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7, letterSpacing: 2.5, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', whiteSpace: 'nowrap', lineHeight: 1 }}>
+            &amp; co
           </span>
         </button>
 

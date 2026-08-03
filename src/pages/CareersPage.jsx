@@ -29,13 +29,16 @@ export default function CareersPage() {
       }}>
         <button
           onClick={() => navigate('/')}
-          style={{ background: 'none', border: 'none', padding: 0, display: 'flex', alignItems: 'baseline', gap: 10, cursor: 'pointer' }}
+          style={{ background: 'none', border: 'none', padding: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1, cursor: 'pointer' }}
         >
-          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 22, fontWeight: 400, letterSpacing: 2, color: '#F5F0EA' }}>
+          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 22, fontWeight: 400, letterSpacing: 2, color: '#F5F0EA', lineHeight: 1 }}>
             Clade
           </span>
-          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase' }}>
-            architects & co
+          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7, letterSpacing: 2.5, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', lineHeight: 1 }}>
+            architects
+          </span>
+          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7, letterSpacing: 2.5, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', lineHeight: 1 }}>
+            &amp; co
           </span>
         </button>
         <button
