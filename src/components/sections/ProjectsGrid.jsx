@@ -255,18 +255,20 @@ export default function ProjectsGrid() {
           letterSpacing: '-0.02em',
           userSelect: 'none',
         }}>
-          {t('projects.more')}
+          &amp; more
         </div>
-        {extra > 0 && (
-          <p style={{
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontSize: 9, letterSpacing: 3.5, textTransform: 'uppercase',
-            color: 'rgba(245,240,234,0.3)',
-            marginTop: 18,
-          }}>
-            {t('projects.more_count', extra)}
-          </p>
-        )}
+        <div style={{
+          fontFamily: 'Instrument Serif, serif',
+          fontStyle: 'italic',
+          fontSize: 'clamp(40px, 7vw, 92px)',
+          fontWeight: 400,
+          color: 'rgba(245,240,234,0.32)',
+          lineHeight: 1,
+          letterSpacing: '-0.02em',
+          userSelect: 'none',
+        }}>
+          {t('projects.more_subtitle')}
+        </div>
       </div>
 
       {/* ── Mobile override ── */}
