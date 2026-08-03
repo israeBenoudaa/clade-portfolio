@@ -4,13 +4,32 @@ import { AXES } from '../../data/projects'
 import { useProjects } from '../../hooks/useProjects'
 import { useLanguage } from '../../context/LanguageContext'
 
-// Repeating column pattern — rows sum to 12
-// [8,4] [4,4,4] [6,6] [4,8] = 9 projects per cycle
-const COL_PATTERN = [8, 4, 4, 4, 4, 6, 6, 4, 8]
+// Max projects to display in the mosaic
+const MAX_SHOWCASE = 8
+
+// Explicit CSS grid placement for each slot (12-col grid, 1-based line numbers)
+// Row heights: 280 · 280 · 240 · 220  (desktop)
+const PLACEMENTS = [
+  { col: '1 / 8',  row: '1 / 3' },  // 0 — hero: 7 cols × 2 rows
+  { col: '8 / 13', row: '1 / 2' },  // 1 — top-right: 5 cols × 1 row
+  { col: '8 / 13', row: '2 / 3' },  // 2 — mid-right: 5 cols × 1 row
+  { col: '1 / 5',  row: '3 / 4' },  // 3 — left strip: 4 cols
+  { col: '5 / 9',  row: '3 / 4' },  // 4 — center strip: 4 cols
+  { col: '9 / 13', row: '3 / 4' },  // 5 — right strip: 4 cols
+  { col: '1 / 7',  row: '4 / 5' },  // 6 — left wide: 6 cols
+  { col: '7 / 13', row: '4 / 5' },  // 7 — right wide: 6 cols
+]
+
+// Row heights depend on how many projects we actually render
+function templateRows(count) {
+  if (count <= 3) return '280px 280px'
+  if (count <= 6) return '280px 280px 240px'
+  return '280px 280px 240px 220px'
+}
 
 export default function ProjectsGrid() {
   const [hovered, setHovered] = useState(null)
-  const [tapped, setTapped]   = useState(null)
+  const [tapped,  setTapped]  = useState(null)
   const [isTouch, setIsTouch] = useState(false)
   const navigate = useNavigate()
   const { projects, loading } = useProjects()
@@ -22,38 +41,53 @@ export default function ProjectsGrid() {
 
   if (loading) return <section id="projets" style={{ background: '#08090A', minHeight: 400 }} />
 
+  const showcase = projects.slice(0, MAX_SHOWCASE)
+  const extra    = projects.length - showcase.length
+
   return (
     <section id="projets" style={{ background: '#08090A', paddingBottom: '6rem' }}>
 
-      {/* Header */}
+      {/* ── Header ── */}
       <div style={{
         padding: 'clamp(4rem, 8vw, 7rem) clamp(2rem, 6vw, 7rem) 3rem',
         display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
         borderBottom: '1px solid rgba(245,240,234,0.06)',
       }}>
         <div>
-          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 3.5, textTransform: 'uppercase', color: 'rgba(245,240,234,0.3)' }}>
+          <span style={{
+            fontFamily: 'Space Grotesk, sans-serif', fontSize: 9,
+            letterSpacing: 3.5, textTransform: 'uppercase', color: 'rgba(245,240,234,0.3)',
+          }}>
             {t('projects.supertitle')}
           </span>
-          <h2 style={{ fontFamily: 'Instrument Serif, serif', fontSize: 'clamp(28px, 4vw, 50px)', fontWeight: 400, color: '#F5F0EA', marginTop: 10, lineHeight: 1, letterSpacing: -0.5 }}>
+          <h2 style={{
+            fontFamily: 'Instrument Serif, serif',
+            fontSize: 'clamp(28px, 4vw, 50px)', fontWeight: 400,
+            color: '#F5F0EA', marginTop: 10, lineHeight: 1, letterSpacing: -0.5,
+          }}>
             {t('projects.h2')}
           </h2>
         </div>
       </div>
 
-      {/* Grid */}
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(12, 1fr)',
-        gap: 3, padding: 3,
-      }}>
-        {projects.map((project, i) => {
-          const axis       = AXES[project.axis]
-          const cols       = COL_PATTERN[i % COL_PATTERN.length] || 4
-          const isFeatured = cols >= 8
-          const isH        = hovered === project.id
-          const isTapped   = isTouch && tapped === project.id
-          const show       = isH || isTapped
+      {/* ── Mosaic grid ── */}
+      <div
+        className="projects-mosaic"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(12, 1fr)',
+          gridTemplateRows: templateRows(showcase.length),
+          gap: 3,
+          padding: 3,
+        }}
+      >
+        {showcase.map((project, i) => {
+          const axis    = AXES[project.axis]
+          const place   = PLACEMENTS[i]
+          const isHero  = i === 0
+          const isH     = hovered === project.id
+          const isTap   = isTouch && tapped === project.id
+          const show    = isH || isTap
 
           const handleClick = () => {
             if (!isTouch) return navigate(`/projet/${project.id}`)
@@ -67,41 +101,37 @@ export default function ProjectsGrid() {
               onMouseLeave={() => !isTouch && setHovered(null)}
               onClick={handleClick}
               style={{
-                gridColumn: `span ${cols}`,
+                gridColumn: place?.col || 'auto',
+                gridRow:    place?.row || 'auto',
                 position: 'relative', overflow: 'hidden',
                 background: '#08090A', cursor: 'pointer',
-                height: isFeatured
-                  ? 'clamp(300px, 40vw, 520px)'
-                  : 'clamp(220px, 28vw, 380px)',
               }}
             >
-              {/* Image */}
+              {/* Image — fills the grid cell */}
               <div style={{
                 position: 'absolute', inset: 0,
                 backgroundImage: `url('${project.image || project.image_url}')`,
                 backgroundSize: 'cover', backgroundPosition: 'center',
-                transition: 'transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s',
-                transform: isH ? 'scale(1.04)' : 'scale(1)',
-                filter: show
-                  ? 'brightness(1.0) saturate(1.0)'
-                  : 'brightness(0.88) saturate(0.9)',
+                transition: 'transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s',
+                transform: isH ? 'scale(1.05)' : 'scale(1)',
+                filter: show ? 'brightness(0.9) saturate(0.95)' : 'brightness(0.82) saturate(0.88)',
               }} />
 
-              {/* Gradient — texte lisible en bas uniquement */}
+              {/* Gradient vignette */}
               <div style={{
                 position: 'absolute', inset: 0,
-                background: 'linear-gradient(to top, rgba(8,9,10,0.88) 0%, rgba(8,9,10,0.1) 40%, transparent 100%)',
-              }} />
-
-              {/* Filet couleur discipline en haut */}
-              <div style={{
-                position: 'absolute', top: 0, left: 0, right: 0, height: 1,
-                background: `linear-gradient(to right, ${axis.color}, transparent)`,
-                opacity: show ? 1 : 0.3,
+                background: 'linear-gradient(to top, rgba(8,9,10,0.88) 0%, rgba(8,9,10,0.06) 45%, transparent 100%)',
                 transition: 'opacity 0.4s',
               }} />
 
-              {/* Discipline — toujours visible, petit et discret */}
+              {/* Discipline colour line — top */}
+              <div style={{
+                position: 'absolute', top: 0, left: 0, right: 0, height: 1,
+                background: `linear-gradient(to right, ${axis.color}, transparent)`,
+                opacity: show ? 1 : 0.35, transition: 'opacity 0.4s',
+              }} />
+
+              {/* Axis label */}
               <div style={{
                 position: 'absolute', top: 18, left: 20,
                 display: 'flex', alignItems: 'center', gap: 7,
@@ -115,64 +145,118 @@ export default function ProjectsGrid() {
                 </span>
               </div>
 
-
-              {/* Contenu bas */}
+              {/* Bottom content */}
               <div style={{
                 position: 'absolute', bottom: 0, left: 0, right: 0,
-                padding: isFeatured ? 'clamp(22px, 3vw, 40px)' : 'clamp(16px, 2.5vw, 26px)',
-                transform: show ? 'translateY(0)' : 'translateY(10px)',
-                transition: 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
+                padding: isHero
+                  ? 'clamp(20px, 3vw, 44px)'
+                  : 'clamp(14px, 2vw, 26px)',
+                transform: show ? 'translateY(0)' : 'translateY(8px)',
+                transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)',
               }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 8 }}>
-                  <h3 style={{
-                    fontFamily: 'Instrument Serif, serif',
-                    fontSize: isFeatured ? 'clamp(22px, 3vw, 38px)' : 'clamp(16px, 2vw, 24px)',
-                    fontWeight: 400, color: '#F5F0EA', lineHeight: 1.15,
-                    margin: 0,
-                    opacity: show ? 1 : isTouch ? 0.85 : 0.55,
-                    transition: 'opacity 0.4s',
-                  }}>
-                    {project.title}
-                  </h3>
-                  {isTouch && (
-                    <button
-                      onClick={e => { e.stopPropagation(); navigate(`/projet/${project.id}`) }}
-                      style={{
-                        flexShrink: 0,
-                        width: 40, height: 40, borderRadius: '50%',
-                        background: 'rgba(245,240,234,0.08)',
-                        backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-                        border: '1px solid rgba(245,240,234,0.25)',
-                        color: '#F5F0EA', fontSize: 22,
-                        display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        cursor: 'pointer',
-                        opacity: isTapped ? 1 : 0,
-                        transform: isTapped ? 'scale(1)' : 'scale(0.7)',
-                        transition: 'opacity 0.3s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                      }}
-                    >
-                      +
-                    </button>
-                  )}
-                </div>
+                <h3 style={{
+                  fontFamily: 'Instrument Serif, serif',
+                  fontSize: isHero
+                    ? 'clamp(22px, 3.2vw, 40px)'
+                    : 'clamp(13px, 1.6vw, 21px)',
+                  fontWeight: 400, color: '#F5F0EA',
+                  lineHeight: 1.15, margin: '0 0 8px',
+                  opacity: show ? 1 : 0.78, transition: 'opacity 0.4s',
+                }}>
+                  {project.title}
+                </h3>
                 <div style={{
                   display: 'flex', gap: 10, alignItems: 'center',
-                  opacity: show ? 0.55 : 0,
-                  transition: 'opacity 0.35s 0.05s',
+                  opacity: show ? 0.65 : 0, transition: 'opacity 0.3s 0.05s',
                 }}>
-                  <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 10, color: 'rgba(245,240,234,0.8)', letterSpacing: 0.3 }}>
-                    {project.location}
-                  </span>
-                  <span style={{ width: 1, height: 8, background: 'rgba(245,240,234,0.2)' }} />
-                  <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 10, color: 'rgba(245,240,234,0.5)', letterSpacing: 1 }}>
-                    {project.year}
-                  </span>
+                  {project.location && (
+                    <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, color: 'rgba(245,240,234,0.9)', letterSpacing: 0.3 }}>
+                      {project.location}
+                    </span>
+                  )}
+                  {project.location && project.year && (
+                    <span style={{ width: 1, height: 8, background: 'rgba(245,240,234,0.2)', flexShrink: 0 }} />
+                  )}
+                  {project.year && (
+                    <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, color: 'rgba(245,240,234,0.5)', letterSpacing: 1 }}>
+                      {project.year}
+                    </span>
+                  )}
                 </div>
+
+                {/* Touch CTA */}
+                {isTouch && (
+                  <button
+                    onClick={e => { e.stopPropagation(); navigate(`/projet/${project.id}`) }}
+                    style={{
+                      marginTop: 10, padding: '7px 18px',
+                      background: 'rgba(245,240,234,0.12)',
+                      backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+                      border: '1px solid rgba(245,240,234,0.22)',
+                      borderRadius: 30, color: '#F5F0EA',
+                      fontFamily: 'Space Grotesk, sans-serif',
+                      fontSize: 8, letterSpacing: 2, textTransform: 'uppercase',
+                      cursor: 'pointer',
+                      opacity: isTap ? 1 : 0,
+                      transform: isTap ? 'translateY(0)' : 'translateY(4px)',
+                      transition: 'opacity 0.3s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                    }}
+                  >
+                    Explorer →
+                  </button>
+                )}
               </div>
             </div>
           )
         })}
       </div>
+
+      {/* ── & more ── */}
+      <div style={{
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+        padding: 'clamp(3rem, 7vw, 6rem) clamp(2rem, 6vw, 7rem)',
+        borderTop: '1px solid rgba(245,240,234,0.05)',
+        textAlign: 'center', gap: 0,
+      }}>
+        <div style={{
+          fontFamily: 'Instrument Serif, serif',
+          fontStyle: 'italic',
+          fontSize: 'clamp(60px, 10vw, 120px)',
+          fontWeight: 400,
+          color: 'rgba(245,240,234,0.08)',
+          lineHeight: 0.88,
+          letterSpacing: '-0.02em',
+          userSelect: 'none',
+          pointerEvents: 'none',
+        }}>
+          &amp; more
+        </div>
+        {extra > 0 && (
+          <p style={{
+            fontFamily: 'Space Grotesk, sans-serif',
+            fontSize: 9, letterSpacing: 3.5, textTransform: 'uppercase',
+            color: 'rgba(245,240,234,0.22)',
+            marginTop: 20,
+          }}>
+            +{extra} projets supplémentaires
+          </p>
+        )}
+      </div>
+
+      {/* ── Mobile override ── */}
+      <style>{`
+        @media (max-width: 680px) {
+          .projects-mosaic {
+            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-rows: auto !important;
+          }
+          .projects-mosaic > div {
+            grid-column: auto !important;
+            grid-row: auto !important;
+            height: clamp(150px, 44vw, 220px);
+          }
+        }
+      `}</style>
     </section>
   )
 }
