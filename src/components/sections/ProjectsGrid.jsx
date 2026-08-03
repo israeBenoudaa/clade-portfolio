@@ -211,28 +211,26 @@ export default function ProjectsGrid() {
                   )}
                 </div>
 
-                {/* Touch CTA */}
-                {isTouch && (
-                  <button
-                    onClick={e => { e.stopPropagation(); navigate(`/projet/${project.id}`) }}
-                    style={{
-                      marginTop: 10, padding: '7px 18px',
-                      background: 'rgba(245,240,234,0.12)',
-                      backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-                      border: '1px solid rgba(245,240,234,0.22)',
-                      borderRadius: 30, color: '#F5F0EA',
-                      fontFamily: 'Space Grotesk, sans-serif',
-                      fontSize: 8, letterSpacing: 2, textTransform: 'uppercase',
-                      cursor: 'pointer',
-                      opacity: isTap ? 1 : 0,
-                      transform: isTap ? 'translateY(0)' : 'translateY(4px)',
-                      transition: 'opacity 0.3s, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                    }}
-                  >
-                    Explorer →
-                  </button>
-                )}
               </div>
+
+              {/* Touch "+" — always visible, bottom-right corner */}
+              {isTouch && (
+                <button
+                  onClick={e => { e.stopPropagation(); navigate(`/projet/${project.id}`) }}
+                  style={{
+                    position: 'absolute', bottom: 10, right: 10, zIndex: 10,
+                    width: 28, height: 28, borderRadius: '50%',
+                    background: 'rgba(245,240,234,0.13)',
+                    backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(245,240,234,0.28)',
+                    color: 'rgba(245,240,234,0.9)',
+                    fontSize: 17, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    cursor: 'pointer', lineHeight: 1,
+                  }}
+                >
+                  +
+                </button>
+              )}
             </div>
           )
         })}
@@ -277,11 +275,16 @@ export default function ProjectsGrid() {
           .projects-mosaic {
             grid-template-columns: repeat(2, 1fr) !important;
             grid-template-rows: auto !important;
+            gap: 2px !important;
           }
           .projects-mosaic > div {
             grid-column: auto !important;
             grid-row: auto !important;
-            height: clamp(150px, 44vw, 220px);
+            height: clamp(130px, 40vw, 180px);
+          }
+          .projects-mosaic > div:first-child {
+            grid-column: 1 / -1 !important;
+            height: clamp(200px, 56vw, 240px);
           }
         }
       `}</style>
