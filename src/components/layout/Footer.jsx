@@ -12,10 +12,9 @@ export default function Footer() {
       display: 'flex', flexDirection: 'column', gap: 24,
       alignItems: 'center',
     }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
         <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 22, fontWeight: 400, letterSpacing: 2, color: '#F5F0EA', lineHeight: 1 }}>Clade</span>
-        <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 8, letterSpacing: 2.5, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', lineHeight: 1 }}>architects</span>
-        <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 8, letterSpacing: 2.5, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', lineHeight: 1 }}>&amp; co</span>
+        <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', lineHeight: 1 }}>architects &amp; co</span>
       </div>
       <button
         onClick={() => { navigate('/careers'); window.scrollTo({ top: 0 }) }}
