@@ -72,7 +72,7 @@ export default function ProjectsGrid() {
   const extra    = projects.length - showcase.length
 
   return (
-    <section id="projets" style={{ background: '#08090A', paddingBottom: '6rem' }}>
+    <section id="projets" style={{ background: '#08090A', paddingBottom: '1rem' }}>
 
       {/* ── Header ── */}
       <div style={{
@@ -239,7 +239,7 @@ export default function ProjectsGrid() {
       {/* ── & more ── */}
       <div style={{
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-        padding: 'clamp(3rem, 7vw, 6rem) clamp(2rem, 6vw, 7rem)',
+        padding: 'clamp(2rem, 5vw, 4rem) clamp(2rem, 6vw, 7rem) clamp(1.5rem, 3vw, 2.5rem)',
         borderTop: '1px solid rgba(245,240,234,0.07)',
         textAlign: 'center',
       }}>
@@ -256,13 +256,13 @@ export default function ProjectsGrid() {
           &amp; more
         </div>
         <div style={{
-          fontFamily: 'Instrument Serif, serif',
-          fontStyle: 'italic',
-          fontSize: 'clamp(40px, 7vw, 92px)',
+          fontFamily: 'Space Grotesk, sans-serif',
           fontWeight: 400,
-          color: 'rgba(245,240,234,0.32)',
-          lineHeight: 1,
-          letterSpacing: '-0.02em',
+          fontSize: 'clamp(9px, 1.1vw, 12px)',
+          letterSpacing: '0.22em',
+          textTransform: 'uppercase',
+          color: 'rgba(245,240,234,0.22)',
+          marginTop: 10,
           userSelect: 'none',
         }}>
           {t('projects.more_subtitle')}

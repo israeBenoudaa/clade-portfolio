@@ -18,7 +18,7 @@ export default function AnimatedLogo({ disciplineKey, disciplineLabel, color }) 
   const activeLtr = WORD[idx] ?? disciplineKey
   const raw    = disciplineLabel.normalize('NFD').replace(/[̀-ͯ]/g, '')
   const label  = raw.charAt(0).toUpperCase() + raw.slice(1).toLowerCase()
-  const target = `(${label})`
+  const target = `[${label}]`
 
   useEffect(() => {
     let itvId = null

@@ -37,6 +37,9 @@ const fr = {
 
   // Contact section
   'contact.supertitle': 'Votre projet',
+  'contact.title_line1': 'Parlons de ce',
+  'contact.title_line2': 'que vous imaginez',
+  'contact.description': 'Chaque projet commence par une conversation. Décrivez-nous votre intention, votre territoire, vos contraintes — nous vous répondons sous 48h.',
   'contact.error_budget': 'Merci de sélectionner un budget estimé.',
   'contact.error_generic': 'Une erreur est survenue. Veuillez réessayer.',
   'contact.success_title': 'Message reçu',
@@ -177,6 +180,9 @@ const en = {
   'projects.more_subtitle': 'creative projects',
 
   'contact.supertitle': 'Your project',
+  'contact.title_line1': "Let's talk about",
+  'contact.title_line2': 'what you envision',
+  'contact.description': 'Every project begins with a conversation. Share your vision, your site, your constraints — we will get back to you within 48 hours.',
   'contact.error_budget': 'Please select an estimated budget.',
   'contact.error_generic': 'An error occurred. Please try again.',
   'contact.success_title': 'Message received',
@@ -305,6 +311,9 @@ const es = {
   'projects.more_subtitle': 'proyectos creativos',
 
   'contact.supertitle': 'Su proyecto',
+  'contact.title_line1': 'Hablemos de',
+  'contact.title_line2': 'lo que imagina',
+  'contact.description': 'Cada proyecto comienza con una conversación. Cuéntenos su intención, su territorio, sus limitaciones — le respondemos en 48 horas.',
   'contact.error_budget': 'Por favor seleccione un presupuesto estimado.',
   'contact.error_generic': 'Ha ocurrido un error. Por favor, inténtelo de nuevo.',
   'contact.success_title': 'Mensaje recibido',

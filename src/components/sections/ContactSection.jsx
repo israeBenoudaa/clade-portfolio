@@ -9,13 +9,17 @@ export default function ContactSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-10%' })
   const [form, setForm] = useState(EMPTY_FORM)
-  const titleLine1  = useSiteContent('contact.title_line1', 'Parlons de ce')
-  const titleLine2  = useSiteContent('contact.title_line2', 'que vous imaginez')
-  const description = useSiteContent('contact.description', 'Chaque projet commence par une conversation. Décrivez-nous votre intention, votre territoire, vos contraintes — nous vous répondons sous 48h.')
+  const cmsLine1    = useSiteContent('contact.title_line1', 'Parlons de ce')
+  const cmsLine2    = useSiteContent('contact.title_line2', 'que vous imaginez')
+  const cmsDesc     = useSiteContent('contact.description', 'Chaque projet commence par une conversation. Décrivez-nous votre intention, votre territoire, vos contraintes — nous vous répondons sous 48h.')
   const [loading, setLoading] = useState(false)
   const [sent, setSent] = useState(false)
   const [errorKey, setErrorKey] = useState('')
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
+
+  const titleLine1  = lang === 'fr' ? cmsLine1  : t('contact.title_line1')
+  const titleLine2  = lang === 'fr' ? cmsLine2  : t('contact.title_line2')
+  const description = lang === 'fr' ? cmsDesc   : t('contact.description')
 
   const submit = async (e) => {
     e.preventDefault()
