@@ -47,7 +47,7 @@ export default function Navbar() {
           </span>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             {['architects', '&', 'co'].map(w => (
-              <span key={w} style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7, fontWeight: 500, letterSpacing: 0.5, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', lineHeight: 1 }}>
+              <span key={w} style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7, fontWeight: 500, letterSpacing: 1.8, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', lineHeight: 1 }}>
                 {w}
               </span>
             ))}
