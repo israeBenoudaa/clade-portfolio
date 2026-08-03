@@ -42,16 +42,12 @@ export default function Navbar() {
           onClick={() => isHome ? window.scrollTo({ top: 0, behavior: 'smooth' }) : navigate('/')}
           style={{ background: 'none', border: 'none', padding: 0, display: 'inline-flex', flexDirection: 'column', alignItems: 'stretch', gap: 2, cursor: 'pointer', flexShrink: 0 }}
         >
-          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 30, fontWeight: 400, letterSpacing: 3, color: '#F5F0EA', whiteSpace: 'nowrap', lineHeight: 1 }}>
+          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 28, fontWeight: 400, letterSpacing: 4, color: '#F5F0EA', whiteSpace: 'nowrap', lineHeight: 1 }}>
             Clade
           </span>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            {['architects', '&', 'co'].map(w => (
-              <span key={w} style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7.5, fontWeight: 500, letterSpacing: 1.5, color: 'rgba(245,240,234,0.28)', textTransform: 'uppercase', lineHeight: 1 }}>
-                {w}
-              </span>
-            ))}
-          </div>
+          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7, fontWeight: 500, letterSpacing: 4.5, color: 'rgba(245,240,234,0.28)', textTransform: 'uppercase', lineHeight: 1 }}>
+            architects &amp; co
+          </span>
         </button>
 
         {/* Right: language switcher + phone */}
