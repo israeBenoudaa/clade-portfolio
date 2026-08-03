@@ -16,9 +16,14 @@ const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1539037116277-4db20889f
 
 export default function Hero() {
   const [idx, setIdx] = useState(0)
-  const phrases  = useSiteContentJson('hero.phrases', DEFAULT_PHRASES)
+  const cmsPhrasesRaw = useSiteContentJson('hero.phrases', DEFAULT_PHRASES)
   const imageUrl = useSiteContent('hero.image_url', DEFAULT_IMAGE)
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
+
+  const translatedPhrases = lang !== 'fr' ? t('hero.phrases') : null
+  const phrases = translatedPhrases
+    ? translatedPhrases.map((p, i) => ({ ...p, image: cmsPhrasesRaw[i]?.image || DEFAULT_PHRASES[i]?.image }))
+    : cmsPhrasesRaw
 
   useEffect(() => {
     if (phrases.length < 2) return

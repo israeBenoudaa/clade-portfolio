@@ -154,6 +154,13 @@ const en = {
 
   'hero.approach_cta': 'Approach',
   'hero.projects_cta': 'Projects',
+  'hero.phrases': [
+    { line1: 'Preserving',       line2: 'what was built before us',       image: 'https://images.unsplash.com/photo-1548263594-a71ea65a8598?w=1800&q=80&auto=format&fit=crop' },
+    { line1: 'Designing',        line2: 'with the land, not against it',  image: 'https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1800&q=80&auto=format&fit=crop' },
+    { line1: 'From heritage',    line2: 'to the ephemeral',               image: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1800&q=80&auto=format&fit=crop' },
+    { line1: 'Giving shape',     line2: 'to what does not yet exist',     image: 'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=1800&q=80&auto=format&fit=crop' },
+    { line1: 'Five disciplines,', line2: 'one shared vision',             image: 'https://images.unsplash.com/photo-1519619091416-f5d55b8d0e39?w=1800&q=80&auto=format&fit=crop' },
+  ],
 
   'disc.C.label': 'Conservation',
   'disc.L.label': 'Landscape',
@@ -285,6 +292,13 @@ const es = {
 
   'hero.approach_cta': 'Enfoque',
   'hero.projects_cta': 'Proyectos',
+  'hero.phrases': [
+    { line1: 'Preservar',         line2: 'lo que fue construido antes que nosotros', image: 'https://images.unsplash.com/photo-1548263594-a71ea65a8598?w=1800&q=80&auto=format&fit=crop' },
+    { line1: 'Diseñar',           line2: 'con el territorio, no contra él',          image: 'https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1800&q=80&auto=format&fit=crop' },
+    { line1: 'Del patrimonio',    line2: 'a lo efímero',                             image: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1800&q=80&auto=format&fit=crop' },
+    { line1: 'Dar forma',         line2: 'a lo que aún no existe',                  image: 'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=1800&q=80&auto=format&fit=crop' },
+    { line1: 'Cinco disciplinas,', line2: 'una sola exigencia',                     image: 'https://images.unsplash.com/photo-1519619091416-f5d55b8d0e39?w=1800&q=80&auto=format&fit=crop' },
+  ],
 
   'disc.C.label': 'Conservación',
   'disc.L.label': 'Paisajismo',

@@ -213,7 +213,7 @@ export default function ProjectsGrid() {
 
               </div>
 
-              {/* Touch "+" — always visible, bottom-right corner */}
+              {/* Touch "+" — visible by default, hidden on tap (info appears) */}
               {isTouch && (
                 <button
                   onClick={e => { e.stopPropagation(); navigate(`/projet/${project.id}`) }}
@@ -226,6 +226,9 @@ export default function ProjectsGrid() {
                     color: 'rgba(245,240,234,0.9)',
                     fontSize: 17, display: 'flex', alignItems: 'center', justifyContent: 'center',
                     cursor: 'pointer', lineHeight: 1,
+                    opacity: isTap ? 0 : 1,
+                    pointerEvents: isTap ? 'none' : 'auto',
+                    transition: 'opacity 0.3s',
                   }}
                 >
                   +
@@ -280,11 +283,12 @@ export default function ProjectsGrid() {
           .projects-mosaic > div {
             grid-column: auto !important;
             grid-row: auto !important;
-            height: clamp(130px, 40vw, 180px);
+            height: clamp(130px, 40vw, 175px);
           }
-          .projects-mosaic > div:first-child {
+          /* Cards 1, 4, 7, 10 → full width, taller — creates a 1-2-1-2 rhythm */
+          .projects-mosaic > div:nth-child(3n+1) {
             grid-column: 1 / -1 !important;
-            height: clamp(200px, 56vw, 240px);
+            height: clamp(190px, 52vw, 230px);
           }
         }
       `}</style>

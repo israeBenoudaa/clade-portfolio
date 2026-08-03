@@ -40,12 +40,12 @@ export default function Navbar() {
         {/* Logo */}
         <button
           onClick={() => isHome ? window.scrollTo({ top: 0, behavior: 'smooth' }) : navigate('/')}
-          style={{ background: 'none', border: 'none', padding: 0, display: 'flex', alignItems: 'baseline', gap: 10, cursor: 'pointer', flexShrink: 0 }}
+          style={{ background: 'none', border: 'none', padding: 0, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 1, cursor: 'pointer', flexShrink: 0 }}
         >
-          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 22, fontWeight: 400, letterSpacing: 2, color: '#F5F0EA', whiteSpace: 'nowrap' }}>
+          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 22, fontWeight: 400, letterSpacing: 2, color: '#F5F0EA', whiteSpace: 'nowrap', lineHeight: 1 }}>
             Clade
           </span>
-          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7, letterSpacing: 2.5, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
             architects & co
           </span>
         </button>
