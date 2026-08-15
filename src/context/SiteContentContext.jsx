@@ -4,15 +4,29 @@ import { useCmsEditMode } from './CmsEditMode'
 import { useLanguage } from './LanguageContext'
 
 const Ctx = createContext({})
+const CACHE_KEY = 'clade_site_content_v1'
+
+function readCache() {
+  try { return JSON.parse(localStorage.getItem(CACHE_KEY) || '{}') } catch { return {} }
+}
+
+function writeCache(data) {
+  try { localStorage.setItem(CACHE_KEY, JSON.stringify(data)) } catch {}
+}
 
 export function SiteContentProvider({ children }) {
-  const [content, setContent] = useState({})
+  // Initialise depuis le cache localStorage → zéro flash
+  const [content, setContent] = useState(readCache)
 
   useEffect(() => {
     if (!supabase) return
     supabase.from('site_content').select('key, value')
       .then(({ data }) => {
-        if (data) setContent(Object.fromEntries(data.map(r => [r.key, r.value])))
+        if (data) {
+          const map = Object.fromEntries(data.map(r => [r.key, r.value]))
+          setContent(map)
+          writeCache(map)
+        }
       })
   }, [])
 
