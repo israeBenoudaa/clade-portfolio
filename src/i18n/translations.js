@@ -35,6 +35,7 @@ const fr = {
   'projects.h2': 'Projets sélectionnés',
   'projects.more': '& plus',
   'projects.more_subtitle': 'projets créatifs',
+  'projects.show_more': 'Voir plus de projets',
 
   // Contact section
   'contact.supertitle': 'Votre projet',
@@ -44,7 +45,7 @@ const fr = {
   'contact.error_budget': 'Merci de sélectionner un budget estimé.',
   'contact.error_generic': 'Une erreur est survenue. Veuillez réessayer.',
   'contact.success_title': 'Message reçu',
-  'contact.success_body': 'Merci pour votre confiance.\nNous vous répondrons dans les 48 heures.',
+  'contact.success_body': 'Merci pour votre confiance.\nNous vous contacterons dans les meilleurs délais.',
 
   // ProjectForm labels
   'form.name': 'Nom *',
@@ -76,7 +77,7 @@ const fr = {
   'qcontact.h2_1': 'Parlons de',
   'qcontact.h2_2': 'votre projet',
   'qcontact.success_title': 'Message reçu',
-  'qcontact.success_body': 'Merci pour votre confiance.\nNous vous répondrons sous 48h.',
+  'qcontact.success_body': 'Merci pour votre confiance.\nNous vous contacterons dans les meilleurs délais.',
   'qcontact.close': 'Fermer',
 
   // CareersSection
@@ -187,6 +188,7 @@ const en = {
   'projects.h2': 'Selected projects',
   'projects.more': '& more',
   'projects.more_subtitle': 'creative projects',
+  'projects.show_more': 'View more projects',
 
   'contact.supertitle': 'Your project',
   'contact.title_line1': "Let's talk about",
@@ -195,7 +197,7 @@ const en = {
   'contact.error_budget': 'Please select an estimated budget.',
   'contact.error_generic': 'An error occurred. Please try again.',
   'contact.success_title': 'Message received',
-  'contact.success_body': 'Thank you for your trust.\nWe will respond within 48 hours.',
+  'contact.success_body': 'Thank you for your trust.\nWe will be in touch as soon as possible.',
 
   'form.name': 'Last name *',
   'form.firstname': 'First name',
@@ -221,7 +223,7 @@ const en = {
   'qcontact.h2_1': "Let's talk about",
   'qcontact.h2_2': 'your project',
   'qcontact.success_title': 'Message received',
-  'qcontact.success_body': 'Thank you for your trust.\nWe will respond within 48 hours.',
+  'qcontact.success_body': 'Thank you for your trust.\nWe will be in touch as soon as possible.',
   'qcontact.close': 'Close',
 
   'careers.supertitle': 'Join the studio',
@@ -326,6 +328,7 @@ const es = {
   'projects.h2': 'Proyectos seleccionados',
   'projects.more': '& más',
   'projects.more_subtitle': 'proyectos creativos',
+  'projects.show_more': 'Ver más proyectos',
 
   'contact.supertitle': 'Su proyecto',
   'contact.title_line1': 'Hablemos de',
@@ -334,7 +337,7 @@ const es = {
   'contact.error_budget': 'Por favor seleccione un presupuesto estimado.',
   'contact.error_generic': 'Ha ocurrido un error. Por favor, inténtelo de nuevo.',
   'contact.success_title': 'Mensaje recibido',
-  'contact.success_body': 'Gracias por su confianza.\nLe responderemos en 48 horas.',
+  'contact.success_body': 'Gracias por su confianza.\nNos pondremos en contacto lo antes posible.',
 
   'form.name': 'Apellido *',
   'form.firstname': 'Nombre',
@@ -360,7 +363,7 @@ const es = {
   'qcontact.h2_1': 'Hablemos de',
   'qcontact.h2_2': 'su proyecto',
   'qcontact.success_title': 'Mensaje recibido',
-  'qcontact.success_body': 'Gracias por su confianza.\nLe responderemos en 48 horas.',
+  'qcontact.success_body': 'Gracias por su confianza.\nNos pondremos en contacto lo antes posible.',
   'qcontact.close': 'Cerrar',
 
   'careers.supertitle': 'Únase al estudio',

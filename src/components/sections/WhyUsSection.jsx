@@ -249,6 +249,7 @@ export default function WhyUsSection() {
     <section id="pourquoi" style={{
       background: '#08090A',
       padding: 'clamp(5rem, 12vw, 9rem) clamp(2rem, 6vw, 7rem)',
+      overflowX: 'hidden',
     }}>
 
       {/* ── Header ─────────────────────────────────────────────────────── */}

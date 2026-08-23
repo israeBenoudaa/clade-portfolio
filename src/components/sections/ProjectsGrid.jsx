@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { AXES } from '../../data/projects'
 import { useProjects } from '../../hooks/useProjects'
 import { useLanguage } from '../../context/LanguageContext'
 
-// Max projects to display in the mosaic
-const MAX_SHOWCASE = 10
+// Initial projects shown in the mosaic
+const INITIAL_SHOWCASE = 10
 
 // Explicit CSS grid placement for each slot (12-col grid, 1-based line numbers)
 // Row heights: 280 · 280 · 240 · 220 · 200  (desktop)
@@ -58,6 +59,7 @@ export default function ProjectsGrid() {
   const [hovered, setHovered] = useState(null)
   const [tapped,  setTapped]  = useState(null)
   const [isTouch, setIsTouch] = useState(false)
+  const [showAll, setShowAll] = useState(false)
   const navigate = useNavigate()
   const { projects, loading } = useProjects()
   const { t } = useLanguage()
@@ -68,8 +70,8 @@ export default function ProjectsGrid() {
 
   if (loading) return <section id="projets" style={{ background: '#08090A', minHeight: 400 }} />
 
-  const showcase = balancedShowcase(projects, MAX_SHOWCASE)
-  const extra    = projects.length - showcase.length
+  const showcase = balancedShowcase(projects, showAll ? projects.length : INITIAL_SHOWCASE)
+  const hasMore  = projects.length > INITIAL_SHOWCASE && !showAll
 
   return (
     <section id="projets" style={{ background: '#08090A', paddingBottom: '1rem' }}>
@@ -158,15 +160,27 @@ export default function ProjectsGrid() {
                 opacity: show ? 1 : 0.35, transition: 'opacity 0.4s',
               }} />
 
-              {/* Axis label */}
+              {/* Axis label — always visible, bold style */}
               <div style={{
-                position: 'absolute', top: 18, left: 20,
-                display: 'flex', alignItems: 'center', gap: 7,
+                position: 'absolute', top: 14, left: 16,
+                display: 'flex', alignItems: 'center', gap: 6,
+                zIndex: 2,
               }}>
-                <div style={{ width: 14, height: 1, background: axis.color + 'cc' }} />
+                <div style={{
+                  width: 16, height: 1.5,
+                  background: axis.color,
+                  borderRadius: 2,
+                  opacity: 0.9,
+                  flexShrink: 0,
+                }} />
                 <span style={{
-                  fontFamily: 'Space Grotesk, sans-serif', fontSize: 8,
-                  letterSpacing: 2.5, textTransform: 'uppercase', color: axis.color + 'cc',
+                  fontFamily: 'Space Grotesk, sans-serif',
+                  fontSize: isHero ? 10 : 9,
+                  fontWeight: 600,
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  color: axis.color,
+                  textShadow: '0 1px 6px rgba(0,0,0,0.7)',
                 }}>
                   {axis.label}
                 </span>
@@ -177,24 +191,25 @@ export default function ProjectsGrid() {
                 position: 'absolute', bottom: 0, left: 0, right: 0,
                 padding: isHero
                   ? 'clamp(20px, 3vw, 44px)'
-                  : 'clamp(14px, 2vw, 26px)',
-                transform: show ? 'translateY(0)' : 'translateY(8px)',
+                  : 'clamp(12px, 1.8vw, 22px)',
+                transform: show ? 'translateY(0)' : 'translateY(6px)',
                 transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)',
               }}>
-                <h3 style={{
+                <h3 className="proj-title" style={{
                   fontFamily: 'Instrument Serif, serif',
                   fontSize: isHero
-                    ? 'clamp(22px, 3.2vw, 40px)'
-                    : 'clamp(13px, 1.6vw, 21px)',
+                    ? 'clamp(24px, 3.2vw, 42px)'
+                    : 'clamp(15px, 1.8vw, 22px)',
                   fontWeight: 400, color: '#F5F0EA',
-                  lineHeight: 1.15, margin: '0 0 8px',
-                  opacity: show ? 1 : 0.78, transition: 'opacity 0.4s',
+                  lineHeight: 1.15, margin: '0 0 6px',
+                  textShadow: '0 2px 12px rgba(0,0,0,0.5)',
+                  opacity: 1, transition: 'opacity 0.4s',
                 }}>
                   {project.title}
                 </h3>
                 <div style={{
-                  display: 'flex', gap: 10, alignItems: 'center',
-                  opacity: show ? 0.65 : 0, transition: 'opacity 0.3s 0.05s',
+                  display: 'flex', gap: 8, alignItems: 'center',
+                  opacity: show ? 0.7 : 0, transition: 'opacity 0.3s 0.05s',
                 }}>
                   {project.location && (
                     <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, color: 'rgba(245,240,234,0.9)', letterSpacing: 0.3 }}>
@@ -202,10 +217,10 @@ export default function ProjectsGrid() {
                     </span>
                   )}
                   {project.location && project.year && (
-                    <span style={{ width: 1, height: 8, background: 'rgba(245,240,234,0.2)', flexShrink: 0 }} />
+                    <span style={{ width: 1, height: 8, background: 'rgba(245,240,234,0.25)', flexShrink: 0 }} />
                   )}
                   {project.year && (
-                    <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, color: 'rgba(245,240,234,0.5)', letterSpacing: 1 }}>
+                    <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, color: 'rgba(245,240,234,0.55)', letterSpacing: 1 }}>
                       {project.year}
                     </span>
                   )}
@@ -239,41 +254,53 @@ export default function ProjectsGrid() {
         })}
       </div>
 
-      {/* ── & more ── */}
-      <div style={{
-        display: 'flex', alignItems: 'center', gap: 'clamp(20px, 3.5vw, 56px)',
-        padding: 'clamp(20px, 2.5vw, 36px) clamp(1.5rem, 4vw, 5rem)',
-        borderTop: '1px solid rgba(245,240,234,0.07)',
-      }}>
-        <div style={{ flex: 1, height: 1, background: 'linear-gradient(to right, transparent, rgba(245,240,234,0.1))' }} />
-        <div style={{ textAlign: 'center', flexShrink: 0 }}>
-          <div style={{
-            fontFamily: 'Instrument Serif, serif',
-            fontStyle: 'italic',
-            fontSize: 'clamp(22px, 2.8vw, 38px)',
-            fontWeight: 400,
-            color: 'rgba(245,240,234,0.28)',
-            lineHeight: 1,
-            letterSpacing: '-0.01em',
-            userSelect: 'none',
-          }}>
-            {t('projects.more')}
-          </div>
-          <div style={{
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontWeight: 500,
-            fontSize: 'clamp(7px, 0.85vw, 10px)',
-            letterSpacing: '0.28em',
-            textTransform: 'uppercase',
-            color: 'rgba(245,240,234,0.15)',
-            marginTop: 8,
-            userSelect: 'none',
-          }}>
-            {t('projects.more_subtitle')}
-          </div>
-        </div>
-        <div style={{ flex: 1, height: 1, background: 'linear-gradient(to left, transparent, rgba(245,240,234,0.1))' }} />
-      </div>
+      {/* ── Show more button ── */}
+      {hasMore && (
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            gap: 'clamp(16px, 3vw, 48px)',
+            padding: 'clamp(28px, 4vw, 52px) clamp(1.5rem, 4vw, 5rem)',
+            borderTop: '1px solid rgba(245,240,234,0.07)',
+          }}
+        >
+          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to right, transparent, rgba(245,240,234,0.08))' }} />
+          <button
+            onClick={() => setShowAll(true)}
+            style={{
+              fontFamily: 'Space Grotesk, sans-serif',
+              fontSize: 10, fontWeight: 600, letterSpacing: '0.24em',
+              textTransform: 'uppercase',
+              color: 'rgba(245,240,234,0.65)',
+              background: 'transparent',
+              border: '1px solid rgba(245,240,234,0.16)',
+              borderRadius: 40,
+              padding: 'clamp(12px, 1.4vw, 16px) clamp(28px, 3.5vw, 48px)',
+              cursor: 'pointer',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              transition: 'color 0.3s, border-color 0.3s, background 0.3s',
+              flexShrink: 0,
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.color = '#F5F0EA'
+              e.currentTarget.style.borderColor = 'rgba(245,240,234,0.4)'
+              e.currentTarget.style.background = 'rgba(245,240,234,0.05)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.color = 'rgba(245,240,234,0.65)'
+              e.currentTarget.style.borderColor = 'rgba(245,240,234,0.16)'
+              e.currentTarget.style.background = 'transparent'
+            }}
+          >
+            {t('projects.show_more')}
+          </button>
+          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(to left, transparent, rgba(245,240,234,0.08))' }} />
+        </motion.div>
+      )}
 
       {/* ── Mobile override ── */}
       <style>{`
@@ -286,12 +313,18 @@ export default function ProjectsGrid() {
           .projects-mosaic > div {
             grid-column: auto !important;
             grid-row: auto !important;
-            height: clamp(130px, 40vw, 175px);
+            height: clamp(140px, 42vw, 180px);
           }
-          /* Cards 1, 4, 7, 10 → full width, taller — creates a 1-2-1-2 rhythm */
           .projects-mosaic > div:nth-child(3n+1) {
             grid-column: 1 / -1 !important;
-            height: clamp(190px, 52vw, 230px);
+            height: clamp(200px, 55vw, 240px);
+          }
+          .projects-mosaic .proj-title {
+            font-size: 14px !important;
+            line-height: 1.2 !important;
+          }
+          .projects-mosaic > div:nth-child(3n+1) .proj-title {
+            font-size: 20px !important;
           }
         }
       `}</style>
