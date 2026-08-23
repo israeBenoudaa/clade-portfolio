@@ -3,11 +3,11 @@ import { motion } from 'framer-motion'
 import { useLanguage } from '../../context/LanguageContext'
 
 const SERVICES = ['Architecture', 'Conservation', 'Paysage', 'Design', 'Éphémère']
-const BUDGETS = ['< 500K MAD', '500K – 2M MAD', '2M – 5M MAD', '> 5M MAD', 'À définir']
+const BUDGETS = ['< 500K MAD', '500K – 1.5M MAD', '1.5M – 4M MAD', '4M – 10M MAD', '> 10M MAD']
 
 export const EMPTY_FORM = {
   nom: '', prenom: '', email: '', telephone: '',
-  societe: '', service: '', budget: '', surface: '', localisation: '', description: '',
+  service: '', budget: '', surface: '', localisation: '', description: '',
 }
 
 const LBL = {
@@ -130,15 +130,9 @@ export default function ProjectForm({ form, setForm, onSubmit, loading, error, c
         <input className={giClass} type="email" value={form.email} onChange={set('email')} placeholder="—" required />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: `${gap}px 12px` }}>
-        <div>
-          <span style={lbl}>{t('form.phone')}</span>
-          <input className={giClass} value={form.telephone} onChange={set('telephone')} placeholder="—" />
-        </div>
-        <div>
-          <span style={lbl}>{t('form.client')}</span>
-          <input className={giClass} value={form.societe} onChange={set('societe')} placeholder="—" />
-        </div>
+      <div>
+        <span style={lbl}>{t('form.phone')}</span>
+        <input className={giClass} value={form.telephone} onChange={set('telephone')} placeholder="—" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: `${gap}px 12px` }}>

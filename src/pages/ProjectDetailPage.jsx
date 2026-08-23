@@ -387,10 +387,9 @@ export default function ProjectDetailPage() {
         borderBottom: `1px solid ${color}18`,
       }}>
         {[
-          { label: t('project.surface'),   key: 'surface',        value: project.details.surface },
-          { label: t('project.programme'), key: 'programme',      value: project.details.programme },
-          { label: t('project.client'),    key: 'maitre_ouvrage', value: project.details.maîtreOuvrage },
-          { label: t('project.statut'),    key: 'statut',         value: project.details.statut },
+          { label: t('project.surface'),   key: 'surface',   value: project.details.surface },
+          { label: t('project.programme'), key: 'programme', value: project.details.programme },
+          { label: t('project.statut'),    key: 'statut',    value: project.details.statut },
         ].map(({ label, key, value }) => (
           <div key={label} style={{
             padding: 'clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 4vw, 3rem)',
@@ -496,7 +495,7 @@ export default function ProjectDetailPage() {
         </button>
       </motion.div>
 
-      <QuickContact open={contactOpen} onClose={() => setContactOpen(false)} />
+      <QuickContact open={contactOpen} onClose={() => setContactOpen(false)} projectRef={project.title} />
 
     </PageTransition>
   )

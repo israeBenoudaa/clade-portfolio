@@ -4,7 +4,7 @@ import { insertRow } from '../../lib/supabase'
 import ProjectForm, { EMPTY_FORM } from './ProjectForm'
 import { useLanguage } from '../../context/LanguageContext'
 
-export default function QuickContact({ open, onClose }) {
+export default function QuickContact({ open, onClose, projectRef }) {
   const [form, setForm] = useState(EMPTY_FORM)
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -23,7 +23,7 @@ export default function QuickContact({ open, onClose }) {
         type_projet: form.service, budget: form.budget,
         localisation: form.localisation || null,
         surface: parseFloat(form.surface) || null,
-        notes: [form.societe && `Maître d'ouvrage : ${form.societe}`, form.description].filter(Boolean).join('\n\n') || null,
+        notes: [projectRef && `Projet de référence : ${projectRef}`, form.description].filter(Boolean).join('\n\n') || null,
         statut: 'interet', source: 'quick-contact',
         created_at: new Date().toISOString(),
       })
@@ -39,7 +39,7 @@ export default function QuickContact({ open, onClose }) {
 
   const close = () => {
     onClose()
-    setTimeout(() => { setSent(false); setError(''); setForm(EMPTY_FORM) }, 400)
+    setTimeout(() => { setSent(false); setErrorKey(''); setForm(EMPTY_FORM) }, 400)
   }
 
   return (
@@ -111,6 +111,23 @@ export default function QuickContact({ open, onClose }) {
                     {t('qcontact.h2_1')}<br />
                     <em style={{ color: 'rgba(255,255,255,0.3)', fontStyle: 'italic' }}>{t('qcontact.h2_2')}</em>
                   </h2>
+                  {projectRef && (
+                    <div style={{
+                      marginTop: 14,
+                      display: 'inline-flex', alignItems: 'center', gap: 8,
+                      background: 'rgba(200,184,154,0.07)',
+                      border: '1px solid rgba(200,184,154,0.22)',
+                      borderRadius: 6, padding: '6px 12px',
+                    }}>
+                      <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(200,184,154,0.6)', flexShrink: 0 }} />
+                      <span style={{
+                        fontFamily: 'Space Grotesk, sans-serif', fontSize: 10,
+                        letterSpacing: 1, color: 'rgba(200,184,154,0.75)',
+                      }}>
+                        {projectRef}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <button
                   onClick={close}
