@@ -1,9 +1,49 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { AXES } from '../../data/projects'
 import { useProjects } from '../../hooks/useProjects'
 import { useLanguage } from '../../context/LanguageContext'
+
+function AxisBracketLabel({ axisKey, color, isHero, expanded }) {
+  const { t } = useLanguage()
+  const axisLabel = t('disc.' + axisKey + '.label') || AXES[axisKey]?.label || axisKey
+  const base = `[${axisKey}]`
+  const [text, setText] = useState(base)
+  const ivRef = useRef(null)
+
+  useEffect(() => {
+    clearInterval(ivRef.current)
+    if (expanded) {
+      const target = `[${axisLabel}]`
+      let i = axisKey.length + 1
+      setText(`[${axisKey}`)
+      ivRef.current = setInterval(() => {
+        i++
+        setText(target.slice(0, i))
+        if (i >= target.length) clearInterval(ivRef.current)
+      }, 38)
+    } else {
+      setText(base)
+    }
+    return () => clearInterval(ivRef.current)
+  }, [expanded, axisKey, axisLabel])
+
+  return (
+    <span style={{
+      fontFamily: "'Averia Libre', serif",
+      fontSize: isHero ? 14 : 12,
+      fontWeight: 400,
+      color,
+      textShadow: '0 0 12px rgba(0,0,0,1), 0 1px 6px rgba(0,0,0,0.95)',
+      letterSpacing: '0.04em',
+      lineHeight: 1,
+      whiteSpace: 'nowrap',
+    }}>
+      {text}
+    </span>
+  )
+}
 
 // Initial projects shown in the mosaic
 const INITIAL_SHOWCASE = 10
@@ -161,19 +201,9 @@ export default function ProjectsGrid() {
                 opacity: show ? 1 : 0.35, transition: 'opacity 0.4s',
               }} />
 
-              {/* Axis label — [A] brand bracket style */}
+              {/* Axis label — [A] → [Architecture] on hover */}
               <div style={{ position: 'absolute', top: 12, left: 14, zIndex: 2 }}>
-                <span style={{
-                  fontFamily: "'Averia Libre', serif",
-                  fontSize: isHero ? 14 : 12,
-                  fontWeight: 400,
-                  color: axis.color,
-                  textShadow: '0 0 12px rgba(0,0,0,1), 0 1px 6px rgba(0,0,0,0.95)',
-                  letterSpacing: '0.04em',
-                  lineHeight: 1,
-                }}>
-                  [{project.axis}]
-                </span>
+                <AxisBracketLabel axisKey={project.axis} color={axis.color} isHero={isHero} expanded={show} />
               </div>
 
               {/* Bottom content */}
@@ -297,13 +327,7 @@ export default function ProjectsGrid() {
                   opacity: show ? 1 : 0.35, transition: 'opacity 0.4s',
                 }} />
                 <div style={{ position: 'absolute', top: 12, left: 14, zIndex: 2 }}>
-                  <span style={{
-                    fontFamily: "'Averia Libre', serif",
-                    fontSize: 12, fontWeight: 400,
-                    color: axis.color,
-                    textShadow: '0 0 12px rgba(0,0,0,1), 0 1px 6px rgba(0,0,0,0.95)',
-                    letterSpacing: '0.04em', lineHeight: 1,
-                  }}>[{project.axis}]</span>
+                  <AxisBracketLabel axisKey={project.axis} color={axis.color} isHero={false} expanded={show} />
                 </div>
                 <div style={{
                   position: 'absolute', bottom: 0, left: 0, right: 0,
