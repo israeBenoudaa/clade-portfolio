@@ -170,7 +170,7 @@ export default function ProjectForm({ form, setForm, onSubmit, loading, error, c
                 cursor: 'pointer', transition: 'all 0.2s',
                 backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
               }}
-            >{t('form.budget.' + b) || b}</button>
+            >{b}</button>
           ))}
         </div>
       </div>

@@ -161,28 +161,18 @@ export default function ProjectsGrid() {
                 opacity: show ? 1 : 0.35, transition: 'opacity 0.4s',
               }} />
 
-              {/* Axis label — compact letter chip */}
-              <div style={{
-                position: 'absolute', top: 12, left: 12,
-                zIndex: 2,
-                background: `${axis.color}28`,
-                backdropFilter: 'blur(8px)',
-                WebkitBackdropFilter: 'blur(8px)',
-                border: `1px solid ${axis.color}55`,
-                borderRadius: 5,
-                padding: isHero ? '5px 9px' : '4px 8px',
-              }}>
+              {/* Axis label — [A] brand bracket style */}
+              <div style={{ position: 'absolute', top: 12, left: 14, zIndex: 2 }}>
                 <span style={{
-                  fontFamily: 'Space Grotesk, sans-serif',
-                  fontSize: isHero ? 11 : 10,
-                  fontWeight: 700,
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
+                  fontFamily: "'Averia Libre', serif",
+                  fontSize: isHero ? 14 : 12,
+                  fontWeight: 400,
                   color: axis.color,
-                  textShadow: '0 1px 8px rgba(0,0,0,0.9)',
+                  textShadow: '0 0 12px rgba(0,0,0,1), 0 1px 6px rgba(0,0,0,0.95)',
+                  letterSpacing: '0.04em',
                   lineHeight: 1,
                 }}>
-                  {project.axis}
+                  [{project.axis}]
                 </span>
               </div>
 
@@ -306,19 +296,14 @@ export default function ProjectsGrid() {
                   background: `linear-gradient(to right, ${axis.color}, transparent)`,
                   opacity: show ? 1 : 0.35, transition: 'opacity 0.4s',
                 }} />
-                <div style={{
-                  position: 'absolute', top: 12, left: 12,
-                  zIndex: 2,
-                  background: `${axis.color}28`,
-                  backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
-                  border: `1px solid ${axis.color}55`,
-                  borderRadius: 5, padding: '4px 8px',
-                }}>
+                <div style={{ position: 'absolute', top: 12, left: 14, zIndex: 2 }}>
                   <span style={{
-                    fontFamily: 'Space Grotesk, sans-serif', fontSize: 10, fontWeight: 700,
-                    letterSpacing: '0.15em', textTransform: 'uppercase', color: axis.color,
-                    textShadow: '0 1px 8px rgba(0,0,0,0.9)', lineHeight: 1,
-                  }}>{project.axis}</span>
+                    fontFamily: "'Averia Libre', serif",
+                    fontSize: 12, fontWeight: 400,
+                    color: axis.color,
+                    textShadow: '0 0 12px rgba(0,0,0,1), 0 1px 6px rgba(0,0,0,0.95)',
+                    letterSpacing: '0.04em', lineHeight: 1,
+                  }}>[{project.axis}]</span>
                 </div>
                 <div style={{
                   position: 'absolute', bottom: 0, left: 0, right: 0,

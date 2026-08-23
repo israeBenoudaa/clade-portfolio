@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { insertRow } from '../../lib/supabase'
 import ProjectForm, { EMPTY_FORM } from './ProjectForm'
@@ -10,6 +10,17 @@ export default function QuickContact({ open, onClose, projectRef }) {
   const [loading, setLoading] = useState(false)
   const [errorKey, setErrorKey] = useState('')
   const { t } = useLanguage()
+
+  useEffect(() => {
+    if (open && projectRef) {
+      setForm(f => ({
+        ...f,
+        description: f.description
+          ? f.description
+          : `Projet similaire : ${projectRef}\n\n`,
+      }))
+    }
+  }, [open, projectRef])
 
   const submit = async (e) => {
     e.preventDefault()
@@ -23,7 +34,7 @@ export default function QuickContact({ open, onClose, projectRef }) {
         type_projet: form.service, budget: form.budget,
         localisation: form.localisation || null,
         surface: parseFloat(form.surface) || null,
-        notes: [projectRef && `Projet de référence : ${projectRef}`, form.description].filter(Boolean).join('\n\n') || null,
+        notes: form.description || null,
         statut: 'interet', source: 'quick-contact',
         created_at: new Date().toISOString(),
       })
