@@ -91,7 +91,7 @@ function GalleryStrip({ images, color }) {
       </div>
 
       {/* Thumbnails */}
-      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', justifyContent: 'center' }}>
         {images.map((img, i) => (
           <GalleryThumb key={i} img={img} idx={i} color={color} onClick={() => setLb(i)} />
         ))}
