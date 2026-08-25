@@ -13,12 +13,12 @@ export default function Footer() {
       alignItems: 'center',
     }}>
       <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.18em' }}>
-        <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 32, fontWeight: 400, color: 'rgba(245,240,234,0.45)', lineHeight: 1, userSelect: 'none' }}>[</span>
+        <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 32, fontWeight: 400, color: '#F5F0EA', lineHeight: 1, userSelect: 'none' }}>[</span>
         <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'stretch', gap: 0 }}>
           <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 22, fontWeight: 400, letterSpacing: '0.05em', color: '#F5F0EA', lineHeight: 1 }}>Clade</span>
-          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7.3, fontWeight: 500, color: 'rgba(245,240,234,0.58)', letterSpacing: '0.07em', lineHeight: 1, textAlign: 'center' }}>architects &amp; co</span>
+          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7.3, fontWeight: 500, color: '#F5F0EA', letterSpacing: '0.07em', lineHeight: 1, textAlign: 'center' }}>architects &amp; co</span>
         </span>
-        <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 32, fontWeight: 400, color: 'rgba(245,240,234,0.45)', lineHeight: 1, userSelect: 'none' }}>]</span>
+        <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 32, fontWeight: 400, color: '#F5F0EA', lineHeight: 1, userSelect: 'none' }}>]</span>
       </div>
       <button
         onClick={() => { navigate('/careers'); window.scrollTo({ top: 0 }) }}
