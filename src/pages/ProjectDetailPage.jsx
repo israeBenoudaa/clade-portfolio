@@ -78,7 +78,7 @@ function GalleryStrip({ images, color }) {
   }, [lb, count])
 
   return (
-    <motion.div {...sec(0.16)} style={{ padding: '0 clamp(1.5rem, 5vw, 5rem)', marginBottom: 'clamp(3.5rem, 6vw, 5.5rem)' }}>
+    <motion.div {...sec(0.16)} style={{ padding: 'clamp(2rem, 3.5vw, 3.5rem) clamp(1.5rem, 5vw, 5rem) clamp(2rem, 3vw, 3rem)' }}>
       {/* Label */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
         <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 3.5, textTransform: 'uppercase', color }}>
@@ -335,7 +335,7 @@ export default function ProjectDetailPage() {
 
       {/* ── STORY ── */}
       <motion.div {...sec(0.18)} style={{
-        padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 5rem)',
+        padding: 'clamp(2.5rem, 4vw, 4.5rem) clamp(1.5rem, 5vw, 5rem) clamp(4rem, 7vw, 6rem)',
         maxWidth: 900, margin: '0 auto',
       }}>
         <span style={{
