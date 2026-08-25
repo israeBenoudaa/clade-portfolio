@@ -71,6 +71,31 @@ function templateRows(count) {
   return '280px 280px 240px 220px 200px'
 }
 
+// Build editorial row layout for extra projects
+function buildExtraGrid(projs) {
+  const PATTERNS = [
+    [7, 5],    // left hero + right
+    [4, 4, 4], // equal thirds
+    [5, 7],    // left + right hero
+    [4, 4, 4], // equal thirds
+  ]
+  const rows = []
+  let i = 0, patIdx = 0
+  while (i < projs.length) {
+    const rem = projs.length - i
+    let pat = PATTERNS[patIdx % PATTERNS.length]
+    if (rem < pat.length) {
+      if (rem === 1) pat = [12]
+      else if (rem === 2) pat = [6, 6]
+      else pat = pat.slice(0, rem)
+    }
+    rows.push({ pat, items: projs.slice(i, i + pat.length), isFirst: patIdx === 0 })
+    i += pat.length
+    patIdx++
+  }
+  return rows
+}
+
 // Round-robin across axes C/L/A/D/E to avoid architecture dominance
 function balancedShowcase(projects, max) {
   const axes = ['A', 'C', 'L', 'D', 'E']
@@ -280,100 +305,82 @@ export default function ProjectsGrid() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="projects-extra"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 3,
-            padding: '3px 3px 0',
-          }}
+          style={{ display: 'flex', flexDirection: 'column', gap: 3, padding: '3px 3px 0' }}
         >
-          {extraProjs.map((project, i) => {
-            const axis   = AXES[project.axis]
-            const isH    = hovered === project.id
-            const isTap  = isTouch && tapped === project.id
-            const show   = isH || isTap
-
+          {buildExtraGrid(extraProjs).map((row, ri) => {
+            const rowH = ri === 0 ? 'clamp(220px, 28vw, 380px)' : 'clamp(180px, 20vw, 280px)'
+            let colCursor = 1
             return (
               <div
-                key={project.id}
-                onMouseEnter={() => !isTouch && setHovered(project.id)}
-                onMouseLeave={() => !isTouch && setHovered(null)}
-                onClick={() => {
-                  if (!isTouch) return navigate(`/projet/${project.id}`)
-                  setTapped(prev => prev === project.id ? null : project.id)
-                }}
-                style={{
-                  position: 'relative', overflow: 'hidden',
-                  background: '#08090A', cursor: 'pointer',
-                  height: 'clamp(200px, 22vw, 320px)',
-                }}
+                key={ri}
+                className={`projects-extra-row${ri}`}
+                style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 3, height: rowH }}
               >
-                <div style={{
-                  position: 'absolute', inset: 0,
-                  backgroundImage: `url('${project.image || project.image_url}')`,
-                  backgroundSize: 'cover', backgroundPosition: 'center',
-                  transition: 'transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s',
-                  transform: isH ? 'scale(1.05)' : 'scale(1)',
-                  filter: show ? 'brightness(0.9) saturate(0.95)' : 'brightness(0.82) saturate(0.88)',
-                }} />
-                <div style={{
-                  position: 'absolute', inset: 0,
-                  background: 'linear-gradient(to top, rgba(8,9,10,0.88) 0%, rgba(8,9,10,0.06) 45%, transparent 100%)',
-                }} />
-                <div style={{
-                  position: 'absolute', top: 0, left: 0, right: 0, height: 1,
-                  background: `linear-gradient(to right, ${axis.color}, transparent)`,
-                  opacity: show ? 1 : 0.35, transition: 'opacity 0.4s',
-                }} />
-                <div style={{ position: 'absolute', top: 12, left: 14, zIndex: 2 }}>
-                  <AxisBracketLabel axisKey={project.axis} color={axis.color} isHero={false} expanded={show} />
-                </div>
-                <div style={{
-                  position: 'absolute', bottom: 0, left: 0, right: 0,
-                  padding: 'clamp(12px, 1.8vw, 22px)',
-                  transform: show ? 'translateY(0)' : 'translateY(6px)',
-                  transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)',
-                }}>
-                  <h3 className="proj-title" style={{
-                    fontFamily: 'Instrument Serif, serif',
-                    fontSize: 'clamp(15px, 1.8vw, 22px)',
-                    fontWeight: 400, color: '#F5F0EA', lineHeight: 1.15, margin: '0 0 6px',
-                    textShadow: '0 2px 12px rgba(0,0,0,0.5)', opacity: 1,
-                  }}>{project.title}</h3>
-                  <div style={{
-                    display: 'flex', gap: 8, alignItems: 'center',
-                    opacity: show ? 0.7 : 0, transition: 'opacity 0.3s 0.05s',
-                  }}>
-                    {project.location && (
-                      <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, color: 'rgba(245,240,234,0.9)', letterSpacing: 0.3 }}>{project.location}</span>
-                    )}
-                    {project.location && project.year && (
-                      <span style={{ width: 1, height: 8, background: 'rgba(245,240,234,0.25)', flexShrink: 0 }} />
-                    )}
-                    {project.year && (
-                      <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, color: 'rgba(245,240,234,0.55)', letterSpacing: 1 }}>{project.year}</span>
-                    )}
-                  </div>
-                </div>
-                {isTouch && (
-                  <button
-                    onClick={e => { e.stopPropagation(); navigate(`/projet/${project.id}`) }}
-                    style={{
-                      position: 'absolute', bottom: 10, right: 10, zIndex: 10,
-                      width: 28, height: 28, borderRadius: '50%',
-                      background: 'rgba(245,240,234,0.13)',
-                      backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)',
-                      border: '1px solid rgba(245,240,234,0.28)',
-                      color: 'rgba(245,240,234,0.9)', fontSize: 17,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      cursor: 'pointer', lineHeight: 1,
-                      opacity: isTap ? 1 : 0,
-                      pointerEvents: isTap ? 'auto' : 'none',
-                      transition: 'opacity 0.3s',
-                    }}
-                  >+</button>
-                )}
+                {row.items.map((project, ci) => {
+                  const colStart = colCursor
+                  const colEnd = colStart + row.pat[ci]
+                  colCursor = colEnd
+                  const axis   = AXES[project.axis]
+                  const isH    = hovered === project.id
+                  const isTap  = isTouch && tapped === project.id
+                  const show   = isH || isTap
+                  const isHero = ri === 0 && ci === 0 && row.pat[0] >= 7
+
+                  return (
+                    <div
+                      key={project.id}
+                      onMouseEnter={() => !isTouch && setHovered(project.id)}
+                      onMouseLeave={() => !isTouch && setHovered(null)}
+                      onClick={() => {
+                        if (!isTouch) return navigate(`/projet/${project.id}`)
+                        setTapped(prev => prev === project.id ? null : project.id)
+                      }}
+                      style={{
+                        gridColumn: `${colStart} / ${colEnd}`,
+                        position: 'relative', overflow: 'hidden',
+                        background: '#08090A', cursor: 'pointer',
+                      }}
+                    >
+                      <div style={{
+                        position: 'absolute', inset: 0,
+                        backgroundImage: `url('${project.image || project.image_url}')`,
+                        backgroundSize: 'cover', backgroundPosition: 'center',
+                        transition: 'transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s',
+                        transform: isH ? 'scale(1.05)' : 'scale(1)',
+                        filter: show ? 'brightness(0.9) saturate(0.95)' : 'brightness(0.82) saturate(0.88)',
+                      }} />
+                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(8,9,10,0.88) 0%, rgba(8,9,10,0.06) 45%, transparent 100%)' }} />
+                      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 1, background: `linear-gradient(to right, ${axis.color}, transparent)`, opacity: show ? 1 : 0.35, transition: 'opacity 0.4s' }} />
+                      <div style={{ position: 'absolute', top: 12, left: 14, zIndex: 2 }}>
+                        <AxisBracketLabel axisKey={project.axis} color={axis.color} isHero={isHero} expanded={show} />
+                      </div>
+                      <div style={{
+                        position: 'absolute', bottom: 0, left: 0, right: 0,
+                        padding: isHero ? 'clamp(14px, 2.5vw, 32px)' : 'clamp(10px, 1.5vw, 18px)',
+                        transform: show ? 'translateY(0)' : 'translateY(6px)',
+                        transition: 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)',
+                      }}>
+                        <h3 className="proj-title" style={{
+                          fontFamily: 'Instrument Serif, serif',
+                          fontSize: isHero ? 'clamp(18px, 2.4vw, 30px)' : 'clamp(14px, 1.6vw, 20px)',
+                          fontWeight: 400, color: '#F5F0EA', lineHeight: 1.15, margin: '0 0 5px',
+                          textShadow: '0 2px 12px rgba(0,0,0,0.5)',
+                        }}>{project.title}</h3>
+                        <div style={{ display: 'flex', gap: 8, alignItems: 'center', opacity: show ? 0.7 : 0, transition: 'opacity 0.3s 0.05s' }}>
+                          {project.location && <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, color: 'rgba(245,240,234,0.9)', letterSpacing: 0.3 }}>{project.location}</span>}
+                          {project.location && project.year && <span style={{ width: 1, height: 8, background: 'rgba(245,240,234,0.25)', flexShrink: 0 }} />}
+                          {project.year && <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, color: 'rgba(245,240,234,0.55)', letterSpacing: 1 }}>{project.year}</span>}
+                        </div>
+                      </div>
+                      {isTouch && (
+                        <button
+                          onClick={e => { e.stopPropagation(); navigate(`/projet/${project.id}`) }}
+                          style={{ position: 'absolute', bottom: 10, right: 10, zIndex: 10, width: 28, height: 28, borderRadius: '50%', background: 'rgba(245,240,234,0.13)', backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)', border: '1px solid rgba(245,240,234,0.28)', color: 'rgba(245,240,234,0.9)', fontSize: 17, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', lineHeight: 1, opacity: isTap ? 1 : 0, pointerEvents: isTap ? 'auto' : 'none', transition: 'opacity 0.3s' }}
+                        >+</button>
+                      )}
+                    </div>
+                  )
+                })}
               </div>
             )
           })}
@@ -431,11 +438,12 @@ export default function ProjectsGrid() {
       {/* ── Mobile override ── */}
       <style>{`
         @media (max-width: 680px) {
-          .projects-extra {
+          [class^="projects-extra-row"] {
             grid-template-columns: repeat(2, 1fr) !important;
+            height: clamp(130px, 40vw, 170px) !important;
           }
-          .projects-extra > div {
-            height: clamp(140px, 42vw, 180px) !important;
+          [class^="projects-extra-row"] > div {
+            grid-column: auto !important;
           }
           .projects-mosaic {
             grid-template-columns: repeat(2, 1fr) !important;

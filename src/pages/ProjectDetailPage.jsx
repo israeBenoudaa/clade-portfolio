@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AXES } from '../data/projects'
@@ -16,212 +16,124 @@ const sec = (delay) => ({
   transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
 })
 
-/* ── Gallery with lightbox ── */
-function Gallery({ images, color }) {
-  const [lightbox, setLightbox] = useState(null)
-  const { t } = useLanguage()
-
-  const prev = useCallback(() => setLightbox(i => (i - 1 + images.length) % images.length), [images.length])
-  const next  = useCallback(() => setLightbox(i => (i + 1) % images.length), [images.length])
-  const close = useCallback(() => setLightbox(null), [])
-
-  useEffect(() => {
-    if (lightbox === null) return
-    const onKey = (e) => {
-      if (e.key === 'Escape')     close()
-      if (e.key === 'ArrowRight') next()
-      if (e.key === 'ArrowLeft')  prev()
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [lightbox, close, next, prev])
-
-  /* ── Grid layout variants ── */
-  const count = images.length
-
-  /* Thumbnail card */
-  const Card = ({ img, idx, style = {} }) => (
-    <div
-      onClick={() => setLightbox(idx)}
-      style={{
-        position: 'relative', overflow: 'hidden', cursor: 'zoom-in',
-        background: '#08090A', ...style,
-      }}
+/* ── Gallery thumbnail (square tile) ── */
+function GalleryThumb({ img, idx, color, onClick }) {
+  const [hov, setHov] = useState(false)
+  const sz = 'clamp(78px, 10.5vw, 116px)'
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, delay: 0.08 + idx * 0.055, ease: [0.22, 1, 0.36, 1] }}
+      onClick={onClick}
+      onMouseEnter={() => setHov(true)}
+      onMouseLeave={() => setHov(false)}
+      style={{ position: 'relative', width: sz, height: sz, overflow: 'hidden', cursor: 'zoom-in', flexShrink: 0 }}
     >
-      <div
-        className="gallery-bg"
-        style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: `url('${img}')`,
-          backgroundSize: 'cover', backgroundPosition: 'center',
-          filter: 'brightness(0.62) saturate(0.72)',
-          transition: 'transform 0.9s cubic-bezier(0.22,1,0.36,1), filter 0.4s',
-        }}
-      />
-      {/* Gradient overlay */}
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(8,9,10,0.55) 0%, transparent 55%)', pointerEvents: 'none' }} />
-      {/* Zoom icon on hover */}
-      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0, transition: 'opacity 0.25s', pointerEvents: 'none' }}
-        className="gallery-zoom">
-        <div style={{ width: 44, height: 44, borderRadius: '50%', border: '1px solid rgba(245,240,234,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(4px)', background: 'rgba(8,9,10,0.3)' }}>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M2 2h4M2 2v4M14 2h-4M14 2v4M2 14h4M2 14v-4M14 14h-4M14 14v-4" stroke="rgba(245,240,234,0.9)" strokeWidth="1.2" strokeLinecap="round"/>
+      {/* Discipline color line — extends on hover */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: 1, zIndex: 2,
+        background: color, transformOrigin: 'left',
+        transform: hov ? 'scaleX(1)' : 'scaleX(0.2)',
+        transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1)',
+      }} />
+      {/* Image */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        backgroundImage: `url('${img}')`, backgroundSize: 'cover', backgroundPosition: 'center',
+        filter: hov ? 'brightness(0.82) saturate(0.9)' : 'brightness(0.5) saturate(0.6)',
+        transform: hov ? 'scale(1.1)' : 'scale(1)',
+        transition: 'transform 0.85s cubic-bezier(0.22,1,0.36,1), filter 0.4s',
+      }} />
+      {/* Zoom icon */}
+      <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 3, opacity: hov ? 1 : 0, transition: 'opacity 0.22s' }}>
+        <div style={{ width: 26, height: 26, borderRadius: '50%', border: `1px solid ${color}55`, background: 'rgba(8,9,10,0.5)', backdropFilter: 'blur(4px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg width="9" height="9" viewBox="0 0 16 16" fill="none">
+            <path d="M2 2h4M2 2v4M14 2h-4M14 2v4M2 14h4M2 14v-4M14 14h-4M14 14v-4" stroke={color} strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
         </div>
       </div>
       {/* Index */}
-      <div style={{ position: 'absolute', bottom: 14, right: 16, fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2, color: 'rgba(245,240,234,0.3)', pointerEvents: 'none' }}>
+      <div style={{ position: 'absolute', bottom: 5, right: 7, zIndex: 2, fontFamily: 'Space Grotesk, sans-serif', fontSize: 8, letterSpacing: 1.5, color: 'rgba(245,240,234,0.28)' }}>
         {String(idx + 1).padStart(2, '0')}
       </div>
-      <style>{`
-        .gallery-card:hover .gallery-bg { transform: scale(1.07) !important; filter: brightness(0.78) saturate(0.88) !important; }
-        .gallery-card:hover .gallery-zoom { opacity: 1 !important; }
-      `}</style>
-    </div>
+    </motion.div>
   )
+}
 
-  /* Inline hover without class — use onMouseEnter/Leave */
-  const HoverCard = ({ img, idx, style = {} }) => {
-    const [hovered, setHovered] = useState(false)
-    return (
-      <div
-        onClick={() => setLightbox(idx)}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        style={{ position: 'relative', overflow: 'hidden', cursor: 'zoom-in', background: '#08090A', ...style }}
-      >
-        <div style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: `url('${img}')`,
-          backgroundSize: 'cover', backgroundPosition: 'center',
-          filter: hovered ? 'brightness(0.78) saturate(0.88)' : 'brightness(0.62) saturate(0.72)',
-          transform: hovered ? 'scale(1.07)' : 'scale(1)',
-          transition: 'transform 0.9s cubic-bezier(0.22,1,0.36,1), filter 0.4s',
-        }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(8,9,10,0.55) 0%, transparent 55%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: hovered ? 1 : 0, transition: 'opacity 0.25s', pointerEvents: 'none' }}>
-          <div style={{ width: 44, height: 44, borderRadius: '50%', border: `1px solid ${color}80`, display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(4px)', background: 'rgba(8,9,10,0.3)' }}>
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M2 2h4M2 2v4M14 2h-4M14 2v4M2 14h4M2 14v-4M14 14h-4M14 14v-4" stroke={color} strokeWidth="1.2" strokeLinecap="round"/>
-            </svg>
-          </div>
-        </div>
-        <div style={{ position: 'absolute', bottom: 14, right: 16, fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2, color: 'rgba(245,240,234,0.28)', pointerEvents: 'none' }}>
-          {String(idx + 1).padStart(2, '0')}
-        </div>
-      </div>
-    )
-  }
+/* ── Gallery strip — above story, with lightbox ── */
+function GalleryStrip({ images, color }) {
+  const [lb, setLb] = useState(null)
+  const count = images.length
 
-  /* Build rows: alternate full-bleed and 2-up pairs */
-  const buildRows = () => {
-    const rows = []
-    let i = 0
-    while (i < count) {
-      if (i === 0 || (count - i) % 2 === 1) {
-        // Full-bleed single
-        rows.push({ type: 'single', indices: [i] })
-        i += 1
-      } else {
-        // Pair side by side
-        rows.push({ type: 'pair', indices: [i, i + 1] })
-        i += 2
-      }
+  useEffect(() => {
+    if (lb === null) return
+    const onKey = (e) => {
+      if (e.key === 'Escape')     setLb(null)
+      if (e.key === 'ArrowRight') setLb(i => (i + 1) % count)
+      if (e.key === 'ArrowLeft')  setLb(i => (i - 1 + count) % count)
     }
-    return rows
-  }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [lb, count])
 
   return (
-    <motion.div {...sec(0.25)} style={{ padding: '0 0 clamp(5rem, 8vw, 7rem)' }}>
-
-      {/* Grid — no label, clean editorial */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-        {buildRows().map((row, ri) =>
-          row.type === 'single' ? (
-            <HoverCard
-              key={ri}
-              img={images[row.indices[0]]}
-              idx={row.indices[0]}
-              style={{ height: count === 1 ? 'clamp(340px, 58vw, 720px)' : 'clamp(300px, 48vw, 620px)' }}
-            />
-          ) : (
-            <div key={ri} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3 }}>
-              {row.indices.map(idx => (
-                <HoverCard
-                  key={idx}
-                  img={images[idx]}
-                  idx={idx}
-                  style={{ height: 'clamp(220px, 32vw, 480px)' }}
-                />
-              ))}
-            </div>
-          )
-        )}
+    <motion.div {...sec(0.16)} style={{ padding: '0 clamp(1.5rem, 5vw, 5rem)', marginBottom: 'clamp(3.5rem, 6vw, 5.5rem)' }}>
+      {/* Label */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 16 }}>
+        <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 3.5, textTransform: 'uppercase', color }}>
+          Galerie
+        </span>
+        <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 1, color: 'rgba(245,240,234,0.2)' }}>
+          — {String(count).padStart(2, '0')}
+        </span>
+        <div style={{ flex: 1, height: 1, background: `linear-gradient(to right, ${color}22, transparent)` }} />
       </div>
 
-      {/* ── LIGHTBOX ── */}
+      {/* Thumbnails */}
+      <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+        {images.map((img, i) => (
+          <GalleryThumb key={i} img={img} idx={i} color={color} onClick={() => setLb(i)} />
+        ))}
+      </div>
+
+      {/* Lightbox */}
       <AnimatePresence>
-        {lightbox !== null && (
+        {lb !== null && (
           <motion.div
-            key="lightbox"
+            key="lb"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            onClick={close}
-            style={{ position: 'fixed', inset: 0, zIndex: 9000, background: 'rgba(8,9,10,0.96)', backdropFilter: 'blur(12px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            transition={{ duration: 0.22 }}
+            onClick={() => setLb(null)}
+            style={{ position: 'fixed', inset: 0, zIndex: 9000, background: 'rgba(8,9,10,0.97)', backdropFilter: 'blur(16px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           >
-            {/* Image */}
             <motion.img
-              key={lightbox}
-              src={images[lightbox]}
+              key={lb}
+              src={images[lb]}
               alt=""
-              initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }}
+              initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.97 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               onClick={e => e.stopPropagation()}
-              style={{ maxWidth: '88vw', maxHeight: '84vh', objectFit: 'contain', userSelect: 'none', boxShadow: '0 32px 80px rgba(0,0,0,0.8)' }}
+              style={{ maxWidth: '88vw', maxHeight: '84vh', objectFit: 'contain', userSelect: 'none', boxShadow: '0 32px 80px rgba(0,0,0,0.9)' }}
             />
-
-            {/* Close */}
-            <button
-              onClick={close}
-              style={{ position: 'fixed', top: 24, right: 28, width: 44, height: 44, borderRadius: '50%', border: '1px solid rgba(245,240,234,0.18)', background: 'rgba(245,240,234,0.06)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'rgba(245,240,234,0.7)', transition: 'background 0.2s, color 0.2s' }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(245,240,234,0.14)'; e.currentTarget.style.color = '#F5F0EA' }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(245,240,234,0.06)'; e.currentTarget.style.color = 'rgba(245,240,234,0.7)' }}
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-              </svg>
+            <button onClick={() => setLb(null)} style={{ position: 'fixed', top: 24, right: 28, width: 44, height: 44, borderRadius: '50%', border: '1px solid rgba(245,240,234,0.18)', background: 'rgba(245,240,234,0.06)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'rgba(245,240,234,0.7)' }}>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>
             </button>
-
-            {/* Counter */}
-            <div style={{ position: 'fixed', top: 32, left: '50%', transform: 'translateX(-50%)', fontFamily: 'Space Grotesk, sans-serif', fontSize: 10, letterSpacing: 2.5, color: 'rgba(245,240,234,0.35)' }}>
-              {String(lightbox + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}
+            <div style={{ position: 'fixed', top: 32, left: '50%', transform: 'translateX(-50%)', fontFamily: 'Space Grotesk, sans-serif', fontSize: 10, letterSpacing: 2.5, color: 'rgba(245,240,234,0.3)' }}>
+              {String(lb + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}
             </div>
-
-            {/* Prev / Next (only if multiple) */}
             {count > 1 && (
               <>
-                <button
-                  onClick={e => { e.stopPropagation(); prev() }}
-                  style={{ position: 'fixed', left: 24, top: '50%', transform: 'translateY(-50%)', width: 48, height: 48, borderRadius: '50%', border: '1px solid rgba(245,240,234,0.14)', background: 'rgba(245,240,234,0.05)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'rgba(245,240,234,0.6)', transition: 'background 0.2s, color 0.2s' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(245,240,234,0.12)'; e.currentTarget.style.color = '#F5F0EA' }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(245,240,234,0.05)'; e.currentTarget.style.color = 'rgba(245,240,234,0.6)' }}
-                >
+                <button onClick={e => { e.stopPropagation(); setLb(i => (i - 1 + count) % count) }} style={{ position: 'fixed', left: 24, top: '50%', transform: 'translateY(-50%)', width: 48, height: 48, borderRadius: '50%', border: '1px solid rgba(245,240,234,0.14)', background: 'rgba(245,240,234,0.05)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'rgba(245,240,234,0.6)' }}>
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 1L2 7l7 6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </button>
-                <button
-                  onClick={e => { e.stopPropagation(); next() }}
-                  style={{ position: 'fixed', right: 24, top: '50%', transform: 'translateY(-50%)', width: 48, height: 48, borderRadius: '50%', border: '1px solid rgba(245,240,234,0.14)', background: 'rgba(245,240,234,0.05)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'rgba(245,240,234,0.6)', transition: 'background 0.2s, color 0.2s' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(245,240,234,0.12)'; e.currentTarget.style.color = '#F5F0EA' }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(245,240,234,0.05)'; e.currentTarget.style.color = 'rgba(245,240,234,0.6)' }}
-                >
+                <button onClick={e => { e.stopPropagation(); setLb(i => (i + 1) % count) }} style={{ position: 'fixed', right: 24, top: '50%', transform: 'translateY(-50%)', width: 48, height: 48, borderRadius: '50%', border: '1px solid rgba(245,240,234,0.14)', background: 'rgba(245,240,234,0.05)', backdropFilter: 'blur(8px)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'rgba(245,240,234,0.6)' }}>
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 1l7 6-7 6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </button>
               </>
             )}
-
-            {/* Hint */}
-            <div style={{ position: 'fixed', bottom: 28, left: '50%', transform: 'translateX(-50%)', fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2, color: 'rgba(245,240,234,0.18)', whiteSpace: 'nowrap' }}>
-              {t('project.lightbox', count > 1)}
+            <div style={{ position: 'fixed', bottom: 28, left: '50%', transform: 'translateX(-50%)', fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2, color: 'rgba(245,240,234,0.15)', whiteSpace: 'nowrap' }}>
+              esc · ← →
             </div>
           </motion.div>
         )}
@@ -416,6 +328,11 @@ export default function ProjectDetailPage() {
         ))}
       </motion.div>
 
+      {/* ── GALLERY STRIP — above story ── */}
+      {project.gallery?.length > 0 && (
+        <GalleryStrip images={project.gallery} color={color} />
+      )}
+
       {/* ── STORY ── */}
       <motion.div {...sec(0.18)} style={{
         padding: 'clamp(5rem, 10vw, 9rem) clamp(1.5rem, 5vw, 5rem)',
@@ -450,11 +367,6 @@ export default function ProjectDetailPage() {
           ))}
         </div>
       </motion.div>
-
-      {/* ── GALERIE ── */}
-      {project.gallery?.length > 0 && (
-        <Gallery images={project.gallery} color={color} />
-      )}
 
       {/* ── CTA ── */}
       <motion.div {...sec(0.32)} style={{
