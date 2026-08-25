@@ -81,61 +81,64 @@ export default function AnimatedLogo({ disciplineKey, disciplineLabel, color }) 
     fontWeight: 400, lineHeight: 1, letterSpacing: '0.06em',
     color: '#F5F0EA',
   }
-  const sz  = 'clamp(18px, 2.5vw, 24px)'
-  const bsz = 'clamp(26px, 3.6vw, 34px)'
+  const sz = 'clamp(18px, 2.5vw, 26px)'
 
   return (
     <button
       onClick={() => navigate('/')}
-      style={{ background: 'none', border: 'none', padding: 0, display: 'inline-flex', alignItems: 'center', gap: '0.18em' }}
+      style={{ background: 'none', border: 'none', padding: 0, display: 'flex', alignItems: 'baseline' }}
     >
-      {/* Crochet gauche */}
-      <span style={{ fontFamily: "'Averia Libre', serif", fontSize: bsz, fontWeight: 400, color: 'rgba(245,240,234,0.45)', lineHeight: 1, userSelect: 'none' }}>[</span>
+      {/* Lettres avant */}
+      {prefix && (
+        <span style={{ ...base, fontSize: sz }}>{prefix}</span>
+      )}
 
-      {/* Bloc central : Clade animé + subtitle */}
-      <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'stretch', gap: 0 }}>
-        {/* Ligne "Clade" animée */}
-        <span style={{ display: 'inline-flex', alignItems: 'baseline' }}>
-          {prefix && <span style={{ ...base, fontSize: sz }}>{prefix}</span>}
+      {/* Lettre active ↔ nom de la discipline */}
+      <span style={{ display: 'inline-flex', alignItems: 'baseline', position: 'relative', overflow: 'visible' }}>
+        {/* Lettre (C / L / A / D / E) — visible en idle */}
+        <motion.span
+          animate={{ opacity: showLetter ? 1 : 0, width: showLetter ? 'auto' : 0 }}
+          transition={{ duration: 0.18 }}
+          style={{ ...base, fontSize: sz, color, display: 'inline-block', overflow: 'hidden' }}
+        >
+          {activeLtr}
+        </motion.span>
 
-          <span style={{ display: 'inline-flex', alignItems: 'baseline', position: 'relative', overflow: 'visible' }}>
+        {/* Texte tapé : (LANDSCAPE) */}
+        <motion.span
+          animate={{ opacity: showLetter ? 0 : 1 }}
+          transition={{ duration: 0.18 }}
+          style={{
+            ...base,
+            fontSize: sz,
+            color,
+            fontStyle: 'normal',
+            letterSpacing: '0.03em',
+            display: 'inline-block',
+          }}
+        >
+          {typed}
+          {/* Curseur clignotant pendant frappe ET effacement */}
+          {!showLetter && !isFull && (
             <motion.span
-              animate={{ opacity: showLetter ? 1 : 0, width: showLetter ? 'auto' : 0 }}
-              transition={{ duration: 0.18 }}
-              style={{ ...base, fontSize: sz, color, display: 'inline-block', overflow: 'hidden' }}
-            >
-              {activeLtr}
-            </motion.span>
-
-            <motion.span
-              animate={{ opacity: showLetter ? 0 : 1 }}
-              transition={{ duration: 0.18 }}
-              style={{ ...base, fontSize: sz, color, fontStyle: 'normal', letterSpacing: '0.03em', display: 'inline-block' }}
-            >
-              {typed}
-              {!showLetter && !isFull && (
-                <motion.span
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ repeat: Infinity, duration: 0.65 }}
-                  style={{ display: 'inline-block', width: 1.5, height: '0.75em', background: color, marginLeft: 1, verticalAlign: 'middle' }}
-                />
-              )}
-            </motion.span>
-          </span>
-
-          {suffix && <span style={{ ...base, fontSize: sz }}>{suffix}</span>}
-        </span>
-
-        {/* Subtitle */}
-        <span style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'Space Grotesk, sans-serif', fontSize: 'clamp(6px, 0.82vw, 8px)', fontWeight: 500, color: 'rgba(245,240,234,0.58)', letterSpacing: '0.01em', lineHeight: 1 }}>
-          <span>architects</span>
-          <span>&amp;</span>
-          <span>co</span>
-        </span>
+              animate={{ opacity: [1, 0, 1] }}
+              transition={{ repeat: Infinity, duration: 0.65 }}
+              style={{
+                display: 'inline-block',
+                width: 1.5, height: '0.75em',
+                background: color,
+                marginLeft: 1,
+                verticalAlign: 'middle',
+              }}
+            />
+          )}
+        </motion.span>
       </span>
 
-      {/* Crochet droit */}
-      <span style={{ fontFamily: "'Averia Libre', serif", fontSize: bsz, fontWeight: 400, color: 'rgba(245,240,234,0.45)', lineHeight: 1, userSelect: 'none' }}>]</span>
+      {/* Lettres après */}
+      {suffix && (
+        <span style={{ ...base, fontSize: sz }}>{suffix}</span>
+      )}
     </button>
   )
 }
