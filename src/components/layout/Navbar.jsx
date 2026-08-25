@@ -42,10 +42,10 @@ export default function Navbar() {
           onClick={() => isHome ? window.scrollTo({ top: 0, behavior: 'smooth' }) : navigate('/')}
           style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: '0.18em' }}
         >
-          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 32, fontWeight: 400, color: 'rgba(245,240,234,0.45)', lineHeight: 1, userSelect: 'none' }}>[</span>
+          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 36, fontWeight: 400, color: 'rgba(245,240,234,0.45)', lineHeight: 1, userSelect: 'none' }}>[</span>
 
-          <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'stretch', gap: 2 }}>
-            <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 22, fontWeight: 400, letterSpacing: '0.05em', color: '#F5F0EA', lineHeight: 1 }}>
+          <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'stretch', gap: 1 }}>
+            <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 25, fontWeight: 400, letterSpacing: '0.05em', color: '#F5F0EA', lineHeight: 1 }}>
               Clade
             </span>
             <span style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'Space Grotesk, sans-serif', fontSize: 7.5, fontWeight: 500, color: 'rgba(245,240,234,0.38)', letterSpacing: '0.01em', lineHeight: 1 }}>
@@ -55,7 +55,7 @@ export default function Navbar() {
             </span>
           </span>
 
-          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 32, fontWeight: 400, color: 'rgba(245,240,234,0.45)', lineHeight: 1, userSelect: 'none' }}>]</span>
+          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 36, fontWeight: 400, color: 'rgba(245,240,234,0.45)', lineHeight: 1, userSelect: 'none' }}>]</span>
         </button>
 
         {/* Right: language switcher + phone */}
