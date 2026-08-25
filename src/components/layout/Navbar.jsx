@@ -48,7 +48,7 @@ export default function Navbar() {
             <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 22, fontWeight: 400, letterSpacing: '0.05em', color: '#F5F0EA', lineHeight: 1 }}>
               Clade
             </span>
-            <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7.2, fontWeight: 500, color: 'rgba(245,240,234,0.58)', letterSpacing: '0.07em', lineHeight: 1, textAlign: 'center' }}>
+            <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7.3, fontWeight: 500, color: 'rgba(245,240,234,0.58)', letterSpacing: '0.07em', lineHeight: 1, textAlign: 'center' }}>
               architects &amp; co
             </span>
           </span>
