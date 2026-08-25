@@ -44,7 +44,7 @@ export default function Navbar() {
         >
           <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 32, fontWeight: 400, color: 'rgba(245,240,234,0.45)', lineHeight: 1, userSelect: 'none' }}>[</span>
 
-          <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'stretch', gap: 2 }}>
+          <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'stretch', gap: 0 }}>
             <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 22, fontWeight: 400, letterSpacing: '0.05em', color: '#F5F0EA', lineHeight: 1 }}>
               Clade
             </span>
