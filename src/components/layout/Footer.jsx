@@ -12,9 +12,13 @@ export default function Footer() {
       display: 'flex', flexDirection: 'column', gap: 24,
       alignItems: 'center',
     }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
-        <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 22, fontWeight: 400, letterSpacing: 2, color: '#F5F0EA', lineHeight: 1 }}>Clade</span>
-        <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 2, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', lineHeight: 1 }}>architects &amp; co</span>
+      <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.18em' }}>
+        <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 32, fontWeight: 400, color: 'rgba(245,240,234,0.45)', lineHeight: 1, userSelect: 'none' }}>[</span>
+        <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'stretch', gap: 0 }}>
+          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 22, fontWeight: 400, letterSpacing: '0.05em', color: '#F5F0EA', lineHeight: 1 }}>Clade</span>
+          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 7.3, fontWeight: 500, color: 'rgba(245,240,234,0.58)', letterSpacing: '0.07em', lineHeight: 1, textAlign: 'center' }}>architects &amp; co</span>
+        </span>
+        <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 32, fontWeight: 400, color: 'rgba(245,240,234,0.45)', lineHeight: 1, userSelect: 'none' }}>]</span>
       </div>
       <button
         onClick={() => { navigate('/careers'); window.scrollTo({ top: 0 }) }}
