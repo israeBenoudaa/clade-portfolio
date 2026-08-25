@@ -40,26 +40,22 @@ export default function Navbar() {
         {/* Logo */}
         <button
           onClick={() => isHome ? window.scrollTo({ top: 0, behavior: 'smooth' }) : navigate('/')}
-          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: '0.28em' }}
+          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: '0.18em' }}
         >
-          {/* Crochet gauche */}
-          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 28, fontWeight: 400, color: 'rgba(245,240,234,0.4)', lineHeight: 1, userSelect: 'none' }}>[</span>
+          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 40, fontWeight: 400, color: 'rgba(245,240,234,0.45)', lineHeight: 1, userSelect: 'none' }}>[</span>
 
-          {/* Bloc central : Clade + subtitle */}
-          <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'stretch', gap: 5 }}>
-            <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 24, fontWeight: 400, letterSpacing: '0.06em', color: '#F5F0EA', lineHeight: 1 }}>
+          <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'stretch', gap: 6 }}>
+            <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 30, fontWeight: 400, letterSpacing: '0.05em', color: '#F5F0EA', lineHeight: 1 }}>
               Clade
             </span>
-            {/* architects & co — étiré sur la largeur de "Clade" */}
-            <span style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'Space Grotesk, sans-serif', fontSize: 6.5, fontWeight: 500, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', letterSpacing: '0.02em', lineHeight: 1 }}>
-              <span>Architects</span>
+            <span style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'Space Grotesk, sans-serif', fontSize: 8.5, fontWeight: 500, color: 'rgba(245,240,234,0.38)', letterSpacing: '0.01em', lineHeight: 1 }}>
+              <span>architects</span>
               <span>&amp;</span>
               <span>co</span>
             </span>
           </span>
 
-          {/* Crochet droit */}
-          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 28, fontWeight: 400, color: 'rgba(245,240,234,0.4)', lineHeight: 1, userSelect: 'none' }}>]</span>
+          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 40, fontWeight: 400, color: 'rgba(245,240,234,0.45)', lineHeight: 1, userSelect: 'none' }}>]</span>
         </button>
 
         {/* Right: language switcher + phone */}
