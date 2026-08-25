@@ -17,6 +17,8 @@ export function usePageTracking() {
       device,
       screen_width: window.innerWidth,
       language: navigator.language?.slice(0, 5) || null,
+    }).then(({ error }) => {
+      if (error) console.error('[tracking] site_visits insert error:', error.code, error.message)
     })
   }, [pathname])
 }
