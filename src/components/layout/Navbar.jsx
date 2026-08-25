@@ -40,23 +40,26 @@ export default function Navbar() {
         {/* Logo */}
         <button
           onClick={() => isHome ? window.scrollTo({ top: 0, behavior: 'smooth' }) : navigate('/')}
-          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', flexShrink: 0, display: 'inline-flex', flexDirection: 'column', alignItems: 'stretch', gap: 5 }}
+          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: '0.28em' }}
         >
-          {/* [ Clade ] */}
-          <span style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', fontFamily: "'Averia Libre', serif", fontSize: 22, fontWeight: 400, color: '#F5F0EA', lineHeight: 1 }}>
-            <span style={{ opacity: 0.45, marginRight: '0.22em' }}>[</span>
-            <span style={{ letterSpacing: '0.06em' }}>Clade</span>
-            <span style={{ opacity: 0.45, marginLeft: '0.22em' }}>]</span>
+          {/* Crochet gauche */}
+          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 28, fontWeight: 400, color: 'rgba(245,240,234,0.4)', lineHeight: 1, userSelect: 'none' }}>[</span>
+
+          {/* Bloc central : Clade + subtitle */}
+          <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'stretch', gap: 5 }}>
+            <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 24, fontWeight: 400, letterSpacing: '0.06em', color: '#F5F0EA', lineHeight: 1 }}>
+              Clade
+            </span>
+            {/* architects & co — étiré sur la largeur de "Clade" */}
+            <span style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'Space Grotesk, sans-serif', fontSize: 6.5, fontWeight: 500, color: 'rgba(245,240,234,0.3)', textTransform: 'uppercase', letterSpacing: '0.02em', lineHeight: 1 }}>
+              <span>Architects</span>
+              <span>&amp;</span>
+              <span>co</span>
+            </span>
           </span>
-          {/* architects & co — même largeur, justifié */}
-          <span style={{
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontSize: 7, color: 'rgba(245,240,234,0.3)',
-            textTransform: 'uppercase', lineHeight: 1,
-            textAlign: 'justify', textAlignLast: 'justify',
-          }}>
-            architects &amp; co
-          </span>
+
+          {/* Crochet droit */}
+          <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 28, fontWeight: 400, color: 'rgba(245,240,234,0.4)', lineHeight: 1, userSelect: 'none' }}>]</span>
         </button>
 
         {/* Right: language switcher + phone */}
