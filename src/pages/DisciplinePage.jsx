@@ -236,11 +236,11 @@ export default function DisciplinePage() {
                   position: 'absolute', inset: 0,
                   backgroundImage: `url('${project.image}')`,
                   backgroundSize: 'cover', backgroundPosition: 'center',
-                  filter: 'brightness(0.4) saturate(0.6)',
+                  filter: 'brightness(0.65) saturate(0.75)',
                   transition: 'transform 0.7s, filter 0.4s',
                 }}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.06)'; e.currentTarget.style.filter = 'brightness(0.55) saturate(0.7)' }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.filter = 'brightness(0.4) saturate(0.6)' }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.06)'; e.currentTarget.style.filter = 'brightness(0.82) saturate(0.9)' }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.filter = 'brightness(0.65) saturate(0.75)' }}
               />
               <div style={{
                 position: 'absolute', inset: 0,
