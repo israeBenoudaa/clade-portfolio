@@ -39,9 +39,7 @@ export default function ContactSection() {
         created_at: new Date().toISOString(),
       })
       if (sbError) throw sbError
-      console.log('[Contact] Supabase OK, calling notifyProspect')
       notifyProspect({ prenom: form.prenom, nom: form.nom, email: form.email, telephone: form.telephone, type_projet: form.service, budget: form.budget, localisation: form.localisation })
-      console.log('[Contact] notifyProspect called')
       setSent(true)
     } catch (err) {
       console.error('[ContactSection] Supabase error:', err)
