@@ -43,7 +43,7 @@ export default function ContactSection() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           text: [
-            '🏛 <b>Nouveau prospect</b>', '',
+            '🏛 <b>Nouveau prospect</b>',
             `👤 ${form.prenom || ''} ${form.nom || ''}`.trim(),
             `📧 ${form.email}`,
             form.telephone ? `📞 ${form.telephone}` : null,

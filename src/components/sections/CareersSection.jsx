@@ -173,7 +173,6 @@ export default function CareersSection({ hideHeader = false, autoTrigger = false
             selectedOffre
               ? `📋 <b>Nouvelle candidature — ${selectedOffre.intitule}</b>`
               : '📋 <b>Nouvelle candidature spontanée</b>',
-            '',
             `👤 ${form.prenom || ''} ${form.nom || ''}`.trim(),
             `📧 ${form.email}`,
             form.telephone ? `📞 ${form.telephone}` : null,
