@@ -39,6 +39,21 @@ export default function QuickContact({ open, onClose, projectRef }) {
         created_at: new Date().toISOString(),
       })
       if (sbError) throw sbError
+      fetch('/api/notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text: [
+            '🏛 <b>Nouveau prospect — Portfolio</b>', '',
+            `👤 ${form.prenom || ''} ${form.nom || ''}`.trim(),
+            `📧 ${form.email}`,
+            form.telephone ? `📞 ${form.telephone}` : null,
+            form.service ? `🏗 ${form.service}` : null,
+            form.budget ? `💰 Budget : ${form.budget}` : null,
+            form.localisation ? `📍 ${form.localisation}` : null,
+          ].filter(Boolean).join('\n'),
+        }),
+      }).catch(() => {})
       setSent(true)
     } catch (err) {
       console.error('[QuickContact] Supabase error:', err)
