@@ -2,6 +2,7 @@ const TOKEN = import.meta.env.VITE_TELEGRAM_BOT_TOKEN
 const CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID
 
 async function send(text) {
+  console.log('[Telegram] TOKEN:', TOKEN ? 'OK' : 'UNDEFINED', '| CHAT_ID:', CHAT_ID ? 'OK' : 'UNDEFINED')
   if (!TOKEN || !CHAT_ID) return
   try {
     const url = `https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${encodeURIComponent(CHAT_ID)}&text=${encodeURIComponent(text)}&parse_mode=HTML`
