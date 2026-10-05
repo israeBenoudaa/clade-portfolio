@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { insertRow, supabase } from '../../lib/supabase'
+import { notifyCandidat } from '../../services/notifications/telegram'
 import { useLanguage } from '../../context/LanguageContext'
 
 const tag = (txt) => ({
@@ -165,6 +166,7 @@ export default function CareersSection({ hideHeader = false, autoTrigger = false
 
       const { error: sbError } = await insertRow('candidatures_spont', payload)
       if (sbError) throw sbError
+      notifyCandidat({ prenom: form.prenom, nom: form.nom, email: form.email, telephone: form.telephone, poste_vise: payload.poste_vise, departement: form.departement })
       setSent(true)
     } catch (err) {
       console.error('[CareersSection] Supabase error:', err)

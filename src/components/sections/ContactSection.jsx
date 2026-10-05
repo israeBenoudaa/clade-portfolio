@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { insertRow } from '../../lib/supabase'
+import { notifyProspect } from '../../services/notifications/telegram'
 import ProjectForm, { EMPTY_FORM } from '../ui/ProjectForm'
 import { useSiteContent } from '../../context/SiteContentContext'
 import { useLanguage } from '../../context/LanguageContext'
@@ -38,6 +39,7 @@ export default function ContactSection() {
         created_at: new Date().toISOString(),
       })
       if (sbError) throw sbError
+      notifyProspect({ prenom: form.prenom, nom: form.nom, email: form.email, telephone: form.telephone, type_projet: form.service, budget: form.budget, localisation: form.localisation })
       setSent(true)
     } catch (err) {
       console.error('[ContactSection] Supabase error:', err)
