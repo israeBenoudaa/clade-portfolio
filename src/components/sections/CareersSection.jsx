@@ -170,11 +170,14 @@ export default function CareersSection({ hideHeader = false, autoTrigger = false
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           text: [
-            '📋 <b>Nouvelle candidature — Portfolio</b>', '',
+            selectedOffre
+              ? `📋 <b>Nouvelle candidature — ${selectedOffre.intitule}</b>`
+              : '📋 <b>Nouvelle candidature spontanée</b>',
+            '',
             `👤 ${form.prenom || ''} ${form.nom || ''}`.trim(),
             `📧 ${form.email}`,
             form.telephone ? `📞 ${form.telephone}` : null,
-            payload.poste_vise ? `💼 Poste : ${payload.poste_vise}` : null,
+            !selectedOffre && form.posteSouhaite ? `💼 Poste souhaité : ${form.posteSouhaite}` : null,
             form.departement ? `🏢 Département : ${form.departement}` : null,
           ].filter(Boolean).join('\n'),
         }),
