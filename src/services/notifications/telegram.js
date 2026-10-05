@@ -4,10 +4,10 @@ const CHAT_ID = import.meta.env.VITE_TELEGRAM_CHAT_ID
 async function send(text) {
   if (!TOKEN || !CHAT_ID) return
   try {
+    const params = new URLSearchParams({ chat_id: CHAT_ID, text, parse_mode: 'HTML' })
     await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: 'HTML' }),
+      body: params,
     })
   } catch (err) {
     console.error('[Telegram]', err)
