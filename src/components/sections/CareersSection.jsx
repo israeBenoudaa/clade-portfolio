@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { insertRow, supabase } from '../../lib/supabase'
-import { notifyCandidat } from '../../services/notifications/telegram'
 import { useLanguage } from '../../context/LanguageContext'
 
 const tag = (txt) => ({
@@ -166,7 +165,20 @@ export default function CareersSection({ hideHeader = false, autoTrigger = false
 
       const { error: sbError } = await insertRow('candidatures_spont', payload)
       if (sbError) throw sbError
-      notifyCandidat({ prenom: form.prenom, nom: form.nom, email: form.email, telephone: form.telephone, poste_vise: payload.poste_vise, departement: form.departement })
+      fetch('/api/notify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          text: [
+            '📋 <b>Nouvelle candidature — Portfolio</b>', '',
+            `👤 ${form.prenom || ''} ${form.nom || ''}`.trim(),
+            `📧 ${form.email}`,
+            form.telephone ? `📞 ${form.telephone}` : null,
+            payload.poste_vise ? `💼 Poste : ${payload.poste_vise}` : null,
+            form.departement ? `🏢 Département : ${form.departement}` : null,
+          ].filter(Boolean).join('\n'),
+        }),
+      }).catch(() => {})
       setSent(true)
     } catch (err) {
       console.error('[CareersSection] Supabase error:', err)
