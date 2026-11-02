@@ -43,7 +43,7 @@ export default function Navbar() {
           style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: '0.18em' }}
         >
           <span style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'stretch', gap: 0 }}>
-            <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 'clamp(22px, 1.9vw, 28px)', fontWeight: 400, letterSpacing: '0.05em', color: '#F5F0EA', lineHeight: 1 }}>
+            <span style={{ fontFamily: "'Bebas Neue', 'Amerika Sans', sans-serif", fontSize: 'clamp(24px, 2vw, 30px)', fontWeight: 400, letterSpacing: '0.08em', color: '#F5F0EA', lineHeight: 1 }}>
               Clade
             </span>
             <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 'clamp(7.3px, 0.65vw, 9.5px)', fontWeight: 500, color: 'rgba(245,240,234,0.58)', letterSpacing: '0.07em', lineHeight: 1, textAlign: 'center' }}>
