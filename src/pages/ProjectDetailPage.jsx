@@ -329,8 +329,11 @@ export default function ProjectDetailPage() {
       </motion.div>
 
       {/* ── GALLERY STRIP — above story ── */}
-      {project.gallery?.length > 0 && (
-        <GalleryStrip images={project.gallery} color={color} />
+      {(project.image_url || project.gallery?.length > 0) && (
+        <GalleryStrip
+          images={[...(project.image_url ? [project.image_url] : []), ...(project.gallery || [])]}
+          color={color}
+        />
       )}
 
       {/* ── STORY ── */}
