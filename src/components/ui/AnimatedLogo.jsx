@@ -72,7 +72,6 @@ export default function AnimatedLogo({ disciplineKey, disciplineLabel, color }) 
 
   const font = { fontFamily: "'Amerika Sans', sans-serif", fontWeight: 400, lineHeight: 1, letterSpacing: '0.06em', color: '#F5F0EA' }
   const sz   = 'clamp(18px, 2.5vw, 26px)'
-  const fade = { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 }, transition: { duration: 0.15 } }
 
   return (
     <button
@@ -81,16 +80,21 @@ export default function AnimatedLogo({ disciplineKey, disciplineLabel, color }) 
     >
       {prefix && <span style={{ ...font, fontSize: sz }}>{prefix}</span>}
 
-      {/* Slot actif — lettre OU [chevron + texte + chevron], sans espace résiduel */}
-      <AnimatePresence mode="wait">
-        {showLetter ? (
-          <motion.span key="letter" {...fade}
+      {/* Slot actif — exit instantané, entrée en fondu → pas de flash vide */}
+      <AnimatePresence>
+        {showLetter && (
+          <motion.span key="letter"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+            transition={{ duration: 0.15 }}
             style={{ ...font, fontSize: sz, color }}
           >
             {activeLtr}
           </motion.span>
-        ) : (
-          <motion.span key="brackets" {...fade}
+        )}
+        {!showLetter && (
+          <motion.span key="brackets"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+            transition={{ duration: 0.15 }}
             style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}
           >
             <Chevron color={color} />
