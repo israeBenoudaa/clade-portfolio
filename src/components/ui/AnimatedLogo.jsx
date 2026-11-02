@@ -93,9 +93,9 @@ export default function AnimatedLogo({ disciplineKey, disciplineLabel, color }) 
       <span style={{ display: 'inline-flex', alignItems: 'center', position: 'relative' }}>
         {/* Lettre idle */}
         <motion.span
-          animate={{ opacity: showLetter ? 1 : 0, width: showLetter ? 'auto' : 0 }}
+          animate={{ opacity: showLetter ? 1 : 0, maxWidth: showLetter ? '3em' : '0em' }}
           transition={{ duration: 0.18 }}
-          style={{ ...font, fontSize: sz, color, display: 'inline-block', overflow: 'hidden' }}
+          style={{ ...font, fontSize: sz, color, display: 'inline-block', overflow: 'hidden', whiteSpace: 'nowrap' }}
         >
           {activeLtr}
         </motion.span>
