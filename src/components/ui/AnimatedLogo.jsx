@@ -5,12 +5,10 @@ import { useNavigate } from 'react-router-dom'
 const POSITIONS = { C: 0, L: 1, A: 2, D: 3, E: 4 }
 
 /* Chevron angulaire inspiré du signe du logo — forme triangulaire pleine */
-function Chevron({ flip = false, color, fontSize }) {
-  const h = parseInt(fontSize) * 1.05
-  const w = h * 0.42
+function Chevron({ flip = false, color }) {
   return (
     <svg
-      width={w} height={h}
+      width={10} height={18}
       viewBox="0 0 9 18"
       style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}
     >
@@ -108,7 +106,7 @@ export default function AnimatedLogo({ disciplineKey, disciplineLabel, color }) 
           transition={{ duration: 0.18 }}
           style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}
         >
-          <Chevron color={color} fontSize={sz} />
+          <Chevron color={color} />
           <span style={{ ...font, fontSize: sz, color, letterSpacing: '0.04em', minWidth: 4 }}>
             {typed}
             {!showLetter && !isFull && (
@@ -119,7 +117,7 @@ export default function AnimatedLogo({ disciplineKey, disciplineLabel, color }) 
               />
             )}
           </span>
-          <Chevron flip color={color} fontSize={sz} />
+          <Chevron flip color={color} />
         </motion.span>
       </span>
 
