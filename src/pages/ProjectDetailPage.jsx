@@ -150,7 +150,7 @@ export default function ProjectDetailPage() {
   const { project, loading } = useProject(id)
   const [contactOpen, setContactOpen] = useState(false)
   const { editMode } = useCmsEditMode()
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
 
   /* Call hooks unconditionally — use a fallback axis key until project loads */
   const axisKey   = project?.axis || 'A'
@@ -161,6 +161,11 @@ export default function ProjectDetailPage() {
 
   const axis  = AXES[project.axis]
   const color = axis.color
+
+  /* Traductions — fallback vers le français si non renseigné */
+  const tr           = lang !== 'fr' ? (project.translations?.[lang] || {}) : {}
+  const displayTitle = tr.title || project.title
+  const displayStory = tr.story || project.story
 
   return (
     <PageTransition style={{ background: '#08090A', minHeight: '100vh', color: '#F5F0EA' }}>
@@ -254,7 +259,7 @@ export default function ProjectDetailPage() {
               color: '#F5F0EA', margin: '0 0 16px',
             }}
           >
-            {project.title}
+            {displayTitle}
           </h1>
           <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
             <span
@@ -358,7 +363,7 @@ export default function ProjectDetailPage() {
           data-cms-id={String(project.id)}
           data-cms-value={project.story}
         >
-          {project.story.split('\n\n').map((para, i) => (
+          {displayStory.split('\n\n').map((para, i) => (
             <p key={i} style={{
               fontFamily: i === 0 ? 'Instrument Serif, serif' : 'DM Sans, sans-serif',
               fontSize: i === 0 ? 'clamp(22px, 3vw, 32px)' : 'clamp(15px, 1.8vw, 18px)',
