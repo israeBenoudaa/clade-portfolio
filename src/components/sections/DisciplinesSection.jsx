@@ -63,6 +63,7 @@ function DisciplinePanel({ d, active, onToggle, onPrev, onNext, canPrev, canNext
         if (window.matchMedia('(pointer: fine)').matches) onToggle(d.key)
       }}
       onClick={handlePanelClick}
+      className="disc-shimmer"
       style={{
         position: 'relative', overflow: 'hidden', minWidth: 0,
         flex: isActive ? 5 : isIdle ? 0.28 : 1,
@@ -274,6 +275,17 @@ export default function DisciplinesSection() {
           />
         ))}
       </div>
+      <style>{`
+        @keyframes disc-shimmer {
+          0%   { background-position: 200% 50%; }
+          100% { background-position: -200% 50%; }
+        }
+        .disc-shimmer {
+          background: linear-gradient(90deg, #0d0f10 0%, #181a1b 50%, #0d0f10 100%);
+          background-size: 400% 100%;
+          animation: disc-shimmer 2.2s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   )
 }
