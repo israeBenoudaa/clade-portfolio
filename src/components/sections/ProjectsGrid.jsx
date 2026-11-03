@@ -204,11 +204,12 @@ export default function ProjectsGrid() {
               onMouseEnter={() => !isTouch && setHovered(project.id)}
               onMouseLeave={() => !isTouch && setHovered(null)}
               onClick={handleClick}
+              className="proj-card"
               style={{
                 gridColumn: place?.col || 'auto',
                 gridRow:    place?.row || 'auto',
                 position: 'relative', overflow: 'hidden',
-                background: '#08090A', cursor: 'pointer',
+                cursor: 'pointer',
               }}
             >
               {/* Image — fills the grid cell */}
@@ -340,10 +341,11 @@ export default function ProjectsGrid() {
                   if (!isTouch) return navigate(`/projet/${project.id}`)
                   setTapped(prev => prev === project.id ? null : project.id)
                 }}
+                className="proj-card"
                 style={{
                   gridColumn: place.col, gridRow: place.row,
                   position: 'relative', overflow: 'hidden',
-                  background: '#08090A', cursor: 'pointer',
+                  cursor: 'pointer',
                 }}
               >
                 <div style={{
@@ -439,6 +441,15 @@ export default function ProjectsGrid() {
 
       {/* ── Mobile override ── */}
       <style>{`
+        @keyframes proj-shimmer {
+          0%   { background-position: 200% 50%; }
+          100% { background-position: -200% 50%; }
+        }
+        .proj-card {
+          background: linear-gradient(90deg, #0d0f10 0%, #181a1b 50%, #0d0f10 100%);
+          background-size: 400% 100%;
+          animation: proj-shimmer 2.2s ease-in-out infinite;
+        }
         @media (max-width: 680px) {
           .projects-extra {
             grid-template-columns: repeat(2, 1fr) !important;
