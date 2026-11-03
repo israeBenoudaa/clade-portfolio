@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { AXES } from '../../data/projects'
 import { useProjects } from '../../hooks/useProjects'
 import { useLanguage } from '../../context/LanguageContext'
+import LazyBg from '../ui/LazyBg'
 
 function AxisBracketLabel({ axisKey, color, isHero, expanded }) {
   const { t } = useLanguage()
@@ -213,9 +214,8 @@ export default function ProjectsGrid() {
               }}
             >
               {/* Image — fills the grid cell */}
-              <div style={{
+              <LazyBg src={project.image || project.image_url} style={{
                 position: 'absolute', inset: 0,
-                backgroundImage: `url('${project.image || project.image_url}')`,
                 backgroundSize: 'cover', backgroundPosition: 'center',
                 transition: 'transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s',
                 transform: isH ? 'scale(1.05)' : 'scale(1)',
@@ -348,9 +348,8 @@ export default function ProjectsGrid() {
                   cursor: 'pointer',
                 }}
               >
-                <div style={{
+                <LazyBg src={project.image || project.image_url} style={{
                   position: 'absolute', inset: 0,
-                  backgroundImage: `url('${project.image || project.image_url}')`,
                   backgroundSize: 'cover', backgroundPosition: 'center',
                   transition: 'transform 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s',
                   transform: isH ? 'scale(1.05)' : 'scale(1)',

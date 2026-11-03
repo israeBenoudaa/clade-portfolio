@@ -8,6 +8,7 @@ import { useLanguage } from '../context/LanguageContext'
 import AnimatedLogo from '../components/ui/AnimatedLogo'
 import PageTransition from '../components/ui/PageTransition'
 import QuickContact from '../components/ui/QuickContact'
+import LazyBg from '../components/ui/LazyBg'
 
 // Phrases par discipline (même format que Hero)
 const PHRASES = {
@@ -109,13 +110,13 @@ export default function DisciplinePage() {
         className="img-shimmer"
         style={{ position: 'relative', height: '52vh', minHeight: 420, overflow: 'hidden' }}
       >
-        <div
+        <LazyBg
+          src={heroImage}
           data-cms-key={`discipline.${K}.hero_image`}
           data-cms-type="image"
           data-cms-value={heroImage}
           style={{
             position: 'absolute', inset: 0,
-            backgroundImage: `url('${heroImage}')`,
             backgroundSize: 'cover', backgroundPosition: 'center',
             filter: 'brightness(0.65) saturate(0.72)',
           }}
@@ -233,10 +234,10 @@ export default function DisciplinePage() {
               className="img-shimmer"
               style={{ position: 'relative', overflow: 'hidden', height: 340, cursor: 'pointer' }}
             >
-              <div
+              <LazyBg
+                src={project.image}
                 style={{
                   position: 'absolute', inset: 0,
-                  backgroundImage: `url('${project.image}')`,
                   backgroundSize: 'cover', backgroundPosition: 'center',
                   filter: 'brightness(0.65) saturate(0.75)',
                   transition: 'transform 0.7s, filter 0.4s',

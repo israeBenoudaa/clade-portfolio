@@ -9,6 +9,7 @@ import { useCmsEditMode } from '../context/CmsEditMode'
 import AnimatedLogo from '../components/ui/AnimatedLogo'
 import PageTransition from '../components/ui/PageTransition'
 import QuickContact from '../components/ui/QuickContact'
+import LazyBg from '../components/ui/LazyBg'
 
 const sec = (delay) => ({
   initial: { opacity: 0, y: 24 },
@@ -39,9 +40,9 @@ function GalleryThumb({ img, idx, color, onClick }) {
         transition: 'transform 0.5s cubic-bezier(0.22,1,0.36,1)',
       }} />
       {/* Image */}
-      <div style={{
+      <LazyBg src={img} style={{
         position: 'absolute', inset: 0,
-        backgroundImage: `url('${img}')`, backgroundSize: 'cover', backgroundPosition: 'center',
+        backgroundSize: 'cover', backgroundPosition: 'center',
         filter: hov ? 'brightness(0.82) saturate(0.9)' : 'brightness(0.5) saturate(0.6)',
         transform: hov ? 'scale(1.1)' : 'scale(1)',
         transition: 'transform 0.85s cubic-bezier(0.22,1,0.36,1), filter 0.4s',

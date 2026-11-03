@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSiteContent } from '../../context/SiteContentContext'
 import { useCmsEditMode } from '../../context/CmsEditMode'
 import { useLanguage } from '../../context/LanguageContext'
+import LazyBg from '../ui/LazyBg'
 
 const DISCIPLINES = [
   {
@@ -72,9 +73,8 @@ function DisciplinePanel({ d, active, onToggle, onPrev, onNext, canPrev, canNext
       }}
     >
       {/* Background image — synchronized via useSiteContent */}
-      <div style={{
+      <LazyBg src={image} style={{
         position: 'absolute', inset: 0,
-        backgroundImage: `url('${image}')`,
         backgroundSize: 'cover', backgroundPosition: 'center',
         filter: isActive
           ? 'brightness(0.60) saturate(0.80)'
