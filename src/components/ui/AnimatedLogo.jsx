@@ -4,15 +4,14 @@ import { useNavigate } from 'react-router-dom'
 
 const POSITIONS = { C: 0, L: 1, A: 2, D: 3, E: 4 }
 
-/* Chevron épais angulaire — inspiré du signe du logo */
 function Chevron({ flip = false, color }) {
   return (
-    <svg width={12} height={20} viewBox="0 0 12 20"
+    <svg width={7} height={13} viewBox="0 0 7 13"
       style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0 }}
     >
       {flip
-        ? <path d="M12,0 L0,10 L12,20 L12,16 L4,10 L12,4 Z" fill={color} />
-        : <path d="M0,0 L12,10 L0,20 L0,16 L8,10 L0,4 Z" fill={color} />
+        ? <polyline points="6,1 1,6.5 6,12" fill="none" stroke={color} strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" />
+        : <polyline points="1,1 6,6.5 1,12" fill="none" stroke={color} strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" />
       }
     </svg>
   )
