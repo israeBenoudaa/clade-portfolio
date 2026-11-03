@@ -28,6 +28,7 @@ function GalleryThumb({ img, idx, color, onClick }) {
       onClick={onClick}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
+      className="detail-shimmer"
       style={{ position: 'relative', width: sz, height: sz, overflow: 'hidden', cursor: 'zoom-in', flexShrink: 0 }}
     >
       {/* Discipline color line — extends on hover */}
@@ -189,7 +190,7 @@ export default function ProjectDetailPage() {
       </nav>
 
       {/* ── HERO ── */}
-      <motion.div {...sec(0)} style={{ position: 'relative', height: '78vh', minHeight: 520, overflow: 'hidden' }}>
+      <motion.div {...sec(0)} className="detail-shimmer" style={{ position: 'relative', height: '78vh', minHeight: 520, overflow: 'hidden' }}>
         <div style={{
           position: 'absolute', inset: 0,
           backgroundImage: `url('${project.image || heroImage || axis.heroImage}')`,
@@ -411,6 +412,18 @@ export default function ProjectDetailPage() {
       </motion.div>
 
       <QuickContact open={contactOpen} onClose={() => setContactOpen(false)} projectRef={project.title} />
+
+      <style>{`
+        @keyframes detail-shimmer {
+          0%   { background-position: 200% 50%; }
+          100% { background-position: -200% 50%; }
+        }
+        .detail-shimmer {
+          background: linear-gradient(90deg, #0d0f10 0%, #181a1b 50%, #0d0f10 100%);
+          background-size: 400% 100%;
+          animation: detail-shimmer 2.2s ease-in-out infinite;
+        }
+      `}</style>
 
     </PageTransition>
   )
