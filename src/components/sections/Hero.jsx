@@ -34,11 +34,10 @@ export default function Hero() {
   const currentImage = phrases[idx]?.image || imageUrl
 
   return (
-    <section style={{
+    <section className="img-shimmer" style={{
       position: 'relative',
       height: '92vh', minHeight: 580,
       overflow: 'hidden',
-      background: '#08090A',
     }}>
       {/* Background slideshow — crossfades when phrase (and its image) changes */}
       <AnimatePresence>

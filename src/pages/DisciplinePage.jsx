@@ -106,6 +106,7 @@ export default function DisciplinePage() {
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0, ease: [0.22, 1, 0.36, 1] }}
+        className="img-shimmer"
         style={{ position: 'relative', height: '52vh', minHeight: 420, overflow: 'hidden' }}
       >
         <div
@@ -229,7 +230,8 @@ export default function DisciplinePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               onClick={() => navigate(`/projet/${project.id}`)}
-              style={{ position: 'relative', overflow: 'hidden', height: 340, background: '#08090A', cursor: 'pointer' }}
+              className="img-shimmer"
+              style={{ position: 'relative', overflow: 'hidden', height: 340, cursor: 'pointer' }}
             >
               <div
                 style={{

@@ -168,6 +168,17 @@ body {
   display: block;
 }
 
+/* Image shimmer — fond animé pendant le chargement des background-image */
+@keyframes img-shimmer {
+  0%   { background-position: 200% 50%; }
+  100% { background-position: -200% 50%; }
+}
+.img-shimmer {
+  background: linear-gradient(90deg, #0d0f10 0%, #181a1b 50%, #0d0f10 100%);
+  background-size: 400% 100%;
+  animation: img-shimmer 2.2s ease-in-out infinite;
+}
+
 /* Axis color dots */
 .axis-C { color: #7BA7D4; }
 .axis-L { color: #8DBE8A; }
