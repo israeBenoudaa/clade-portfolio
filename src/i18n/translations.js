@@ -122,7 +122,7 @@ const fr = {
 
   // DisciplinePage
   'disc.works': 'Réalisations',
-  'disc.projects_count': (n, label) => `${n} projet${n > 1 ? 's' : ''} en ${label}`,
+  'disc.projects_count': (n, label) => `Une sélection de projets en ${label}`,
   'disc.cta_supertitle': 'Votre projet',
   'disc.cta_line1': label => `Un projet en ${label} ?`,
   'disc.cta_line2': 'Parlons-en.',
@@ -265,7 +265,7 @@ const en = {
   'back': '← Back',
 
   'disc.works': 'Works',
-  'disc.projects_count': (n, label) => `${n} project${n > 1 ? 's' : ''} in ${label}`,
+  'disc.projects_count': (n, label) => `A selection of ${label} projects`,
   'disc.cta_supertitle': 'Your project',
   'disc.cta_line1': label => `A project in ${label}?`,
   'disc.cta_line2': "Let's talk.",
@@ -405,7 +405,7 @@ const es = {
   'back': '← Volver',
 
   'disc.works': 'Realizaciones',
-  'disc.projects_count': (n, label) => `${n} proyecto${n > 1 ? 's' : ''} en ${label}`,
+  'disc.projects_count': (n, label) => `Una selección de proyectos de ${label}`,
   'disc.cta_supertitle': 'Su proyecto',
   'disc.cta_line1': label => `¿Un proyecto en ${label}?`,
   'disc.cta_line2': 'Hablemos.',
