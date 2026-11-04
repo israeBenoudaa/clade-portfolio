@@ -46,7 +46,7 @@ export default function Footer() {
     <footer style={{ background: '#08090A', borderTop: '1px solid rgba(245,240,234,0.06)' }}>
 
       {/* ── Corps principal ── */}
-      <div style={{
+      <div className="footer-grid" style={{
         padding: 'clamp(4rem, 7vw, 6rem) clamp(2rem, 6vw, 7rem)',
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
@@ -54,16 +54,16 @@ export default function Footer() {
         alignItems: 'start',
       }}>
 
-        {/* Colonne gauche — Logo + tagline + réseaux */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+        {/* Colonne gauche — Logo + réseaux */}
+        <div className="footer-col-left" style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
           {/* Logo complet */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <CladeMark size={56} />
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <span style={{ fontFamily: "'Averia Libre', serif", fontSize: 26, fontWeight: 400, letterSpacing: '0.04em', color: '#F5F0EA', lineHeight: 1 }}>
+          <div className="footer-logo" style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <CladeMark size={38} />
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+              <span style={{ fontFamily: "'Amerika Sans', sans-serif", fontSize: 'clamp(22px, 1.9vw, 27px)', fontWeight: 400, letterSpacing: '0.06em', color: '#F5F0EA', lineHeight: 1 }}>
                 Clade
               </span>
-              <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 8, fontWeight: 500, color: 'rgba(245,240,234,0.4)', letterSpacing: '0.12em', textTransform: 'uppercase', lineHeight: 1 }}>
+              <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 'clamp(7px, 0.62vw, 9px)', fontWeight: 500, color: 'rgba(245,240,234,0.4)', letterSpacing: '0.1em', textTransform: 'uppercase', lineHeight: 1 }}>
                 architects &amp; co
               </span>
             </div>
@@ -80,7 +80,7 @@ export default function Footer() {
             }}>
               Rejoignez-nous sur nos réseaux
             </span>
-            <div style={{ display: 'flex', gap: 10 }}>
+            <div className="footer-socials-row" style={{ display: 'flex', gap: 10 }}>
               {socials.map(s => (
                 <a
                   key={s.key}
@@ -108,7 +108,7 @@ export default function Footer() {
         </div>
 
         {/* Colonne droite — Infos contact */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
+        <div className="footer-col-right" style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
           {[
             {
               icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>,
@@ -128,7 +128,7 @@ export default function Footer() {
               href: null,
             },
           ].map((item, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+            <div key={i} className="footer-contact-item" style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
               <span style={{ color: `${ACCENT}80`, marginTop: 3, flexShrink: 0 }}>{item.icon}</span>
               {item.href ? (
                 <a
@@ -179,8 +179,24 @@ export default function Footer() {
 
       <style>{`
         @media (max-width: 640px) {
-          footer > div:first-child {
+          .footer-grid {
             grid-template-columns: 1fr !important;
+            text-align: center;
+          }
+          .footer-col-left {
+            align-items: center;
+          }
+          .footer-logo {
+            justify-content: center;
+          }
+          .footer-socials-row {
+            justify-content: center;
+          }
+          .footer-col-right {
+            align-items: center;
+          }
+          .footer-contact-item {
+            justify-content: center;
           }
         }
       `}</style>
