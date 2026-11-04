@@ -1,0 +1,79 @@
+#clade-loader {
+  --cl-bg: #F6F2EC;
+  --cl-sign: #C19A6B;
+  --cl-text: #141C2E;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cl-bg);
+  transition: opacity .7s ease, visibility .7s ease;
+}
+#clade-loader.cl-done {
+  opacity: 0;
+  visibility: hidden;
+}
+#clade-loader svg {
+  width: min(70vw, 460px);
+  height: auto;
+  overflow: visible;
+}
+#clade-loader .cl-sign {
+  fill: var(--cl-sign);
+  transform: translate(375px, 0);
+  animation: cl-slide .9s cubic-bezier(.7, 0, .2, 1) 2.3s forwards;
+}
+#clade-loader .cl-p {
+  fill: transparent;
+  stroke: var(--cl-sign);
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation:
+    cl-draw 1.3s cubic-bezier(.45, 0, .2, 1) calc(.1s + var(--i) * .12s) forwards,
+    cl-fill .6s ease 1.75s forwards;
+}
+#clade-loader .cl-word {
+  fill: var(--cl-text);
+}
+#clade-loader .cl-wipe {
+  transform: scaleX(0);
+  transform-box: fill-box;
+  transform-origin: left;
+  animation: cl-wipe .9s cubic-bezier(.7, 0, .2, 1) 2.55s forwards;
+}
+#clade-loader .cl-sub {
+  fill: var(--cl-text);
+  opacity: 0;
+  transform: translateY(14px);
+  animation: cl-up .6s ease 3.2s forwards;
+}
+#clade-loader.cl-wait .cl-sign {
+  animation:
+    cl-slide .9s cubic-bezier(.7, 0, .2, 1) 2.3s forwards,
+    cl-breath 1.6s ease-in-out 4s infinite;
+}
+@keyframes cl-draw { to { stroke-dashoffset: 0 } }
+@keyframes cl-fill { to { fill: var(--cl-sign); stroke-width: 0 } }
+@keyframes cl-slide { to { transform: translate(0, 0) } }
+@keyframes cl-wipe { to { transform: scaleX(1) } }
+@keyframes cl-up { to { opacity: 1; transform: none } }
+@keyframes cl-breath { 0%, 100% { opacity: 1 } 50% { opacity: .55 } }
+@media (prefers-reduced-motion: reduce) {
+  #clade-loader * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  #clade-loader .cl-p {
+    fill: var(--cl-sign) !important;
+    stroke-dashoffset: 0 !important;
+  }
+}
+html.cl-lock,
+html.cl-lock body {
+  overflow: hidden;
+}

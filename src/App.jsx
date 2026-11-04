@@ -5,6 +5,7 @@ import DisciplinePage from './pages/DisciplinePage'
 import CareersPage from './pages/CareersPage'
 import ProjectDetailPage from './pages/ProjectDetailPage'
 import CustomCursor from './components/ui/CustomCursor'
+import CladeLoader from './components/ui/Loader'
 import { SiteContentProvider } from './context/SiteContentContext'
 import { CmsEditModeProvider } from './context/CmsEditMode'
 import { LanguageProvider } from './context/LanguageContext'
@@ -57,6 +58,7 @@ export default function App() {
         <CmsEditModeProvider>
           <SiteContentProvider>
             <div className="grain">
+              <CladeLoader />
               <CustomCursor />
               <AnimatedRoutes />
             </div>
