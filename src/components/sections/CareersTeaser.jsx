@@ -39,7 +39,7 @@ export default function CareersTeaser() {
       style={{
         background: '#08090A',
         borderTop: '1px solid rgba(245,240,234,0.06)',
-        padding: 'clamp(5rem, 9vw, 8rem) clamp(2rem, 6vw, 7rem)',
+        padding: 'clamp(3.5rem, 9vw, 8rem) clamp(2rem, 6vw, 7rem)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

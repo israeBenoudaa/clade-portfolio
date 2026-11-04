@@ -181,6 +181,8 @@ export default function Footer() {
         @media (max-width: 640px) {
           .footer-grid {
             grid-template-columns: 1fr !important;
+            padding-top: 3rem !important;
+            padding-bottom: 3rem !important;
             text-align: center;
           }
           .footer-col-left {
