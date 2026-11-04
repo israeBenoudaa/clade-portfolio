@@ -163,9 +163,14 @@ export default function ProjectDetailPage() {
   const color = axis.color
 
   /* Traductions — fallback vers le français si non renseigné */
-  const tr           = lang !== 'fr' ? (project.translations?.[lang] || {}) : {}
-  const displayTitle = tr.title || project.title
-  const displayStory = tr.story || project.story
+  const tr              = lang !== 'fr' ? (project.translations?.[lang] || {}) : {}
+  const displayTitle    = tr.title       || project.title
+  const displayStory    = tr.story       || project.story
+  const displayDesc     = tr.description || project.description
+  const trDetails       = tr.details     || {}
+  const displaySurface  = trDetails.surface  || project.details?.surface  || ''
+  const displayProg     = trDetails.programme || project.details?.programme || ''
+  const displayStatut   = trDetails.statut   || project.details?.statut   || ''
 
   return (
     <PageTransition style={{ background: '#08090A', minHeight: '100vh', color: '#F5F0EA' }}>
@@ -306,9 +311,9 @@ export default function ProjectDetailPage() {
         borderBottom: `1px solid ${color}18`,
       }}>
         {[
-          { label: t('project.surface'),   key: 'surface',   value: project.details.surface },
-          { label: t('project.programme'), key: 'programme', value: project.details.programme },
-          { label: t('project.statut'),    key: 'statut',    value: project.details.statut },
+          { label: t('project.surface'),   key: 'surface',   value: displaySurface },
+          { label: t('project.programme'), key: 'programme', value: displayProg },
+          { label: t('project.statut'),    key: 'statut',    value: displayStatut },
         ].map(({ label, key, value }) => (
           <div key={label} style={{
             padding: 'clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 4vw, 3rem)',
