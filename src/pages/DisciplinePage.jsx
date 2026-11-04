@@ -40,11 +40,11 @@ const PHRASES = {
 }
 
 const HERO_IMAGES = {
-  C: 'https://images.unsplash.com/photo-1548263594-a71ea65a8598?w=1200&q=80&auto=format&fit=crop',
-  L: 'https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1200&q=80&auto=format&fit=crop',
-  A: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1200&q=80&auto=format&fit=crop',
-  D: 'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=1200&q=80&auto=format&fit=crop',
-  E: 'https://images.unsplash.com/photo-1519619091416-f5d55b8d0e39?w=1200&q=80&auto=format&fit=crop',
+  C: 'https://images.unsplash.com/photo-1548263594-a71ea65a8598?w=1200&q=80&fm=jpg&fl=progressive&fit=crop',
+  L: 'https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1200&q=80&fm=jpg&fl=progressive&fit=crop',
+  A: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1200&q=80&fm=jpg&fl=progressive&fit=crop',
+  D: 'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=1200&q=80&fm=jpg&fl=progressive&fit=crop',
+  E: 'https://images.unsplash.com/photo-1519619091416-f5d55b8d0e39?w=1200&q=80&fm=jpg&fl=progressive&fit=crop',
 }
 
 export default function DisciplinePage() {

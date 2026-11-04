@@ -157,11 +157,11 @@ const en = {
   'hero.approach_cta': 'Approach',
   'hero.projects_cta': 'Projects',
   'hero.phrases': [
-    { line1: 'What we build',    line2: 'endures',                                  image: 'https://images.unsplash.com/photo-1548263594-a71ea65a8598?w=1200&q=80&auto=format&fit=crop' },
-    { line1: 'Between the ground', line2: 'and what rises above it',               image: 'https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1200&q=80&auto=format&fit=crop' },
-    { line1: 'What remains',     line2: 'and what disappears',                      image: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1200&q=80&auto=format&fit=crop' },
-    { line1: 'Architecture',     line2: 'that remembers where it came from',        image: 'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=1200&q=80&auto=format&fit=crop' },
-    { line1: 'Drawing',          line2: "what use has not yet imagined",            image: 'https://images.unsplash.com/photo-1519619091416-f5d55b8d0e39?w=1200&q=80&auto=format&fit=crop' },
+    { line1: 'What we build',    line2: 'endures',                                  image: 'https://images.unsplash.com/photo-1548263594-a71ea65a8598?w=1200&q=80&fm=jpg&fl=progressive&fit=crop' },
+    { line1: 'Between the ground', line2: 'and what rises above it',               image: 'https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1200&q=80&fm=jpg&fl=progressive&fit=crop' },
+    { line1: 'What remains',     line2: 'and what disappears',                      image: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1200&q=80&fm=jpg&fl=progressive&fit=crop' },
+    { line1: 'Architecture',     line2: 'that remembers where it came from',        image: 'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=1200&q=80&fm=jpg&fl=progressive&fit=crop' },
+    { line1: 'Drawing',          line2: "what use has not yet imagined",            image: 'https://images.unsplash.com/photo-1519619091416-f5d55b8d0e39?w=1200&q=80&fm=jpg&fl=progressive&fit=crop' },
   ],
 
   'disc.C.label': 'Conservation',
@@ -297,11 +297,11 @@ const es = {
   'hero.approach_cta': 'Enfoque',
   'hero.projects_cta': 'Proyectos',
   'hero.phrases': [
-    { line1: 'Lo que construimos',  line2: 'permanece',                              image: 'https://images.unsplash.com/photo-1548263594-a71ea65a8598?w=1200&q=80&auto=format&fit=crop' },
-    { line1: 'Entre el suelo',      line2: 'y lo que lo corona',                    image: 'https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1200&q=80&auto=format&fit=crop' },
-    { line1: 'Lo que permanece',    line2: 'y lo que desaparece',                   image: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1200&q=80&auto=format&fit=crop' },
-    { line1: 'La arquitectura',     line2: 'que no olvida de dónde viene',          image: 'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=1200&q=80&auto=format&fit=crop' },
-    { line1: 'Dibujar',             line2: 'lo que el uso aún no ha imaginado',     image: 'https://images.unsplash.com/photo-1519619091416-f5d55b8d0e39?w=1200&q=80&auto=format&fit=crop' },
+    { line1: 'Lo que construimos',  line2: 'permanece',                              image: 'https://images.unsplash.com/photo-1548263594-a71ea65a8598?w=1200&q=80&fm=jpg&fl=progressive&fit=crop' },
+    { line1: 'Entre el suelo',      line2: 'y lo que lo corona',                    image: 'https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1200&q=80&fm=jpg&fl=progressive&fit=crop' },
+    { line1: 'Lo que permanece',    line2: 'y lo que desaparece',                   image: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1200&q=80&fm=jpg&fl=progressive&fit=crop' },
+    { line1: 'La arquitectura',     line2: 'que no olvida de dónde viene',          image: 'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=1200&q=80&fm=jpg&fl=progressive&fit=crop' },
+    { line1: 'Dibujar',             line2: 'lo que el uso aún no ha imaginado',     image: 'https://images.unsplash.com/photo-1519619091416-f5d55b8d0e39?w=1200&q=80&fm=jpg&fl=progressive&fit=crop' },
   ],
 
   'disc.C.label': 'Conservación',
