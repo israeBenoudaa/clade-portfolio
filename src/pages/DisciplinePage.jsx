@@ -168,20 +168,22 @@ function ServiceCard({ service, index, color }) {
         cursor: 'default',
       }}
     >
-      <div style={{
-        width: hovered ? 56 : 36,
-        height: 1.5,
-        background: color,
-        marginBottom: 28,
-        transition: 'width 0.45s cubic-bezier(0.22,1,0.36,1)',
-      }} />
+      <span style={{
+        fontFamily: 'Instrument Serif, serif',
+        fontSize: 22,
+        color: color,
+        lineHeight: 1,
+        display: 'block',
+        marginBottom: 20,
+        letterSpacing: 2,
+      }}>—</span>
 
       <div style={{
         fontFamily: 'Instrument Serif, serif',
-        fontSize: 'clamp(16px, 1.5vw, 20px)',
+        fontSize: 'clamp(18px, 1.7vw, 23px)',
         fontWeight: 400,
-        color: hovered ? '#F5F0EA' : 'rgba(245,240,234,0.65)',
-        lineHeight: 1.3, marginBottom: 12,
+        color: hovered ? '#F5F0EA' : 'rgba(245,240,234,0.75)',
+        lineHeight: 1.3, marginBottom: 14,
         transition: 'color 0.35s ease',
       }}>
         {service.title}
@@ -189,8 +191,8 @@ function ServiceCard({ service, index, color }) {
 
       <div style={{
         fontFamily: 'Space Grotesk, sans-serif',
-        fontSize: 11, lineHeight: 1.9,
-        color: 'rgba(245,240,234,0.28)',
+        fontSize: 13, lineHeight: 1.85,
+        color: 'rgba(245,240,234,0.45)',
         flex: 1,
       }}>
         {service.desc}
