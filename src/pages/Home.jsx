@@ -4,6 +4,7 @@ import Hero from '../components/sections/Hero'
 import DisciplinesSection from '../components/sections/DisciplinesSection'
 import WhyUsSection from '../components/sections/WhyUsSection'
 import ProjectsGrid from '../components/sections/ProjectsGrid'
+import FaqSection from '../components/sections/FaqSection'
 import ContactSection from '../components/sections/ContactSection'
 import PageTransition from '../components/ui/PageTransition'
 
@@ -16,6 +17,7 @@ export default function Home() {
         <DisciplinesSection />
         <WhyUsSection />
         <ProjectsGrid />
+        <FaqSection />
         <ContactSection />
       </main>
       <Footer />
