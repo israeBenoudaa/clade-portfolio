@@ -152,7 +152,10 @@ const fr = {
   'careerspage.intro': "Postes ouverts et candidatures spontanées — nous cherchons des profils curieux, rigoureux, animés par l'exigence du beau et du juste.",
 
   // Footer
+  'footer.tagline': 'Architecture, paysage, patrimoine & design.',
   'footer.careers': 'Carrières',
+  'footer.careers_cta': 'Rejoignez l\'équipe',
+  'footer.careers_sub': 'Nous recrutons des talents passionnés par l\'espace et la matière.',
   'footer.copyright': year => `© ${year} Clade — architects & co. Tous droits réservés.`,
 }
 
@@ -297,7 +300,10 @@ const en = {
   'careerspage.sub': 'at Clade',
   'careerspage.intro': 'Open positions and unsolicited applications — we are looking for curious, rigorous profiles, driven by a commitment to beauty and integrity.',
 
+  'footer.tagline': 'Architecture, landscape, heritage & design.',
   'footer.careers': 'Careers',
+  'footer.careers_cta': 'Join the team',
+  'footer.careers_sub': 'We are looking for talent passionate about space and material.',
   'footer.copyright': year => `© ${year} Clade — architects & co. All rights reserved.`,
 }
 
@@ -442,7 +448,10 @@ const es = {
   'careerspage.sub': 'en Clade',
   'careerspage.intro': 'Puestos abiertos y candidaturas espontáneas — buscamos perfiles curiosos, rigurosos, animados por la exigencia de lo bello y lo justo.',
 
+  'footer.tagline': 'Arquitectura, paisaje, patrimonio & diseño.',
   'footer.careers': 'Carreras',
+  'footer.careers_cta': 'Únase al equipo',
+  'footer.careers_sub': 'Buscamos talentos apasionados por el espacio y la materia.',
   'footer.copyright': year => `© ${year} Clade — architects & co. Todos los derechos reservados.`,
 }
 
