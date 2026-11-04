@@ -166,7 +166,7 @@ export default function Footer() {
       </div>
 
       {/* ── Barre copyright ── */}
-      <div style={{
+      <div className="footer-copyright" style={{
         padding: '1.1rem clamp(2rem, 6vw, 7rem)',
         display: 'flex',
         alignItems: 'center',
@@ -201,9 +201,9 @@ export default function Footer() {
           .footer-contact-item {
             justify-content: center;
           }
-          footer > div:last-child {
-            padding-top: 0.9rem !important;
-            padding-bottom: 0.9rem !important;
+          .footer-copyright {
+            padding-top: 0.75rem !important;
+            padding-bottom: 0.5rem !important;
           }
         }
       `}</style>
