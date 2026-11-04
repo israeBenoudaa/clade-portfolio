@@ -148,6 +148,16 @@ const SERVICES = {
 
 const DISC_LABELS = { C: 'Conservation', L: 'Landscape', A: 'Architecture', D: 'Design', E: 'Éphémère' }
 
+function Chevron({ color }) {
+  return (
+    <svg width={7} height={13} viewBox="0 0 7 13"
+      style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0, marginTop: 4, transition: 'stroke 0.35s ease' }}
+    >
+      <polyline points="1,1 6,6.5 1,12" fill="none" stroke={color} strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
 function ServiceCard({ service, index, color }) {
   const [hovered, setHovered] = useState(false)
   return (
@@ -168,25 +178,20 @@ function ServiceCard({ service, index, color }) {
         cursor: 'default',
       }}
     >
-      <span style={{
-        fontFamily: 'Instrument Serif, serif',
-        fontSize: 22,
-        color: color,
-        lineHeight: 1,
-        display: 'block',
-        marginBottom: 20,
-        letterSpacing: 2,
-      }}>—</span>
-
       <div style={{
-        fontFamily: 'Instrument Serif, serif',
-        fontSize: 'clamp(18px, 1.7vw, 23px)',
-        fontWeight: 400,
-        color: hovered ? '#F5F0EA' : 'rgba(245,240,234,0.75)',
-        lineHeight: 1.3, marginBottom: 14,
-        transition: 'color 0.35s ease',
+        display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 14,
       }}>
-        {service.title}
+        <Chevron color={hovered ? color : 'rgba(245,240,234,0.2)'} />
+        <div style={{
+          fontFamily: 'Instrument Serif, serif',
+          fontSize: 'clamp(18px, 1.7vw, 23px)',
+          fontWeight: 400,
+          color: hovered ? '#F5F0EA' : 'rgba(245,240,234,0.75)',
+          lineHeight: 1.3,
+          transition: 'color 0.35s ease',
+        }}>
+          {service.title}
+        </div>
       </div>
 
       <div style={{
