@@ -77,8 +77,8 @@ function DisciplinePanel({ d, active, onToggle, onPrev, onNext, canPrev, canNext
         position: 'absolute', inset: 0,
         backgroundSize: 'cover', backgroundPosition: 'center',
         filter: isActive
-          ? 'brightness(0.60) saturate(0.80)'
-          : 'brightness(0.58) saturate(0.68)',
+          ? 'brightness(0.72) saturate(0.88)'
+          : 'brightness(0.68) saturate(0.78)',
         transition: 'filter 0.7s, transform 0.9s',
         transform: isActive ? 'scale(1.06)' : 'scale(1)',
       }} />
@@ -88,7 +88,7 @@ function DisciplinePanel({ d, active, onToggle, onPrev, onNext, canPrev, canNext
         position: 'absolute', inset: 0,
         background: isActive
           ? 'linear-gradient(135deg, rgba(8,9,10,0.2) 0%, rgba(8,9,10,0.05) 100%)'
-          : 'rgba(8,9,10,0.45)',
+          : 'rgba(8,9,10,0.22)',
         transition: 'background 0.5s',
         pointerEvents: 'none',
       }} />
