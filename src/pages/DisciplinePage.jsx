@@ -153,77 +153,52 @@ function ServiceCard({ service, index, color }) {
   const num = String(index + 1).padStart(2, '0')
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, scale: 0.96 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.65, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        background: '#FFFFFF',
-        padding: 'clamp(28px, 3.5vw, 48px)',
-        display: 'flex', flexDirection: 'column', gap: 0,
-        boxShadow: hovered
-          ? '0 24px 64px rgba(20,28,46,0.22)'
-          : '0 4px 24px rgba(20,28,46,0.08)',
-        transform: hovered ? 'translateY(-10px)' : 'none',
-        transition: 'transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease',
+        padding: 'clamp(28px, 3vw, 44px)',
+        display: 'flex', flexDirection: 'column',
+        borderTop: `2px solid ${hovered ? color : 'rgba(245,240,234,0.1)'}`,
+        transition: 'border-color 0.35s ease',
         cursor: 'default',
-        position: 'relative',
-        overflow: 'hidden',
       }}
     >
-      {/* Accent top bar */}
-      <div style={{
-        position: 'absolute', top: 0, left: 0, right: 0,
-        height: 3,
-        background: color,
-        transform: hovered ? 'scaleX(1)' : 'scaleX(0.3)',
-        transformOrigin: 'left',
-        transition: 'transform 0.45s cubic-bezier(0.22,1,0.36,1)',
-      }} />
-
-      {/* Number */}
       <span style={{
         fontFamily: 'Instrument Serif, serif', fontStyle: 'italic',
-        fontSize: 'clamp(48px, 5.5vw, 70px)',
+        fontSize: 'clamp(52px, 6vw, 76px)',
         color: color,
+        opacity: hovered ? 1 : 0.55,
         lineHeight: 1,
         display: 'block',
-        marginBottom: 20,
-        transform: hovered ? 'scale(1.08) translateX(4px)' : 'scale(1)',
-        transformOrigin: 'left center',
-        transition: 'transform 0.45s cubic-bezier(0.22,1,0.36,1)',
+        marginBottom: 24,
+        transition: 'opacity 0.35s ease',
       }}>
         {num}
       </span>
 
-      {/* Title */}
       <div style={{
         fontFamily: 'Instrument Serif, serif',
         fontSize: 'clamp(16px, 1.5vw, 20px)',
-        fontWeight: 400, color: '#141C2E',
+        fontWeight: 400,
+        color: hovered ? '#F5F0EA' : 'rgba(245,240,234,0.65)',
         lineHeight: 1.3, marginBottom: 12,
+        transition: 'color 0.35s ease',
       }}>
         {service.title}
       </div>
 
-      {/* Description */}
       <div style={{
         fontFamily: 'Space Grotesk, sans-serif',
         fontSize: 11, lineHeight: 1.9,
-        color: 'rgba(20,28,46,0.42)',
+        color: 'rgba(245,240,234,0.28)',
         flex: 1,
       }}>
         {service.desc}
       </div>
-
-      {/* Bottom line */}
-      <div style={{
-        height: 1, marginTop: 24,
-        background: hovered ? color : 'rgba(20,28,46,0.08)',
-        transition: 'background 0.4s ease',
-      }} />
     </motion.div>
   )
 }
@@ -388,65 +363,46 @@ export default function DisciplinePage() {
       </motion.section>
 
       {/* ── MISSIONS ── */}
-      <section style={{ background: color, position: 'relative', overflow: 'hidden' }}>
-
-        {/* Watermark label */}
-        <div aria-hidden="true" style={{
-          position: 'absolute', top: '-0.1em', left: 'clamp(1rem, 4vw, 5rem)',
-          fontFamily: 'Instrument Serif, serif', fontStyle: 'italic',
-          fontSize: 'clamp(100px, 22vw, 280px)',
-          color: 'rgba(20,28,46,0.07)',
-          lineHeight: 1, whiteSpace: 'nowrap',
-          userSelect: 'none', pointerEvents: 'none',
-          letterSpacing: '-0.03em',
-        }}>
-          {DISC_LABELS[K]}
-        </div>
-
-        <div style={{ padding: 'clamp(4rem, 8vw, 7rem) clamp(2rem, 6vw, 7rem)', position: 'relative' }}>
-
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, x: -28 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            style={{ marginBottom: 'clamp(3rem, 5vw, 5rem)' }}
-          >
-            <span style={{
-              fontFamily: 'Space Grotesk, sans-serif', fontSize: 9,
-              letterSpacing: 3.5, textTransform: 'uppercase',
-              color: 'rgba(20,28,46,0.5)',
-            }}>
-              Missions
-            </span>
-            <h2 style={{
-              fontFamily: 'Instrument Serif, serif',
-              fontSize: 'clamp(28px, 4vw, 54px)',
-              fontWeight: 400, color: 'rgba(20,28,46,0.9)',
-              marginTop: 10, lineHeight: 1.05,
-            }}>
-              Ce que nous prenons<br/>
-              <em style={{ color: 'rgba(20,28,46,0.45)' }}>en charge</em>
-            </h2>
-            <div style={{
-              width: 48, height: 2,
-              background: 'rgba(20,28,46,0.3)',
-              marginTop: 22,
-            }} />
-          </motion.div>
-
-          {/* Card grid */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 270px), 1fr))',
-            gap: 3,
+      <section style={{
+        background: '#08090A',
+        padding: 'clamp(4rem, 8vw, 7rem) clamp(2rem, 6vw, 7rem)',
+        borderTop: '1px solid rgba(245,240,234,0.06)',
+      }}>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          style={{ marginBottom: 'clamp(3rem, 5vw, 5rem)' }}
+        >
+          <span style={{
+            fontFamily: 'Space Grotesk, sans-serif', fontSize: 9,
+            letterSpacing: 3.5, textTransform: 'uppercase',
+            color: 'rgba(245,240,234,0.3)',
           }}>
-            {services.map((s, i) => (
-              <ServiceCard key={i} service={s} index={i} color={color} />
-            ))}
-          </div>
+            Missions
+          </span>
+          <h2 style={{
+            fontFamily: 'Instrument Serif, serif',
+            fontSize: 'clamp(26px, 3.5vw, 46px)',
+            fontWeight: 400, color: '#F5F0EA',
+            marginTop: 10, lineHeight: 1,
+          }}>
+            Ce que nous prenons<br/>
+            <em style={{ color: color }}>en charge</em>
+          </h2>
+        </motion.div>
 
+        {/* Grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 270px), 1fr))',
+          gap: '0 clamp(16px, 2vw, 32px)',
+        }}>
+          {services.map((s, i) => (
+            <ServiceCard key={i} service={s} index={i} color={color} />
+          ))}
         </div>
       </section>
 
