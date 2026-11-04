@@ -8,19 +8,19 @@ const ACCENT = '#C8B89A'
 const COPY = {
   fr: {
     sup:   'Carrières',
-    title: 'Faites partie\nde l\'aventure.',
+    title: 'Faites partie\nde l\'agence.',
     sub:   'Nous recrutons des talents passionnés par l\'espace et la matière.',
     cta:   'Rejoindre l\'équipe',
   },
   en: {
     sup:   'Careers',
-    title: 'Be part\nof the story.',
+    title: 'Be part\nof the agency.',
     sub:   'We are looking for passionate talents who care about space and matter.',
     cta:   'Join the team',
   },
   es: {
     sup:   'Carreras',
-    title: 'Forma parte\nde la aventura.',
+    title: 'Forma parte\nde la agencia.',
     sub:   'Buscamos talentos apasionados por el espacio y la materia.',
     cta:   'Únete al equipo',
   },

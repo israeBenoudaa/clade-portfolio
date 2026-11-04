@@ -409,29 +409,19 @@ export default function ProjectsGrid() {
             onClick={() => setShowAll(true)}
             style={{
               fontFamily: 'Space Grotesk, sans-serif',
-              fontSize: 10, fontWeight: 600, letterSpacing: '0.24em',
+              fontSize: 10, fontWeight: 600, letterSpacing: '0.18em',
               textTransform: 'uppercase',
-              color: 'rgba(245,240,234,0.65)',
-              background: 'transparent',
-              border: '1px solid rgba(245,240,234,0.16)',
+              color: '#08090A',
+              background: '#C8B89A',
+              border: 'none',
               borderRadius: 40,
               padding: 'clamp(12px, 1.4vw, 16px) clamp(28px, 3.5vw, 48px)',
               cursor: 'pointer',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              transition: 'color 0.3s, border-color 0.3s, background 0.3s',
+              transition: 'opacity 0.25s ease, transform 0.25s ease',
               flexShrink: 0,
             }}
-            onMouseEnter={e => {
-              e.currentTarget.style.color = '#F5F0EA'
-              e.currentTarget.style.borderColor = 'rgba(245,240,234,0.4)'
-              e.currentTarget.style.background = 'rgba(245,240,234,0.05)'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.color = 'rgba(245,240,234,0.65)'
-              e.currentTarget.style.borderColor = 'rgba(245,240,234,0.16)'
-              e.currentTarget.style.background = 'transparent'
-            }}
+            onMouseEnter={e => { e.currentTarget.style.opacity = '0.85'; e.currentTarget.style.transform = 'translateY(-2px)' }}
+            onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'translateY(0)' }}
           >
             {t('projects.show_more')}
           </button>

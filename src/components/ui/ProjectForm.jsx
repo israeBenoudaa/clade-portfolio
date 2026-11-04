@@ -196,22 +196,19 @@ export default function ProjectForm({ form, setForm, onSubmit, loading, error, c
       <motion.button
         type="submit"
         disabled={loading}
-        whileHover={{ scale: loading ? 1 : 1.02, boxShadow: '0 8px 36px rgba(255,255,255,0.1), inset 0 1px 0 rgba(255,255,255,0.5)', background: 'rgba(255,255,255,0.18)' }}
+        whileHover={{ scale: loading ? 1 : 1.02, opacity: loading ? 0.5 : 0.88 }}
         whileTap={{ scale: loading ? 1 : 0.97 }}
         style={{
-          background: 'rgba(255,255,255,0.12)',
-          color: '#F5F0EA',
-          border: '1px solid rgba(255,255,255,0.28)',
+          background: '#C8B89A',
+          color: '#08090A',
+          border: 'none',
           borderRadius: 50,
           padding: compact ? '14px 28px' : '16px 40px',
           fontFamily: 'Space Grotesk, sans-serif',
-          fontSize: 10, fontWeight: 600, letterSpacing: 2.8, textTransform: 'uppercase',
-          opacity: loading ? 0.5 : 1,
+          fontSize: 10, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase',
+          opacity: loading ? 0.55 : 1,
           cursor: loading ? 'not-allowed' : 'pointer',
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)',
-          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.35), 0 4px 24px rgba(0,0,0,0.2)',
-          transition: 'opacity 0.2s',
+          transition: 'opacity 0.2s, transform 0.2s',
           width: compact ? '100%' : 'auto',
           alignSelf: 'center',
           marginTop: 8,
