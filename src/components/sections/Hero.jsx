@@ -25,10 +25,10 @@ export default function Hero() {
     ? translatedPhrases.map((p, i) => ({ ...p, image: cmsPhrasesRaw[i]?.image || DEFAULT_PHRASES[i]?.image }))
     : cmsPhrasesRaw
 
-  // Précharger toutes les images hero au montage pour éviter les zones noires
+  // Précharger toutes les images hero dès que phrases est disponible
   useEffect(() => {
     phrases.forEach(p => { if (p.image) { const i = new Image(); i.src = p.image } })
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [phrases])
 
   useEffect(() => {
     if (phrases.length < 2) return
@@ -52,14 +52,21 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.4, ease: 'easeInOut' }}
-          style={{
-            position: 'absolute', inset: 0,
-            backgroundImage: `url('${currentImage}')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center 55%',
-            filter: 'brightness(0.62) saturate(0.65) sepia(0.10)',
-          }}
-        />
+          style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}
+        >
+          <img
+            src={currentImage}
+            alt=""
+            aria-hidden="true"
+            style={{
+              width: '100%', height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center 55%',
+              filter: 'brightness(0.62) saturate(0.65) sepia(0.10)',
+              display: 'block',
+            }}
+          />
+        </motion.div>
       </AnimatePresence>
 
       {/* Gradients */}

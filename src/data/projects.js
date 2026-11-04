@@ -169,7 +169,7 @@ export const PROJECTS = [
     gallery: [],
     translations: {
       en: {
-        title: "Medical Clinic",
+        title: "Medical Office",
         description: "A place of care where light soothes even before the consultation.",
         story: "The rheumatology clinic is organised around the patient's journey, with separate routes for patient and doctor, from reception to the X-ray room. Simple, buildable curved forms evoke the spine in an abstract way, through a wall of rounded backlit modules. Frosted glass, light wood and clear signage create a serene space.",
         details: { surface: '180 m²', programme: 'Healthcare', statut: '' },
@@ -319,7 +319,7 @@ export const PROJECTS = [
     gallery: [],
     translations: {
       en: {
-        title: "Villa hamlet",
+        title: "Hamlet of Villas",
         description: "In Marrakech, a village drawn in curves, as if it had always been there.",
         story: "The project brings together villas of almost identical typology, laid out organically along winding lanes, against the grain of orthogonal grids. This layout varies orientations and views, creates places to meet and preserves the privacy of each house. Tadelakt, wood and earth give the whole its unity. An ensemble that feels like a village.",
         details: { surface: '8,000 m²', programme: 'Residential development', statut: '' },
