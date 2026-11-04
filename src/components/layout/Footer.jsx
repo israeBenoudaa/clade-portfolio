@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../../context/LanguageContext'
 import { useSiteContent } from '../../context/SiteContentContext'
 
@@ -25,9 +24,8 @@ const SOCIAL_ICONS = {
 }
 
 export default function Footer() {
-  const year     = new Date().getFullYear()
-  const navigate = useNavigate()
-  const { t }    = useLanguage()
+  const year  = new Date().getFullYear()
+  const { t } = useLanguage()
 
   const phone     = useSiteContent('contact.phone',   '+212 6 00 00 00 00')
   const address   = useSiteContent('contact.address',  'Casablanca, Maroc')
@@ -165,47 +163,6 @@ export default function Footer() {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* ── Bannière Carrières ── */}
-      <div style={{
-        borderTop: '1px solid rgba(245,240,234,0.06)',
-        borderBottom: '1px solid rgba(245,240,234,0.06)',
-        padding: 'clamp(1.8rem, 3vw, 2.5rem) clamp(2rem, 6vw, 7rem)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexWrap: 'wrap',
-        gap: '1.5rem',
-      }}>
-        <div>
-          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase', color: ACCENT, display: 'block', marginBottom: 6 }}>
-            {t('footer.careers')}
-          </span>
-          <p style={{ fontFamily: 'Instrument Serif, serif', fontSize: 'clamp(17px, 1.6vw, 21px)', color: 'rgba(245,240,234,0.65)', lineHeight: 1.3 }}>
-            {t('footer.careers_sub')}
-          </p>
-        </div>
-        <button
-          onClick={() => { navigate('/careers'); window.scrollTo({ top: 0 }) }}
-          style={{
-            background: 'transparent',
-            border: `1px solid ${ACCENT}50`,
-            borderRadius: 40,
-            padding: '12px 28px',
-            fontFamily: 'Space Grotesk, sans-serif',
-            fontSize: 10, fontWeight: 600,
-            letterSpacing: '0.18em', textTransform: 'uppercase',
-            color: ACCENT,
-            cursor: 'pointer',
-            transition: 'background 0.25s ease, border-color 0.25s ease, color 0.25s ease',
-            flexShrink: 0,
-          }}
-          onMouseEnter={e => { e.currentTarget.style.background = `${ACCENT}12`; e.currentTarget.style.borderColor = ACCENT }}
-          onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = `${ACCENT}50` }}
-        >
-          {t('footer.careers_cta')} →
-        </button>
       </div>
 
       {/* ── Barre copyright ── */}
