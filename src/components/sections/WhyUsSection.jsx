@@ -190,7 +190,7 @@ export default function WhyUsSection() {
 
   return (
     <section id="pourquoi" style={{
-      background: '#08090A',
+      background: `${ACCENT}18`,
       padding: 'clamp(5rem, 12vw, 9rem) clamp(2rem, 6vw, 7rem)',
       overflowX: 'hidden',
     }}>
