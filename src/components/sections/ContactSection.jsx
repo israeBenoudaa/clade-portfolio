@@ -81,15 +81,16 @@ export default function ContactSection() {
           transition={{ duration: 0.7 }}
         >
           <span style={{
-            fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, letterSpacing: 3,
-            textTransform: 'uppercase', color: 'rgba(255,255,255,0.22)',
+            fontFamily: 'Space Grotesk, sans-serif', fontSize: 10,
+            letterSpacing: '0.22em', textTransform: 'uppercase',
+            color: '#C8B89A', display: 'block', marginBottom: 16,
           }}>
             {t('contact.supertitle')}
           </span>
           <h2 style={{
-            fontFamily: 'Cormorant Garamond, serif', fontWeight: 400,
-            fontSize: 'clamp(36px, 5vw, 58px)', color: '#FAFAF8',
-            marginTop: 16, lineHeight: 1.08,
+            fontFamily: 'Instrument Serif, serif', fontWeight: 400,
+            fontSize: 'clamp(36px, 4.5vw, 58px)', color: '#F5F0EA',
+            lineHeight: 0.98, letterSpacing: '-0.02em', margin: 0,
           }}>
             <span
               data-cms-key="contact.title_line1"
@@ -97,7 +98,7 @@ export default function ContactSection() {
               data-cms-value={titleLine1}
             >{titleLine1}</span>
             <br />
-            <em style={{ color: 'rgba(255,255,255,0.32)' }}>
+            <em style={{ color: 'rgba(245,240,234,0.28)', fontStyle: 'italic' }}>
               <span
                 data-cms-key="contact.title_line2"
                 data-cms-type="text"
