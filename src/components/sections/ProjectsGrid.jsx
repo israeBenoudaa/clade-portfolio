@@ -137,7 +137,7 @@ export default function ProjectsGrid() {
   const [showAll, setShowAll] = useState(false)
   const navigate = useNavigate()
   const { projects, loading } = useProjects()
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
 
   useEffect(() => {
     setIsTouch(window.matchMedia('(pointer: coarse)').matches)
@@ -260,7 +260,7 @@ export default function ProjectsGrid() {
                   textShadow: '0 2px 12px rgba(0,0,0,0.5)',
                   opacity: 1, transition: 'opacity 0.4s',
                 }}>
-                  {project.title}
+                  {(lang !== 'fr' ? project.translations?.[lang]?.title : null) || project.title}
                 </h3>
                 <div style={{
                   display: 'flex', gap: 8, alignItems: 'center',
@@ -371,7 +371,7 @@ export default function ProjectsGrid() {
                     fontSize: isHero ? 'clamp(20px, 2.6vw, 36px)' : 'clamp(15px, 1.8vw, 22px)',
                     fontWeight: 400, color: '#F5F0EA', lineHeight: 1.15, margin: '0 0 6px',
                     textShadow: '0 2px 12px rgba(0,0,0,0.5)', opacity: 1, transition: 'opacity 0.4s',
-                  }}>{project.title}</h3>
+                  }}>{(lang !== 'fr' ? project.translations?.[lang]?.title : null) || project.title}</h3>
                   <div style={{ display: 'flex', gap: 8, alignItems: 'center', opacity: show ? 0.7 : 0, transition: 'opacity 0.3s 0.05s' }}>
                     {project.location && <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 9, color: 'rgba(245,240,234,0.9)', letterSpacing: 0.3 }}>{project.location}</span>}
                     {project.location && project.year && <span style={{ width: 1, height: 8, background: 'rgba(245,240,234,0.25)', flexShrink: 0 }} />}

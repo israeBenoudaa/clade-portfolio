@@ -39,6 +39,62 @@ const PHRASES = {
   ],
 }
 
+const PHRASES_EN = {
+  C: [
+    { line1: 'Preserve', line2: "what carries the memory of places" },
+    { line1: 'Restore', line2: "without erasing the traces of time" },
+    { line1: 'Hand down', line2: "the built heritage to future generations" },
+  ],
+  L: [
+    { line1: 'Compose', line2: "with nature, not against it" },
+    { line1: 'Read', line2: "the territory before touching it" },
+    { line1: 'Connect', line2: "the living and the built" },
+  ],
+  A: [
+    { line1: 'Design', line2: "spaces that inhabit the territory" },
+    { line1: 'Build', line2: "with light and material" },
+    { line1: 'Inhabit', line2: "the right gesture, always" },
+  ],
+  D: [
+    { line1: 'Give form', line2: "to singular identities" },
+    { line1: 'Create', line2: "objects that last" },
+    { line1: 'Reveal', line2: "the beauty of the useful" },
+  ],
+  E: [
+    { line1: 'Install', line2: "for a fleeting moment" },
+    { line1: 'Mark', line2: "without leaving a lasting trace" },
+    { line1: 'Celebrate', line2: "the architecture of the present" },
+  ],
+}
+
+const PHRASES_ES = {
+  C: [
+    { line1: 'Preservar', line2: "lo que lleva la memoria de los lugares" },
+    { line1: 'Restaurar', line2: "sin borrar las huellas del tiempo" },
+    { line1: 'Transmitir', line2: "el patrimonio construido a las generaciones futuras" },
+  ],
+  L: [
+    { line1: 'Componer', line2: "con la naturaleza, no contra ella" },
+    { line1: 'Leer', line2: "el territorio antes de tocarlo" },
+    { line1: 'Conectar', line2: "lo vivo y lo construido" },
+  ],
+  A: [
+    { line1: 'Concebir', line2: "espacios que habiten el territorio" },
+    { line1: 'Construir', line2: "con la luz y la materia" },
+    { line1: 'Habitar', line2: "el gesto justo, siempre" },
+  ],
+  D: [
+    { line1: 'Dar forma', line2: "a las identidades singulares" },
+    { line1: 'Crear', line2: "objetos que perduran" },
+    { line1: 'Revelar', line2: "la belleza de lo útil" },
+  ],
+  E: [
+    { line1: 'Instalar', line2: "el tiempo de un instante" },
+    { line1: 'Marcar', line2: "sin dejar huella duradera" },
+    { line1: 'Celebrar', line2: "la arquitectura del momento presente" },
+  ],
+}
+
 const HERO_IMAGES = {
   C: 'https://images.unsplash.com/photo-1548263594-a71ea65a8598?w=1200&q=80&fm=jpg&fl=progressive&fit=crop',
   L: 'https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1200&q=80&fm=jpg&fl=progressive&fit=crop',
@@ -55,10 +111,13 @@ export default function DisciplinePage() {
 
   const [phraseIdx, setPhraseIdx]     = useState(0)
   const [contactOpen, setContactOpen] = useState(false)
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
   const { projects }                  = useProjects(K)
   const phrasesFromDB                 = useSiteContentJson(`discipline.${K}.phrases`, PHRASES[K] ?? [])
-  const phrases                       = phrasesFromDB.length ? phrasesFromDB : (PHRASES[K] ?? [])
+  const phrasesBase                   = phrasesFromDB.length ? phrasesFromDB : (PHRASES[K] ?? [])
+  const phrases                       = lang === 'en' ? (PHRASES_EN[K] ?? phrasesBase)
+                                      : lang === 'es' ? (PHRASES_ES[K] ?? phrasesBase)
+                                      : phrasesBase
   const heroImage                     = useSiteContent(`discipline.${K}.hero_image`, HERO_IMAGES[K] ?? '')
 
   useEffect(() => {
@@ -251,17 +310,22 @@ export default function DisciplinePage() {
               }} />
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: color + '50' }} />
               <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 28 }}>
-                <h3 style={{ fontFamily: 'Instrument Serif, serif', fontSize: 'clamp(20px, 2.5vw, 28px)', fontWeight: 400, color: '#F5F0EA', lineHeight: 1.15, margin: '0 0 8px' }}>
-                  {project.title}
-                </h3>
-                <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 12 }}>
-                  <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 10, color: 'rgba(245,240,234,0.4)', letterSpacing: 0.3 }}>{project.location}</span>
-                  <span style={{ width: 1, height: 8, background: 'rgba(245,240,234,0.15)' }} />
-                  <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 10, color: 'rgba(245,240,234,0.25)', letterSpacing: 1 }}>{project.year}</span>
-                </div>
-                <p style={{ fontFamily: 'Outfit, sans-serif', fontSize: 12, lineHeight: 1.65, color: 'rgba(245,240,234,0.4)' }}>
-                  {project.description}
-                </p>
+                {(() => {
+                  const tr = lang !== 'fr' ? (project.translations?.[lang] || {}) : {}
+                  return (<>
+                    <h3 style={{ fontFamily: 'Instrument Serif, serif', fontSize: 'clamp(20px, 2.5vw, 28px)', fontWeight: 400, color: '#F5F0EA', lineHeight: 1.15, margin: '0 0 8px' }}>
+                      {tr.title || project.title}
+                    </h3>
+                    <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 12 }}>
+                      <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 10, color: 'rgba(245,240,234,0.4)', letterSpacing: 0.3 }}>{project.location}</span>
+                      <span style={{ width: 1, height: 8, background: 'rgba(245,240,234,0.15)' }} />
+                      <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 10, color: 'rgba(245,240,234,0.25)', letterSpacing: 1 }}>{project.year}</span>
+                    </div>
+                    <p style={{ fontFamily: 'Outfit, sans-serif', fontSize: 12, lineHeight: 1.65, color: 'rgba(245,240,234,0.4)' }}>
+                      {tr.description || project.description}
+                    </p>
+                  </>)
+                })()}
               </div>
             </motion.div>
           ))}
