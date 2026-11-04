@@ -89,13 +89,13 @@ body {
 
 /* Glass card */
 .glass {
-  background: rgba(255,255,255,0.03);
+  background: rgba(200,184,154,0.05);
   backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(200,184,154,0.12);
 }
 .glass:hover {
-  background: rgba(255,255,255,0.055);
-  border-color: rgba(255,255,255,0.13);
+  background: rgba(200,184,154,0.09);
+  border-color: rgba(200,184,154,0.22);
 }
 
 /* Text gradient */

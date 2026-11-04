@@ -314,14 +314,18 @@ export default function CareersSection({ hideHeader = false, autoTrigger = false
                     onClick={() => handleApply(offre)}
                     style={{
                       marginTop: 4, alignSelf: 'flex-start',
-                      background: selectedOffre?.id === offre.id ? '#FAFAF8' : 'transparent',
-                      color: selectedOffre?.id === offre.id ? '#060B18' : '#FAFAF8',
-                      border: '1px solid',
-                      borderColor: selectedOffre?.id === offre.id ? '#FAFAF8' : 'rgba(255,255,255,0.25)',
+                      background: selectedOffre?.id === offre.id ? '#F5F0EA' : '#C8B89A',
+                      color: '#08090A',
+                      border: 'none',
                       borderRadius: 40, padding: '10px 22px',
-                      fontFamily: 'DM Sans, sans-serif', fontSize: 12, fontWeight: 600,
-                      cursor: 'pointer', transition: 'all 0.2s',
+                      fontFamily: 'Space Grotesk, sans-serif', fontSize: 10,
+                      fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase',
+                      cursor: 'pointer',
+                      transition: 'opacity 0.2s, transform 0.2s',
+                      opacity: selectedOffre?.id === offre.id ? 1 : 0.9,
                     }}
+                    onMouseEnter={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+                    onMouseLeave={e => { e.currentTarget.style.opacity = selectedOffre?.id === offre.id ? '1' : '0.9'; e.currentTarget.style.transform = 'translateY(0)' }}
                   >
                     {selectedOffre?.id === offre.id ? t('careers.selected') : t('careers.apply')}
                   </button>
