@@ -259,6 +259,17 @@ export default function DisciplinesSection() {
         }}>
           {t('disciplines.h2')}
         </h2>
+        <p style={{
+          fontFamily: 'Space Grotesk, sans-serif',
+          fontSize: 'clamp(13px, 1.1vw, 15px)',
+          lineHeight: 1.75,
+          color: 'rgba(245,240,234,0.45)',
+          marginTop: 'clamp(1.2rem, 2vw, 1.8rem)',
+          maxWidth: 620,
+          letterSpacing: '0.01em',
+        }}>
+          {t('disciplines.intro')}
+        </p>
       </div>
 
       {/* Panels */}

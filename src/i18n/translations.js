@@ -23,6 +23,7 @@ const fr = {
   // DisciplinesSection
   'disciplines.supertitle': 'Notre approche',
   'disciplines.h2': 'Cinq disciplines',
+  'disciplines.intro': "Clade est une agence d'architecture à spectre large — plusieurs disciplines, un seul fil directeur. Du détail d'un intérieur à la conduite d'un projet de grande envergure, chaque intervention porte la même exigence de qualité et d'attention au contexte.",
   'disciplines.cta': 'Voir les projets →',
 
   // AboutAcronym
@@ -186,6 +187,7 @@ const en = {
 
   'disciplines.supertitle': 'Our approach',
   'disciplines.h2': 'Five disciplines',
+  'disciplines.intro': 'Clade is a broad-spectrum architecture firm — multiple disciplines, one guiding thread. From the detail of an interior to the management of a large-scale project, every intervention carries the same commitment to quality and attention to context.',
   'disciplines.cta': 'View projects →',
 
   'about.supertitle': 'Our approach',
@@ -334,6 +336,7 @@ const es = {
 
   'disciplines.supertitle': 'Nuestro enfoque',
   'disciplines.h2': 'Cinco disciplinas',
+  'disciplines.intro': 'Clade es una agencia de arquitectura de amplio espectro — múltiples disciplinas, un solo hilo conductor. Del detalle de un interior a la dirección de un proyecto de gran envergadura, cada intervención lleva la misma exigencia de calidad y atención al contexto.',
   'disciplines.cta': 'Ver proyectos →',
 
   'about.supertitle': 'Nuestro enfoque',
