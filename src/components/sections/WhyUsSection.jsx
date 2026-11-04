@@ -121,91 +121,36 @@ const HEADING = {
 
 function Card({ card, index }) {
   const [hovered, setHovered] = useState(false)
+  const [active,  setActive]  = useState(false)
+  const lit = hovered || active
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: card.from.x, y: card.from.y }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: '120px' }}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      onClick={() => setActive(a => !a)}
       style={{
-        position: 'relative',
-        background: hovered
-          ? 'linear-gradient(135deg, rgba(245,240,234,0.12) 0%, rgba(200,184,154,0.07) 100%)'
-          : 'linear-gradient(135deg, rgba(245,240,234,0.07) 0%, rgba(200,184,154,0.04) 100%)',
-        border: `1px solid ${hovered ? `rgba(200,184,154,0.45)` : 'rgba(245,240,234,0.15)'}`,
-        borderRadius: 20,
-        padding: 'clamp(1.6rem, 3.5vw, 2.8rem)',
-        overflow: 'hidden',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
-        boxShadow: hovered
-          ? '0 12px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(245,240,234,0.12)'
-          : '0 2px 12px rgba(0,0,0,0.25), inset 0 1px 0 rgba(245,240,234,0.08)',
-        transition: 'background 0.4s ease, border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease',
-        transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
-        cursor: 'default',
+        background: lit ? 'rgba(8,9,10,0.95)' : 'rgba(8,9,10,0.82)',
+        border: `1px solid ${lit ? ACCENT : `${ACCENT}28`}`,
+        padding: 'clamp(1.6rem, 3vw, 2.6rem)',
+        display: 'flex', flexDirection: 'column',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        transition: 'border-color 0.35s ease, background 0.35s ease',
+        cursor: 'pointer',
       }}
     >
-      {/* Ghost number */}
-      <div style={{
-        position: 'absolute',
-        bottom: -20,
-        right: -4,
-        fontFamily: 'Instrument Serif, serif',
-        fontStyle: 'italic',
-        fontSize: 'clamp(90px, 14vw, 140px)',
-        fontWeight: 400,
-        lineHeight: 1,
-        color: hovered ? `${ACCENT}12` : 'rgba(245,240,234,0.04)',
-        userSelect: 'none',
-        pointerEvents: 'none',
-        transition: 'color 0.4s ease',
-      }}>
-        {card.num}
-      </div>
-
-      {/* Glow on hover */}
-      <motion.div
-        animate={{ opacity: hovered ? 1 : 0 }}
-        transition={{ duration: 0.4 }}
-        style={{
-          position: 'absolute',
-          top: -60,
-          left: -60,
-          width: 200,
-          height: 200,
-          borderRadius: '50%',
-          background: `radial-gradient(circle, ${ACCENT}12 0%, transparent 70%)`,
-          pointerEvents: 'none',
-        }}
-      />
-
-      {/* Top accent line */}
-      <motion.div
-        animate={{ scaleX: hovered ? 1 : 0, opacity: hovered ? 1 : 0 }}
-        transition={{ duration: 0.35 }}
-        style={{
-          position: 'absolute',
-          top: 0, left: 0, right: 0,
-          height: 1,
-          background: `linear-gradient(to right, ${ACCENT}, transparent)`,
-          transformOrigin: 'left',
-        }}
-      />
-
       {/* Icon */}
       <div style={{
-        width: 44, height: 44,
-        borderRadius: 12,
-        background: `${ACCENT}12`,
-        border: `1px solid ${ACCENT}25`,
+        width: 42, height: 42,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        color: hovered ? ACCENT : 'rgba(200,184,154,0.5)',
-        marginBottom: 28,
-        transition: 'color 0.35s ease, background 0.35s ease',
+        color: lit ? ACCENT : `${ACCENT}45`,
+        marginBottom: 22,
+        transition: 'color 0.35s ease',
       }}>
         {card.icon}
       </div>
@@ -213,14 +158,13 @@ function Card({ card, index }) {
       {/* Title */}
       <div style={{
         fontFamily: 'Instrument Serif, serif',
-        fontSize: 'clamp(18px, 2.2vw, 24px)',
+        fontSize: 'clamp(18px, 1.9vw, 23px)',
         fontWeight: 400,
-        fontStyle: hovered ? 'italic' : 'normal',
-        color: hovered ? '#F5F0EA' : 'rgba(245,240,234,0.82)',
-        lineHeight: 1.2,
+        color: lit ? '#F5F0EA' : 'rgba(245,240,234,0.75)',
+        lineHeight: 1.3,
         letterSpacing: '-0.01em',
         marginBottom: 14,
-        transition: 'color 0.3s ease, font-style 0.3s ease',
+        transition: 'color 0.35s ease',
       }}>
         {card.title}
       </div>
@@ -228,11 +172,10 @@ function Card({ card, index }) {
       {/* Body */}
       <div style={{
         fontFamily: 'Space Grotesk, sans-serif',
-        fontSize: 'clamp(11px, 1.1vw, 13px)',
-        color: 'rgba(245,240,234,0.58)',
-        lineHeight: 1.8,
+        fontSize: 13,
+        color: 'rgba(245,240,234,0.45)',
+        lineHeight: 1.85,
         letterSpacing: '0.01em',
-        position: 'relative', zIndex: 1,
       }}>
         {card.body}
       </div>
@@ -317,7 +260,7 @@ export default function WhyUsSection() {
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(2, 1fr)',
-        gap: 'clamp(0.75rem, 1.5vw, 1.25rem)',
+        gap: 'clamp(10px, 1.2vw, 16px)',
       }}>
         {cards.map((card, i) => (
           <Card key={card.num} card={card} index={i} />
