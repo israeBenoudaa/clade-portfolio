@@ -387,14 +387,6 @@ export default function DisciplinePage() {
                 <em style={{ color: color }}>en charge</em>
               </h2>
             </div>
-            <span style={{
-              fontFamily: 'Instrument Serif, serif', fontStyle: 'italic',
-              fontSize: 'clamp(90px, 13vw, 180px)',
-              color: '#141C2E', opacity: 0.05,
-              lineHeight: 1, userSelect: 'none', flexShrink: 0,
-            }}>
-              {String(services.length).padStart(2, '0')}
-            </span>
           </div>
 
           {/* Card grid */}
