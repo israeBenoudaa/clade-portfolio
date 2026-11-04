@@ -6,13 +6,13 @@ import { useLanguage } from '../../context/LanguageContext'
 const scrollTo = (id) => document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
 
 const DEFAULT_PHRASES = [
-  { line1: "Ce qu'on bâtit", line2: 'reste', image: 'https://images.unsplash.com/photo-1548263594-a71ea65a8598?w=1800&q=80&auto=format&fit=crop' },
-  { line1: 'Entre le sol', line2: 'et ce qui le couronne', image: 'https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1800&q=80&auto=format&fit=crop' },
-  { line1: 'Ce qui demeure', line2: 'et ce qui disparaît', image: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1800&q=80&auto=format&fit=crop' },
-  { line1: "L'architecture", line2: "qui n'oublie pas d'où elle vient", image: 'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=1800&q=80&auto=format&fit=crop' },
-  { line1: 'Dessiner', line2: "ce que l'usage n'a pas encore imaginé", image: 'https://images.unsplash.com/photo-1519619091416-f5d55b8d0e39?w=1800&q=80&auto=format&fit=crop' },
+  { line1: "Ce qu'on bâtit", line2: 'reste', image: 'https://images.unsplash.com/photo-1548263594-a71ea65a8598?w=1200&q=80&auto=format&fit=crop' },
+  { line1: 'Entre le sol', line2: 'et ce qui le couronne', image: 'https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?w=1200&q=80&auto=format&fit=crop' },
+  { line1: 'Ce qui demeure', line2: 'et ce qui disparaît', image: 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1200&q=80&auto=format&fit=crop' },
+  { line1: "L'architecture", line2: "qui n'oublie pas d'où elle vient", image: 'https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?w=1200&q=80&auto=format&fit=crop' },
+  { line1: 'Dessiner', line2: "ce que l'usage n'a pas encore imaginé", image: 'https://images.unsplash.com/photo-1519619091416-f5d55b8d0e39?w=1200&q=80&auto=format&fit=crop' },
 ]
-const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1800&q=80&auto=format&fit=crop'
+const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=1200&q=80&auto=format&fit=crop'
 
 export default function Hero() {
   const [idx, setIdx] = useState(0)
