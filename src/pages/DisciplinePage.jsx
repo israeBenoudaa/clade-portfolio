@@ -146,6 +146,92 @@ const SERVICES = {
   ],
 }
 
+const SERVICES_EN = {
+  A: [
+    { title: "Sketch & feasibility",          desc: "Site reading, architectural parti, volumetric study" },
+    { title: "Preliminary design",             desc: "Plans, sections, elevations, design statement, rough estimate" },
+    { title: "Planning application",           desc: "Compilation and submission of the full regulatory file" },
+    { title: "Construction drawings",          desc: "Detailed technical drawings issued to contractors" },
+    { title: "Contractor tendering",           desc: "Invitation to tender, quote analysis, contractor selection" },
+    { title: "Site management",                desc: "Site meetings, snagging, works completion sign-off" },
+  ],
+  C: [
+    { title: "Diagnosis & survey",             desc: "Condition assessment, geometric survey, historical analysis" },
+    { title: "Heritage study",                 desc: "Identification of elements to preserve, reference documentation" },
+    { title: "Restoration project",            desc: "Design approach, compatible techniques, original materials" },
+    { title: "Specialist coordination",        desc: "Craftspeople, restorers, analysis laboratories" },
+    { title: "Heritage site supervision",      desc: "Compliance control against preservation requirements" },
+    { title: "Adaptive reuse",                 desc: "Contemporary programme integrated within a historic shell" },
+  ],
+  L: [
+    { title: "Site analysis & landscape study", desc: "Terrain reading, sunlight, existing vegetation" },
+    { title: "Outdoor space design",            desc: "Site plans, ground treatment, outdoor furniture" },
+    { title: "Water integration",               desc: "Pool, basin, canal, wet patio — water as the guiding thread" },
+    { title: "Planting plans",                  desc: "Species selection, rhythms, plant palette coherent with the site" },
+    { title: "Implementation supervision",      desc: "Coordination with the landscape contractor, quality control" },
+    { title: "Maintenance & upkeep",            desc: "Seasonal recommendations, long-term management protocol" },
+  ],
+  D: [
+    { title: "Brief & research",               desc: "Formal exploration, references, moodboard, project framing" },
+    { title: "Design & modelling",             desc: "Technical drawing, 3D rendering, prototype, production plans" },
+    { title: "Production follow-up",           desc: "Coordination with craftspeople and workshops, milestone validation" },
+    { title: "Art direction",                  desc: "Visual consistency across the project, design arbitration" },
+    { title: "Visual identity",                desc: "Logo, brand guidelines, typography, palette — from brand to space" },
+    { title: "Delivery & installation",        desc: "On-site setup, final adjustments, documentation" },
+  ],
+  E: [
+    { title: "Scenography & concept",          desc: "Spatial narrative, ambiance, visitor or guest journey" },
+    { title: "Layout plans",                   desc: "Site organisation, circulation flows, functional zones" },
+    { title: "Temporary structures",           desc: "Tents, pavilions, stages, canopies — for the duration of an event" },
+    { title: "Art direction",                  desc: "Visual consistency, signage, lighting, scenic dressing" },
+    { title: "Supplier coordination",          desc: "Caterer, lighting designer, sound, florist — one point of contact" },
+    { title: "Build & strike",                 desc: "On-site supervision, works sign-off, site restoration" },
+  ],
+}
+
+const SERVICES_ES = {
+  A: [
+    { title: "Boceto & viabilidad",            desc: "Lectura del sitio, partido arquitectónico, estudio de volumetría" },
+    { title: "Anteproyecto",                   desc: "Planos, secciones, alzados, memoria descriptiva, presupuesto estimado" },
+    { title: "Solicitud de licencia",          desc: "Elaboración y presentación del expediente reglamentario completo" },
+    { title: "Planos de ejecución",            desc: "Planos técnicos detallados entregados a las empresas constructoras" },
+    { title: "Licitación de contratistas",     desc: "Concurso de ofertas, análisis de presupuestos, selección de intervenientes" },
+    { title: "Dirección y seguimiento de obra", desc: "Reuniones de obra, levantamiento de reservas, recepción de trabajos" },
+  ],
+  C: [
+    { title: "Diagnóstico & levantamiento",    desc: "Estado sanitario, levantamiento geométrico, análisis histórico del edificio" },
+    { title: "Estudio patrimonial",            desc: "Identificación de elementos a conservar, documentación de referencia" },
+    { title: "Proyecto de restauración",       desc: "Partido, técnicas compatibles, materiales originales" },
+    { title: "Coordinación de especialistas",  desc: "Artesanos, restauradores, laboratorios de análisis" },
+    { title: "Seguimiento de obra patrimonial", desc: "Control de conformidad con los requisitos de preservación" },
+    { title: "Reconversión adaptativa",        desc: "Programa contemporáneo integrado en una envolvente histórica" },
+  ],
+  L: [
+    { title: "Análisis del sitio & estudio paisajístico", desc: "Lectura del terreno, soleamiento, vegetación existente" },
+    { title: "Diseño de espacios exteriores",  desc: "Planos de masa, tratamiento de suelos, mobiliario exterior" },
+    { title: "Integración del agua",           desc: "Piscina, estanque, canal, patio húmedo — el agua como hilo conductor" },
+    { title: "Planos de plantación",           desc: "Elección de especies, ritmos, paleta vegetal coherente con el sitio" },
+    { title: "Seguimiento de ejecución",       desc: "Coordinación con el paisajista, control de calidad" },
+    { title: "Mantenimiento",                  desc: "Recomendaciones estacionales, protocolo de gestión a largo plazo" },
+  ],
+  D: [
+    { title: "Brief & investigación",          desc: "Exploración formal, referencias, moodboard, encuadre del proyecto" },
+    { title: "Diseño & modelado",              desc: "Dibujo técnico, render 3D, prototipo, planos de fabricación" },
+    { title: "Seguimiento de fabricación",     desc: "Coordinación con artesanos y talleres, validación de etapas" },
+    { title: "Dirección artística",            desc: "Coherencia visual en todo el proyecto, arbitraje de decisiones" },
+    { title: "Identidad visual",               desc: "Logo, manual de marca, tipografía, paleta — de la marca al espacio" },
+    { title: "Entrega e instalación",          desc: "Puesta en obra, ajustes finales, documentación" },
+  ],
+  E: [
+    { title: "Escenografía & concepto",        desc: "Narrativa espacial, ambiente, recorrido del visitante o invitado" },
+    { title: "Planos de implantación",         desc: "Organización del sitio, flujos de circulación, zonas funcionales" },
+    { title: "Estructuras temporales",         desc: "Carpas, pabellones, tarimas, doseles — por la duración de un evento" },
+    { title: "Dirección artística",            desc: "Coherencia visual, señalética, iluminación, decoración escénica" },
+    { title: "Coordinación de proveedores",    desc: "Catering, iluminador, sonido, florista — un único interlocutor" },
+    { title: "Montaje & desmontaje",           desc: "Seguimiento en obra, recepción de trabajos, restauración del sitio" },
+  ],
+}
+
 const DISC_LABELS = { C: 'Conservation', L: 'Landscape', A: 'Architecture', D: 'Design', E: 'Éphémère' }
 
 function Chevron({ color }) {
@@ -222,7 +308,10 @@ export default function DisciplinePage() {
                                       : lang === 'es' ? (PHRASES_ES[K] ?? phrasesBase)
                                       : phrasesBase
   const heroImage                     = useSiteContent(`discipline.${K}.hero_image`, HERO_IMAGES[K] ?? '')
-  const services                      = SERVICES[K] ?? []
+  const servicesBase                  = lang === 'en' ? (SERVICES_EN[K] ?? SERVICES[K] ?? [])
+                                      : lang === 'es' ? (SERVICES_ES[K] ?? SERVICES[K] ?? [])
+                                      : (SERVICES[K] ?? [])
+  const services                      = servicesBase
 
   useEffect(() => {
     if (!axis) { navigate('/'); return }
@@ -383,7 +472,7 @@ export default function DisciplinePage() {
             letterSpacing: 3.5, textTransform: 'uppercase',
             color: 'rgba(245,240,234,0.3)',
           }}>
-            Missions
+            {t('disc.missions_label')}
           </span>
           <h2 style={{
             fontFamily: 'Instrument Serif, serif',
@@ -391,7 +480,7 @@ export default function DisciplinePage() {
             fontWeight: 400, color: '#F5F0EA',
             marginTop: 10, lineHeight: 1,
           }}>
-            Ce que nous <em style={{ color: color }}>maîtrisons</em>
+            {t('disc.missions_title')} <em style={{ color: color }}>{t('disc.missions_em')}</em>
           </h2>
         </motion.div>
 
