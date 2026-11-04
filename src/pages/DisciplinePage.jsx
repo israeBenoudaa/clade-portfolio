@@ -160,10 +160,12 @@ function ServiceCard({ service, index, color }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
+        background: hovered ? 'rgba(8,9,10,0.95)' : 'rgba(8,9,10,0.82)',
+        border: `1px solid ${hovered ? color : color + '30'}`,
         padding: 'clamp(28px, 3vw, 44px)',
         display: 'flex', flexDirection: 'column',
-        borderTop: `2px solid ${hovered ? color : 'rgba(245,240,234,0.1)'}`,
-        transition: 'border-color 0.35s ease',
+        backdropFilter: 'blur(12px)',
+        transition: 'border-color 0.35s ease, background 0.35s ease',
         cursor: 'default',
       }}
     >
@@ -364,9 +366,8 @@ export default function DisciplinePage() {
 
       {/* ── MISSIONS ── */}
       <section style={{
-        background: '#08090A',
+        background: `${color}18`,
         padding: 'clamp(4rem, 8vw, 7rem) clamp(2rem, 6vw, 7rem)',
-        borderTop: '1px solid rgba(245,240,234,0.06)',
       }}>
         {/* Header */}
         <motion.div
@@ -389,8 +390,7 @@ export default function DisciplinePage() {
             fontWeight: 400, color: '#F5F0EA',
             marginTop: 10, lineHeight: 1,
           }}>
-            Ce que nous prenons<br/>
-            <em style={{ color: color }}>en charge</em>
+            Ce que nous <em style={{ color: color }}>maîtrisons</em>
           </h2>
         </motion.div>
 
@@ -398,7 +398,7 @@ export default function DisciplinePage() {
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 270px), 1fr))',
-          gap: '0 clamp(16px, 2vw, 32px)',
+          gap: 'clamp(10px, 1.2vw, 16px)',
         }}>
           {services.map((s, i) => (
             <ServiceCard key={i} service={s} index={i} color={color} />
