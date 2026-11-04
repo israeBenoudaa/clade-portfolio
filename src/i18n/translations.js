@@ -123,6 +123,8 @@ const fr = {
   // DisciplinePage
   'disc.works': 'Réalisations',
   'disc.projects_count': (n, label) => `Une sélection de projets en ${label}`,
+  'disc.projects_prefix': 'Une sélection de projets en ',
+  'disc.projects_suffix': '',
   'disc.cta_supertitle': 'Votre projet',
   'disc.cta_line1': label => `Un projet en ${label} ?`,
   'disc.cta_line2': 'Parlons-en.',
@@ -266,6 +268,8 @@ const en = {
 
   'disc.works': 'Works',
   'disc.projects_count': (n, label) => `A selection of ${label} projects`,
+  'disc.projects_prefix': 'A selection of ',
+  'disc.projects_suffix': ' projects',
   'disc.cta_supertitle': 'Your project',
   'disc.cta_line1': label => `A project in ${label}?`,
   'disc.cta_line2': "Let's talk.",
@@ -406,6 +410,8 @@ const es = {
 
   'disc.works': 'Realizaciones',
   'disc.projects_count': (n, label) => `Una selección de proyectos de ${label}`,
+  'disc.projects_prefix': 'Una selección de proyectos de ',
+  'disc.projects_suffix': '',
   'disc.cta_supertitle': 'Su proyecto',
   'disc.cta_line1': label => `¿Un proyecto en ${label}?`,
   'disc.cta_line2': 'Hablemos.',

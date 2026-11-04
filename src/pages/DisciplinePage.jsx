@@ -420,7 +420,9 @@ export default function DisciplinePage() {
             {t('disc.works')}
           </span>
           <h2 style={{ fontFamily: 'Instrument Serif, serif', fontSize: 'clamp(24px, 3.5vw, 40px)', fontWeight: 400, color: '#F5F0EA', marginTop: 10, lineHeight: 1 }}>
-            {t('disc.projects_count', projects.length, t('disc.' + K + '.label'))}
+            {t('disc.projects_prefix')}
+            <em style={{ color, fontStyle: 'italic' }}>{t('disc.' + K + '.label')}</em>
+            {t('disc.projects_suffix')}
           </h2>
         </div>
 
