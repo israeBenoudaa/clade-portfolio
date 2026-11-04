@@ -167,12 +167,13 @@ export default function Footer() {
 
       {/* ── Barre copyright ── */}
       <div style={{
-        padding: '1.4rem clamp(2rem, 6vw, 7rem)',
+        padding: '1.1rem clamp(2rem, 6vw, 7rem)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        borderTop: '1px solid rgba(245,240,234,0.06)',
       }}>
-        <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 11, color: 'rgba(245,240,234,0.15)', letterSpacing: '0.04em' }}>
+        <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 11, color: 'rgba(245,240,234,0.35)', letterSpacing: '0.04em', margin: 0 }}>
           {t('footer.copyright', year)}
         </p>
       </div>
@@ -199,6 +200,10 @@ export default function Footer() {
           }
           .footer-contact-item {
             justify-content: center;
+          }
+          footer > div:last-child {
+            padding-top: 0.9rem !important;
+            padding-bottom: 0.9rem !important;
           }
         }
       `}</style>
