@@ -119,9 +119,8 @@ const HEADING = {
   es: { sup: 'Por qué elegirnos',     h2a: 'Lo que nos', h2b: 'distingue.' },
 }
 
-function Card({ card, index }) {
+function Card({ card, index, active, onToggle }) {
   const [hovered, setHovered] = useState(false)
-  const [active,  setActive]  = useState(false)
   const lit = hovered || active
 
   return (
@@ -132,9 +131,9 @@ function Card({ card, index }) {
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onClick={() => setActive(a => !a)}
+      onClick={onToggle}
       style={{
-        background: lit ? 'rgba(8,9,10,0.95)' : 'rgba(8,9,10,0.82)',
+        background: lit ? `${ACCENT}28` : `${ACCENT}18`,
         border: `1px solid ${lit ? ACCENT : `${ACCENT}28`}`,
         padding: 'clamp(1.6rem, 3vw, 2.6rem)',
         display: 'flex', flexDirection: 'column',
@@ -187,10 +186,11 @@ export default function WhyUsSection() {
   const { lang } = useLanguage()
   const cards   = CARDS[lang] || CARDS.fr
   const h       = HEADING[lang] || HEADING.fr
+  const [activeIdx, setActiveIdx] = useState(null)
 
   return (
     <section id="pourquoi" style={{
-      background: `${ACCENT}18`,
+      background: '#08090A',
       padding: 'clamp(5rem, 12vw, 9rem) clamp(2rem, 6vw, 7rem)',
       overflowX: 'hidden',
     }}>
@@ -263,7 +263,11 @@ export default function WhyUsSection() {
         gap: 'clamp(10px, 1.2vw, 16px)',
       }}>
         {cards.map((card, i) => (
-          <Card key={card.num} card={card} index={i} />
+          <Card
+            key={card.num} card={card} index={i}
+            active={activeIdx === i}
+            onToggle={() => setActiveIdx(activeIdx === i ? null : i)}
+          />
         ))}
       </div>
 
