@@ -103,6 +103,114 @@ const HERO_IMAGES = {
   E: 'https://images.unsplash.com/photo-1519619091416-f5d55b8d0e39?w=1200&q=80&fm=jpg&fl=progressive&fit=crop',
 }
 
+const SERVICES = {
+  A: [
+    { title: "Esquisse & faisabilité",            desc: "Lecture du site, parti pris architectural, étude de volumétrie" },
+    { title: "Avant-projet",                       desc: "Plans, coupes, façades, notice descriptive, estimation sommaire" },
+    { title: "Dépôt de permis de construire",      desc: "Constitution et dépôt du dossier réglementaire complet" },
+    { title: "Plans d'exécution",                  desc: "Plans techniques détaillés transmis aux entreprises" },
+    { title: "Consultation des entreprises",       desc: "Appel d'offres, analyse des devis, sélection des intervenants" },
+    { title: "Direction et suivi de chantier",     desc: "Réunions de chantier, levée des réserves, réception des travaux" },
+  ],
+  C: [
+    { title: "Diagnostic & relevé de l'existant", desc: "État sanitaire, relevé géométrique, analyse historique du bâti" },
+    { title: "Étude patrimoniale",                 desc: "Identification des éléments à conserver, documentation de référence" },
+    { title: "Projet de restauration",             desc: "Parti pris, techniques compatibles, matériaux d'origine" },
+    { title: "Coordination des corps spécialisés", desc: "Artisans, restaurateurs, laboratoires d'analyse" },
+    { title: "Suivi de chantier patrimonial",      desc: "Contrôle de conformité avec les exigences de préservation" },
+    { title: "Reconversion adaptative",            desc: "Programme contemporain intégré dans une enveloppe ancienne" },
+  ],
+  L: [
+    { title: "Analyse du site & étude paysagère",  desc: "Lecture du terrain, ensoleillement, végétation existante" },
+    { title: "Conception des espaces extérieurs",  desc: "Plans de masse, traitement des sols, mobilier extérieur" },
+    { title: "Intégration de l'eau",               desc: "Piscine, bassin, canal, patio humide — l'eau comme fil directeur" },
+    { title: "Plans de plantation",                desc: "Choix des espèces, rythmes, palette végétale cohérente avec le site" },
+    { title: "Suivi de mise en œuvre",             desc: "Coordination avec l'entrepreneur paysagiste, contrôle qualité" },
+    { title: "Entretien & maintenance",            desc: "Recommandations saisonnières, protocole de gestion à long terme" },
+  ],
+  D: [
+    { title: "Brief & recherche",                  desc: "Exploration formelle, références, moodboard, cadrage du projet" },
+    { title: "Conception & modélisation",          desc: "Dessin technique, rendu 3D, prototype, plans de fabrication" },
+    { title: "Suivi de fabrication",               desc: "Coordination avec les artisans et ateliers, validation des étapes" },
+    { title: "Direction artistique",               desc: "Cohérence visuelle sur l'ensemble du projet, arbitrage des choix" },
+    { title: "Identité visuelle",                  desc: "Logo, charte graphique, typographie, palette — de la marque à l'espace" },
+    { title: "Livraison & installation",           desc: "Mise en place sur site, ajustements finaux, documentation" },
+  ],
+  E: [
+    { title: "Scénographie & concept",             desc: "Narration spatiale, ambiance, parcours du visiteur ou convive" },
+    { title: "Plans d'implantation",               desc: "Organisation du site, flux de circulation, zones fonctionnelles" },
+    { title: "Structures temporaires",             desc: "Tentes, pavillons, estrades, canopées — durée d'un événement" },
+    { title: "Direction artistique",               desc: "Cohérence visuelle, signalétique, éclairage, habillage scénique" },
+    { title: "Coordination des prestataires",      desc: "Traiteur, éclairagiste, sonorisation, fleuriste — un interlocuteur" },
+    { title: "Montage & démontage",                desc: "Suivi sur site, réception des travaux, remise en état" },
+  ],
+}
+
+function ServiceRow({ service, index, color }) {
+  const [hovered, setHovered] = useState(false)
+  const num = String(index + 1).padStart(2, '0')
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.5, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '48px 1px 1fr',
+        gap: '0 24px',
+        alignItems: 'start',
+        padding: '26px 0 26px 12px',
+        borderBottom: `1px solid ${hovered ? color + '55' : 'rgba(245,240,234,0.07)'}`,
+        borderLeft: `2px solid ${hovered ? color : 'transparent'}`,
+        transition: 'border-color 0.35s ease, padding 0.35s ease',
+        paddingLeft: hovered ? 20 : 12,
+      }}
+    >
+      <span style={{
+        fontFamily: 'Space Grotesk, sans-serif',
+        fontSize: 9, letterSpacing: 2.5,
+        color: color,
+        opacity: hovered ? 1 : 0.38,
+        transition: 'opacity 0.3s',
+        paddingTop: 3,
+      }}>
+        {num}
+      </span>
+      <div style={{
+        alignSelf: 'stretch',
+        background: hovered ? color + '45' : 'rgba(245,240,234,0.09)',
+        transition: 'background 0.3s',
+      }} />
+      <div style={{
+        transform: hovered ? 'translateX(5px)' : 'none',
+        transition: 'transform 0.35s cubic-bezier(0.22,1,0.36,1)',
+      }}>
+        <div style={{
+          fontFamily: 'Instrument Serif, serif',
+          fontSize: 'clamp(16px, 1.6vw, 21px)',
+          fontWeight: 400,
+          color: hovered ? '#F5F0EA' : 'rgba(245,240,234,0.7)',
+          transition: 'color 0.3s',
+          lineHeight: 1.2,
+          marginBottom: 6,
+        }}>
+          {service.title}
+        </div>
+        <div style={{
+          fontFamily: 'Space Grotesk, sans-serif',
+          fontSize: 11, lineHeight: 1.75,
+          color: 'rgba(245,240,234,0.28)',
+        }}>
+          {service.desc}
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
 export default function DisciplinePage() {
   const { key }  = useParams()
   const navigate = useNavigate()
@@ -119,6 +227,7 @@ export default function DisciplinePage() {
                                       : lang === 'es' ? (PHRASES_ES[K] ?? phrasesBase)
                                       : phrasesBase
   const heroImage                     = useSiteContent(`discipline.${K}.hero_image`, HERO_IMAGES[K] ?? '')
+  const services                      = SERVICES[K] ?? []
 
   useEffect(() => {
     if (!axis) { navigate('/'); return }
@@ -259,6 +368,60 @@ export default function DisciplinePage() {
             />
           ))}
         </div>
+      </motion.section>
+
+      {/* ── MISSIONS ── */}
+      <motion.section
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          padding: 'clamp(4rem, 8vw, 7rem) clamp(2rem, 6vw, 7rem)',
+          borderBottom: '1px solid rgba(245,240,234,0.06)',
+        }}
+      >
+        {/* Header */}
+        <div style={{
+          display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end',
+          marginBottom: 'clamp(2.5rem, 5vw, 4rem)',
+        }}>
+          <div>
+            <span style={{
+              fontFamily: 'Space Grotesk, sans-serif', fontSize: 9,
+              letterSpacing: 3.5, textTransform: 'uppercase',
+              color: 'rgba(245,240,234,0.3)',
+            }}>
+              Missions
+            </span>
+            <h2 style={{
+              fontFamily: 'Instrument Serif, serif',
+              fontSize: 'clamp(24px, 3.5vw, 42px)',
+              fontWeight: 400, color: '#F5F0EA',
+              marginTop: 10, lineHeight: 1,
+            }}>
+              Ce que nous prenons<br/>
+              <em style={{ color: 'rgba(245,240,234,0.28)' }}>en charge</em>
+            </h2>
+          </div>
+          <span style={{
+            fontFamily: 'Instrument Serif, serif', fontStyle: 'italic',
+            fontSize: 'clamp(72px, 10vw, 130px)',
+            color: color, opacity: 0.07,
+            lineHeight: 1, userSelect: 'none',
+            flexShrink: 0,
+          }}>
+            {String(services.length).padStart(2, '0')}
+          </span>
+        </div>
+
+        {/* Top rule */}
+        <div style={{ width: '100%', height: 1, background: 'rgba(245,240,234,0.1)' }} />
+
+        {/* Rows */}
+        {services.map((s, i) => (
+          <ServiceRow key={i} service={s} index={i} color={color} />
+        ))}
       </motion.section>
 
       {/* ── PROJETS ── */}
