@@ -16,6 +16,7 @@ const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1539037116277-4db20889f
 
 export default function Hero() {
   const [idx, setIdx] = useState(0)
+  const [lit, setLit] = useState(false)
   const cmsPhrasesRaw = useSiteContentJson('hero.phrases', DEFAULT_PHRASES)
   const imageUrl = useSiteContent('hero.image_url', DEFAULT_IMAGE)
   const { t, lang } = useLanguage()
@@ -39,11 +40,11 @@ export default function Hero() {
   const currentImage = phrases[idx]?.image || imageUrl
 
   return (
-    <section className="img-shimmer" style={{
-      position: 'relative',
-      height: '92vh', minHeight: 580,
-      overflow: 'hidden',
-    }}>
+    <section
+      className="img-shimmer"
+      onClick={() => { setLit(true); setTimeout(() => setLit(false), 1200) }}
+      style={{ position: 'relative', height: '92vh', minHeight: 580, overflow: 'hidden', cursor: 'default' }}
+    >
       {/* Background slideshow — crossfades when phrase (and its image) changes */}
       <AnimatePresence>
         <motion.div
@@ -62,7 +63,8 @@ export default function Hero() {
               width: '100%', height: '100%',
               objectFit: 'cover',
               objectPosition: 'center 55%',
-              filter: 'brightness(0.62) saturate(0.65) sepia(0.10)',
+              filter: `brightness(${lit ? 0.88 : 0.62}) saturate(${lit ? 0.85 : 0.65}) sepia(0.10)`,
+              transition: 'filter 0.4s ease',
               display: 'block',
             }}
           />
