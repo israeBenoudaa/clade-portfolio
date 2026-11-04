@@ -6,7 +6,6 @@ import WhyUsSection from '../components/sections/WhyUsSection'
 import ProjectsGrid from '../components/sections/ProjectsGrid'
 import FaqSection from '../components/sections/FaqSection'
 import ContactSection from '../components/sections/ContactSection'
-import ContactInfoSection from '../components/sections/ContactInfoSection'
 import PageTransition from '../components/ui/PageTransition'
 
 export default function Home() {
@@ -20,7 +19,6 @@ export default function Home() {
         <ProjectsGrid />
         <FaqSection />
         <ContactSection />
-        <ContactInfoSection />
       </main>
       <Footer />
     </PageTransition>
