@@ -267,6 +267,7 @@ export default function DisciplinesSection() {
           marginTop: 'clamp(1.2rem, 2vw, 1.8rem)',
           maxWidth: 620,
           letterSpacing: '0.01em',
+          textAlign: 'justify',
         }}>
           {t('disciplines.intro')}
         </p>

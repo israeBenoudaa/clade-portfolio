@@ -43,7 +43,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer style={{ background: '#08090A', borderTop: '1px solid rgba(245,240,234,0.06)' }}>
+    <footer style={{ background: '#08090A', borderTop: '1px solid rgba(245,240,234,0.06)', margin: 0, paddingBottom: 0 }}>
 
       {/* ── Corps principal ── */}
       <div className="footer-grid" style={{
@@ -91,14 +91,14 @@ export default function Footer() {
                   style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     width: 38, height: 38,
-                    border: '1px solid rgba(245,240,234,0.1)',
+                    border: `1px solid ${ACCENT}30`,
                     borderRadius: '50%',
-                    color: 'rgba(245,240,234,0.35)',
+                    color: `${ACCENT}80`,
                     textDecoration: 'none',
                     transition: 'color 0.25s ease, border-color 0.25s ease, background 0.25s ease',
                   }}
                   onMouseEnter={e => { e.currentTarget.style.color = ACCENT; e.currentTarget.style.borderColor = `${ACCENT}60`; e.currentTarget.style.background = `${ACCENT}0A` }}
-                  onMouseLeave={e => { e.currentTarget.style.color = 'rgba(245,240,234,0.35)'; e.currentTarget.style.borderColor = 'rgba(245,240,234,0.1)'; e.currentTarget.style.background = 'transparent' }}
+                  onMouseLeave={e => { e.currentTarget.style.color = `${ACCENT}80`; e.currentTarget.style.borderColor = `${ACCENT}30`; e.currentTarget.style.background = 'transparent' }}
                 >
                   {SOCIAL_ICONS[s.key]}
                 </a>
@@ -129,7 +129,7 @@ export default function Footer() {
             },
           ].map((item, i) => (
             <div key={i} className="footer-contact-item" style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
-              <span style={{ color: `${ACCENT}80`, marginTop: 3, flexShrink: 0 }}>{item.icon}</span>
+              <span style={{ color: ACCENT, marginTop: 3, flexShrink: 0 }}>{item.icon}</span>
               {item.href ? (
                 <a
                   href={item.href}
@@ -183,7 +183,7 @@ export default function Footer() {
           .footer-grid {
             grid-template-columns: 1fr !important;
             padding-top: 3rem !important;
-            padding-bottom: 3rem !important;
+            padding-bottom: 2rem !important;
             text-align: center;
           }
           .footer-col-left {
