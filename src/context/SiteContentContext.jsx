@@ -17,10 +17,8 @@ function writeCache(data) {
 export function SiteContentProvider({ children }) {
   const [content, setContent] = useState(readCache)
 
-  useEffect(() => {
+  const fetchAll = () => {
     if (!supabase) return
-
-    // Chargement initial
     supabase.from('site_content').select('key, value')
       .then(({ data }) => {
         if (data) {
@@ -29,25 +27,33 @@ export function SiteContentProvider({ children }) {
           writeCache(map)
         }
       })
+  }
 
-    // Écoute des changements en temps réel
+  useEffect(() => {
+    fetchAll()
+
+    // Re-fetch quand la page reprend le focus (retour sur l'onglet)
+    const onFocus = () => fetchAll()
+    window.addEventListener('focus', onFocus)
+
+    // Realtime Supabase (nécessite l'activation sur la table dans le dashboard)
     const channel = supabase
-      .channel('site_content_changes')
+      ?.channel('site_content_changes')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'site_content' }, (payload) => {
         setContent(prev => {
           const next = { ...prev }
-          if (payload.eventType === 'DELETE') {
-            delete next[payload.old.key]
-          } else {
-            next[payload.new.key] = payload.new.value
-          }
+          if (payload.eventType === 'DELETE') delete next[payload.old.key]
+          else next[payload.new.key] = payload.new.value
           writeCache(next)
           return next
         })
       })
       .subscribe()
 
-    return () => { supabase.removeChannel(channel) }
+    return () => {
+      window.removeEventListener('focus', onFocus)
+      if (channel) supabase.removeChannel(channel)
+    }
   }, [])
 
   return <Ctx.Provider value={content}>{children}</Ctx.Provider>
