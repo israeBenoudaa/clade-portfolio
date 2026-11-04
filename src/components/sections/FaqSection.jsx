@@ -15,8 +15,8 @@ const FAQ = {
         a: 'Remplissez notre formulaire ou écrivez-nous directement. Nous prenons le temps d\'un premier échange pour comprendre votre projet avant de vous proposer une mission adaptée — sans engagement de votre part.',
       },
       {
-        q: 'Intervenez-vous hors du Maroc ?',
-        a: 'Nous intervenons sur des projets au Maroc et à l\'international, quelle que soit la nature ou l\'envergure du projet. N\'hésitez pas à nous contacter pour en discuter.',
+        q: 'Travaillez-vous dans toutes les villes du Maroc ?',
+        a: 'Oui, nous intervenons sur l\'ensemble du territoire marocain, quelle que soit la localisation du projet. La distance n\'est pas un obstacle. Nous acceptons également des projets à l\'étranger selon leur nature et leur envergure.',
       },
       {
         q: 'Comment sont calculés vos honoraires ?',
@@ -42,8 +42,8 @@ const FAQ = {
         a: 'Fill in our form or write to us directly. We always start with a conversation to understand your project before proposing a scope — with no commitment on your part.',
       },
       {
-        q: 'Do you work outside Morocco?',
-        a: 'We work on projects across Morocco and internationally, regardless of the nature or scale of the project. Feel free to contact us to discuss.',
+        q: 'Do you work in all cities across Morocco?',
+        a: 'Yes, we work across the entire Moroccan territory, regardless of the project\'s location. Distance is not an obstacle. We also take on projects abroad depending on their nature and scale.',
       },
       {
         q: 'How are your fees calculated?',
@@ -69,8 +69,8 @@ const FAQ = {
         a: 'Rellene nuestro formulario o escríbanos directamente. Siempre comenzamos con una conversación para entender su proyecto antes de proponer un alcance — sin compromiso de su parte.',
       },
       {
-        q: '¿Intervienen fuera de Marruecos?',
-        a: 'Trabajamos en proyectos en Marruecos y a nivel internacional, independientemente de la naturaleza o envergadura del proyecto. No dude en contactarnos para hablarlo.',
+        q: '¿Trabajan en todas las ciudades de Marruecos?',
+        a: 'Sí, intervenimos en todo el territorio marroquí, independientemente de la ubicación del proyecto. La distancia no es un obstáculo. También aceptamos proyectos en el extranjero según su naturaleza y envergadura.',
       },
       {
         q: '¿Cómo se calculan sus honorarios?',
