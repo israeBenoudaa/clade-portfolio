@@ -121,14 +121,23 @@ export default function ContactInfoSection() {
 
         {/* Adresse */}
         <InfoBlock label={labels.address} delay={0.07}>
-          <span style={{
-            fontFamily: 'Instrument Serif, serif',
-            fontSize: 'clamp(18px, 1.8vw, 22px)',
-            color: 'rgba(245,240,234,0.75)',
-            lineHeight: 1.4,
-          }}>
+          <a
+            href={`https://maps.google.com/?q=${encodeURIComponent(address)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: 'Instrument Serif, serif',
+              fontSize: 'clamp(18px, 1.8vw, 22px)',
+              color: 'rgba(245,240,234,0.75)',
+              lineHeight: 1.4,
+              textDecoration: 'none',
+              transition: 'color 0.3s ease',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.color = '#F5F0EA' }}
+            onMouseLeave={e => { e.currentTarget.style.color = 'rgba(245,240,234,0.75)' }}
+          >
             {address}
-          </span>
+          </a>
         </InfoBlock>
 
         {/* Horaires */}
