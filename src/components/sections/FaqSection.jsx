@@ -6,21 +6,17 @@ const ACCENT = '#C8B89A'
 
 const FAQ = {
   fr: {
-    sup: 'Questions fréquentes',
-    h2a: 'Ce que vous',
-    h2b: 'nous demandez.',
+    sup: 'Questions & réponses',
+    h2a: 'Questions',
+    h2b: '& réponses.',
     items: [
       {
         q: 'Comment se déroule une première prise de contact ?',
         a: 'Remplissez notre formulaire ou écrivez-nous directement. Nous prenons le temps d\'un premier échange pour comprendre votre projet avant de vous proposer une mission adaptée — sans engagement de votre part.',
       },
       {
-        q: 'Travaillez-vous avec des particuliers et des professionnels ?',
-        a: 'Oui. Nos clients sont aussi bien des particuliers porteurs d\'un projet de rénovation ou de construction que des entreprises, institutions ou collectivités qui cherchent une expertise pluridisciplinaire.',
-      },
-      {
-        q: 'Intervenez-vous hors de France ?',
-        a: 'Nous intervenons principalement en France et dans les pays francophones, mais nous acceptons des projets à l\'international selon leur nature et leur envergure. Contactez-nous pour en discuter.',
+        q: 'Intervenez-vous hors du Maroc ?',
+        a: 'Nous intervenons sur des projets au Maroc et à l\'international, quelle que soit la nature ou l\'envergure du projet. N\'hésitez pas à nous contacter pour en discuter.',
       },
       {
         q: 'Comment sont calculés vos honoraires ?',
@@ -37,21 +33,17 @@ const FAQ = {
     ],
   },
   en: {
-    sup: 'Frequently asked',
-    h2a: 'What you',
-    h2b: 'ask us.',
+    sup: 'Questions & answers',
+    h2a: 'Questions',
+    h2b: '& answers.',
     items: [
       {
         q: 'How does the first contact work?',
         a: 'Fill in our form or write to us directly. We always start with a conversation to understand your project before proposing a scope — with no commitment on your part.',
       },
       {
-        q: 'Do you work with private clients and businesses?',
-        a: 'Yes. Our clients include private individuals with renovation or construction projects as well as companies, institutions and public bodies looking for multidisciplinary expertise.',
-      },
-      {
-        q: 'Do you work internationally?',
-        a: 'We work primarily in France and French-speaking countries, but we take on international projects depending on their nature and scale. Contact us to discuss.',
+        q: 'Do you work outside Morocco?',
+        a: 'We work on projects across Morocco and internationally, regardless of the nature or scale of the project. Feel free to contact us to discuss.',
       },
       {
         q: 'How are your fees calculated?',
@@ -68,21 +60,17 @@ const FAQ = {
     ],
   },
   es: {
-    sup: 'Preguntas frecuentes',
-    h2a: 'Lo que nos',
-    h2b: 'preguntan.',
+    sup: 'Preguntas & respuestas',
+    h2a: 'Preguntas',
+    h2b: '& respuestas.',
     items: [
       {
         q: '¿Cómo funciona el primer contacto?',
         a: 'Rellene nuestro formulario o escríbanos directamente. Siempre comenzamos con una conversación para entender su proyecto antes de proponer un alcance — sin compromiso de su parte.',
       },
       {
-        q: '¿Trabajan con particulares y con empresas?',
-        a: 'Sí. Nuestros clientes incluyen particulares con proyectos de renovación o construcción, así como empresas, instituciones y organismos públicos que buscan una experiencia pluridisciplinar.',
-      },
-      {
-        q: '¿Intervienen fuera de Francia?',
-        a: 'Trabajamos principalmente en Francia y en países francófonos, pero aceptamos proyectos internacionales según su naturaleza y envergadura. Contáctenos para hablarlo.',
+        q: '¿Intervienen fuera de Marruecos?',
+        a: 'Trabajamos en proyectos en Marruecos y a nivel internacional, independientemente de la naturaleza o envergadura del proyecto. No dude en contactarnos para hablarlo.',
       },
       {
         q: '¿Cómo se calculan sus honorarios?',
