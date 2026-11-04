@@ -38,11 +38,11 @@ export default function Footer() {
   const facebook  = useSiteContent('contact.social.facebook',  '')
 
   const socials = [
-    { key: 'instagram', href: instagram, label: 'Instagram' },
-    { key: 'tiktok',    href: tiktok,    label: 'TikTok' },
-    { key: 'linkedin',  href: linkedin,  label: 'LinkedIn' },
-    { key: 'facebook',  href: facebook,  label: 'Facebook' },
-  ].filter(s => s.href && s.href !== '#' && s.href !== '')
+    { key: 'instagram', href: instagram || '#', label: 'Instagram' },
+    { key: 'tiktok',    href: tiktok    || '#', label: 'TikTok' },
+    { key: 'linkedin',  href: linkedin  || '#', label: 'LinkedIn' },
+    { key: 'facebook',  href: facebook  || '#', label: 'Facebook' },
+  ]
 
   return (
     <footer style={{ background: '#08090A', borderTop: '1px solid rgba(245,240,234,0.06)' }}>
@@ -71,20 +71,17 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Tagline */}
-          <p style={{
-            fontFamily: 'Instrument Serif, serif',
-            fontSize: 'clamp(15px, 1.4vw, 18px)',
-            fontStyle: 'italic',
-            color: 'rgba(245,240,234,0.3)',
-            lineHeight: 1.6,
-            maxWidth: 280,
-          }}>
-            {t('footer.tagline')}
-          </p>
-
           {/* Réseaux sociaux */}
-          {socials.length > 0 && (
+          <div>
+            <span style={{
+              display: 'block',
+              fontFamily: 'Space Grotesk, sans-serif',
+              fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase',
+              color: 'rgba(245,240,234,0.2)',
+              marginBottom: 14,
+            }}>
+              Rejoignez-nous sur nos réseaux
+            </span>
             <div style={{ display: 'flex', gap: 10 }}>
               {socials.map(s => (
                 <a
@@ -109,71 +106,58 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-          )}
-
-          {/* Placeholder si aucun réseau configuré */}
-          {socials.length === 0 && (
-            <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontSize: 10, color: 'rgba(245,240,234,0.15)', letterSpacing: '0.08em' }}>
-              Réseaux à configurer dans l'éditeur
-            </p>
-          )}
+          </div>
         </div>
 
         {/* Colonne droite — Infos contact */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
           {[
             {
-              label: 'Adresse',
+              icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>,
               value: address,
               href: `https://maps.google.com/?q=${encodeURIComponent(address)}`,
               external: true,
             },
             {
-              label: 'Téléphone',
+              icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.59 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6 6l1.06-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>,
               value: phone,
               href: `tel:${phone.replace(/\s/g, '')}`,
               external: false,
             },
             {
-              label: 'Horaires',
+              icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
               value: hours,
               href: null,
             },
-          ].map(item => (
-            <div key={item.label}>
-              <span style={{
-                display: 'block',
-                fontFamily: 'Space Grotesk, sans-serif',
-                fontSize: 9, letterSpacing: '0.2em', textTransform: 'uppercase',
-                color: 'rgba(245,240,234,0.2)',
-                marginBottom: 7,
-              }}>
-                {item.label}
-              </span>
+          ].map((item, i) => (
+            <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+              <span style={{ color: `${ACCENT}80`, marginTop: 3, flexShrink: 0 }}>{item.icon}</span>
               {item.href ? (
                 <a
                   href={item.href}
                   target={item.external ? '_blank' : undefined}
                   rel={item.external ? 'noopener noreferrer' : undefined}
                   style={{
-                    fontFamily: 'Instrument Serif, serif',
-                    fontSize: 'clamp(16px, 1.5vw, 20px)',
-                    color: 'rgba(245,240,234,0.6)',
+                    fontFamily: 'Space Grotesk, sans-serif',
+                    fontSize: 'clamp(13px, 1.2vw, 15px)',
+                    color: 'rgba(245,240,234,0.5)',
                     textDecoration: 'none',
-                    lineHeight: 1.4,
+                    lineHeight: 1.6,
+                    letterSpacing: '0.02em',
                     transition: 'color 0.25s ease',
                   }}
                   onMouseEnter={e => { e.currentTarget.style.color = '#F5F0EA' }}
-                  onMouseLeave={e => { e.currentTarget.style.color = 'rgba(245,240,234,0.6)' }}
+                  onMouseLeave={e => { e.currentTarget.style.color = 'rgba(245,240,234,0.5)' }}
                 >
                   {item.value}
                 </a>
               ) : (
                 <span style={{
-                  fontFamily: 'Instrument Serif, serif',
-                  fontSize: 'clamp(16px, 1.5vw, 20px)',
-                  color: 'rgba(245,240,234,0.6)',
-                  lineHeight: 1.4,
+                  fontFamily: 'Space Grotesk, sans-serif',
+                  fontSize: 'clamp(13px, 1.2vw, 15px)',
+                  color: 'rgba(245,240,234,0.5)',
+                  lineHeight: 1.6,
+                  letterSpacing: '0.02em',
                 }}>
                   {item.value}
                 </span>
