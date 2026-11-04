@@ -6,7 +6,7 @@ const ACCENT = '#C8B89A'
 
 const FAQ = {
   fr: {
-    sup: 'Questions & réponses',
+    sup: 'Nous répondons',
     h2a: 'Questions',
     h2b: '& réponses.',
     items: [
@@ -33,7 +33,7 @@ const FAQ = {
     ],
   },
   en: {
-    sup: 'Questions & answers',
+    sup: 'We answer',
     h2a: 'Questions',
     h2b: '& answers.',
     items: [
@@ -60,7 +60,7 @@ const FAQ = {
     ],
   },
   es: {
-    sup: 'Preguntas & respuestas',
+    sup: 'Respondemos',
     h2a: 'Preguntas',
     h2b: '& respuestas.',
     items: [
