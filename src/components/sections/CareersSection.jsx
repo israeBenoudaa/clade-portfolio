@@ -460,20 +460,18 @@ export default function CareersSection({ hideHeader = false, autoTrigger = false
                 {errorKey && <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 12, color: '#C8A47B' }}>{t(errorKey)}</p>}
 
                 <button type="submit" disabled={loading} style={{
-                  background: 'rgba(255,255,255,0.12)',
-                  color: '#F5F0EA',
-                  border: '1px solid rgba(255,255,255,0.28)',
+                  background: '#C8B89A',
+                  color: '#08090A',
+                  border: 'none',
                   borderRadius: 50,
                   padding: '14px 36px', marginTop: 8,
                   fontFamily: 'Space Grotesk, sans-serif', fontSize: 10, fontWeight: 600,
-                  letterSpacing: 2.8, textTransform: 'uppercase',
-                  opacity: loading ? 0.5 : 1, alignSelf: 'center', cursor: loading ? 'not-allowed' : 'pointer',
-                  backdropFilter: 'blur(24px)', WebkitBackdropFilter: 'blur(24px)',
-                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.35), 0 4px 24px rgba(0,0,0,0.2)',
-                  transition: 'opacity 0.2s, background 0.2s, box-shadow 0.2s',
+                  letterSpacing: '0.18em', textTransform: 'uppercase',
+                  opacity: loading ? 0.55 : 1, alignSelf: 'center', cursor: loading ? 'not-allowed' : 'pointer',
+                  transition: 'opacity 0.2s, transform 0.2s',
                 }}
-                  onMouseEnter={e => { if (!loading) { e.currentTarget.style.background = 'rgba(255,255,255,0.18)'; e.currentTarget.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.5), 0 8px 32px rgba(255,255,255,0.1)' }}}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.12)'; e.currentTarget.style.boxShadow = 'inset 0 1px 0 rgba(255,255,255,0.35), 0 4px 24px rgba(0,0,0,0.2)' }}
+                  onMouseEnter={e => { if (!loading) { e.currentTarget.style.opacity = '0.85'; e.currentTarget.style.transform = 'translateY(-2px)' }}}
+                  onMouseLeave={e => { e.currentTarget.style.opacity = loading ? '0.55' : '1'; e.currentTarget.style.transform = 'translateY(0)' }}
                 >
                   {loading ? t('careers.sending') : selectedOffre ? t('careers.submit_offer') : t('careers.submit_spontaneous')}
                 </button>
