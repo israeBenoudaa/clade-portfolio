@@ -88,6 +88,9 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
+                  data-cms-key={`contact.social.${s.key}`}
+                  data-cms-type="text"
+                  data-cms-value={s.href}
                   style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     width: 38, height: 38,
@@ -112,20 +115,17 @@ export default function Footer() {
           {[
             {
               icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>,
-              value: address,
-              href: `https://maps.google.com/?q=${encodeURIComponent(address)}`,
-              external: true,
+              cmsKey: 'contact.address', value: address,
+              href: `https://maps.google.com/?q=${encodeURIComponent(address)}`, external: true,
             },
             {
               icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.59 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.78a16 16 0 0 0 6 6l1.06-.9a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>,
-              value: phone,
-              href: `tel:${phone.replace(/\s/g, '')}`,
-              external: false,
+              cmsKey: 'contact.phone', value: phone,
+              href: `tel:${phone.replace(/\s/g, '')}`, external: false,
             },
             {
               icon: <svg width={14} height={14} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
-              value: hours,
-              href: null,
+              cmsKey: 'contact.hours', value: hours, href: null,
             },
           ].map((item, i) => (
             <div key={i} className="footer-contact-item" style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
@@ -135,6 +135,9 @@ export default function Footer() {
                   href={item.href}
                   target={item.external ? '_blank' : undefined}
                   rel={item.external ? 'noopener noreferrer' : undefined}
+                  data-cms-key={item.cmsKey}
+                  data-cms-type="text"
+                  data-cms-value={item.value}
                   style={{
                     fontFamily: 'Space Grotesk, sans-serif',
                     fontSize: 'clamp(13px, 1.2vw, 15px)',
@@ -150,13 +153,18 @@ export default function Footer() {
                   {item.value}
                 </a>
               ) : (
-                <span style={{
-                  fontFamily: 'Space Grotesk, sans-serif',
-                  fontSize: 'clamp(13px, 1.2vw, 15px)',
-                  color: 'rgba(245,240,234,0.5)',
-                  lineHeight: 1.6,
-                  letterSpacing: '0.02em',
-                }}>
+                <span
+                  data-cms-key={item.cmsKey}
+                  data-cms-type="text"
+                  data-cms-value={item.value}
+                  style={{
+                    fontFamily: 'Space Grotesk, sans-serif',
+                    fontSize: 'clamp(13px, 1.2vw, 15px)',
+                    color: 'rgba(245,240,234,0.5)',
+                    lineHeight: 1.6,
+                    letterSpacing: '0.02em',
+                  }}
+                >
                   {item.value}
                 </span>
               )}
