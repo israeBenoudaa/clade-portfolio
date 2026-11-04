@@ -150,7 +150,6 @@ const DISC_LABELS = { C: 'Conservation', L: 'Landscape', A: 'Architecture', D: '
 
 function ServiceCard({ service, index, color }) {
   const [hovered, setHovered] = useState(false)
-  const num = String(index + 1).padStart(2, '0')
   return (
     <motion.div
       initial={{ opacity: 0, y: 32 }}
@@ -169,18 +168,13 @@ function ServiceCard({ service, index, color }) {
         cursor: 'default',
       }}
     >
-      <span style={{
-        fontFamily: 'Instrument Serif, serif', fontStyle: 'italic',
-        fontSize: 'clamp(52px, 6vw, 76px)',
-        color: color,
-        opacity: hovered ? 1 : 0.55,
-        lineHeight: 1,
-        display: 'block',
-        marginBottom: 24,
-        transition: 'opacity 0.35s ease',
-      }}>
-        {num}
-      </span>
+      <div style={{
+        width: hovered ? 56 : 36,
+        height: 1.5,
+        background: color,
+        marginBottom: 28,
+        transition: 'width 0.45s cubic-bezier(0.22,1,0.36,1)',
+      }} />
 
       <div style={{
         fontFamily: 'Instrument Serif, serif',
