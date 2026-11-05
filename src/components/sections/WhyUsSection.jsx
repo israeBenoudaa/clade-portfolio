@@ -14,7 +14,7 @@ const CARDS = {
         </svg>
       ),
       title: 'Suivi en temps réel',
-      body: 'Accédez à votre espace projet depuis n\'importe quel appareil. Documents, avancement, échanges — tout centralisé, disponible 24h/24. Votre espace dédié sur l\'application de gestion Clade vous accompagne à chaque étape du projet.',
+      body: 'Accédez à votre espace projet depuis n\'importe quel appareil. Documents, avancement, échanges — tout centralisé, disponible 24h/24. Accédez à votre espace projet sur l\'application de gestion Clade.',
       from: { x: -40, y: 24 },
     },
     {
@@ -56,7 +56,7 @@ const CARDS = {
       num: '01',
       icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>,
       title: 'Real-time tracking',
-      body: 'Access your project space from any device. Documents, progress, exchanges — all centralized, available 24/7. Your dedicated space on the Clade management application keeps you informed at every step.',
+      body: 'Access your project space from any device. Documents, progress, exchanges — all centralized, available 24/7. Access your project space on the Clade management application.',
       from: { x: -40, y: 24 },
     },
     {
@@ -86,7 +86,7 @@ const CARDS = {
       num: '01',
       icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>,
       title: 'Seguimiento en tiempo real',
-      body: 'Acceda a su espacio de proyecto desde cualquier dispositivo. Documentos, avance, intercambios — todo centralizado, disponible 24h. Su espacio dedicado en la aplicación de gestión Clade le acompaña en cada etapa del proyecto.',
+      body: 'Acceda a su espacio de proyecto desde cualquier dispositivo. Documentos, avance, intercambios — todo centralizado, disponible 24h. Acceda a su espacio de proyecto en la aplicación de gestión Clade.',
       from: { x: -40, y: 24 },
     },
     {
